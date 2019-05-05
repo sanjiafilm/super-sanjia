@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sj.show.mapper.HomePageMapper">
+
+	
+
+	<select id="newMoviePlay" resultType="Purchase">
+		select movie_name,cinema_name,play_time,
+		platform,address,price
+		from t_purchase
+		order by play_time,price;
+	</select>
+
+
+	<select id="userChoose" resultType="Purchase">
+
+		select
+		movie_name,cinema_name,play_time,
+		platform,address,price
+		from t_purchase
+		order by
+		play_time ASC,price ASC;
+
+	</select>
+
+	
+</mapper> 
+
+
+
+
+
+
+
+
+
+
+
+
