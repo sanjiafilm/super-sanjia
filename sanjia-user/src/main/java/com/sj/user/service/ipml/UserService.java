@@ -60,7 +60,7 @@ public class UserService {
 			String exitTicket = cluster.get(exiUser.getName());
 //			String exiTicket = cluster.get("SJ_TICKET");
 			if(StringUtils.isNotEmpty(exitTicket)){ //该用户已经登录
-				cluster.del(exitTicket);  //删除用户登录信息
+				cluster.del(exiUser.getName());  //删除用户登录信息
 			}
 			
 			String key = "SJ_TICKET"+user.getName()+System.currentTimeMillis(); 
@@ -70,7 +70,7 @@ public class UserService {
 				jsondata = ObjectUtil.mapper.writeValueAsString(exiUser);
 				String ticket=MD5Util.md5(key);
 				//打桩 打印cluster中的key
-				System.out.println(exitTicket);
+				System.out.println(exiUser.getName());
 				//打桩 打印cluster中的key
 				System.out.println(ticket);
 				cluster.set(exiUser.getName(), ticket);//在redis中注册用户登录信息

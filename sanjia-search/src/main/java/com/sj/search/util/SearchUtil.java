@@ -8,21 +8,21 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class SearchUtil {
-	@Value("${spring.datasource.dbName}")
+	@Value("${spring.datasource.dbName:null}")
 	private String dbName;
-	@Value("${spring.datasource.driver-class-name}")
+	@Value("${spring.datasource.driver-class-name:null}")
 	private String dbDrive;
-	@Value("${spring.data.url}")
+	@Value("${spring.data.url:null}")
 	private String dbUrl;
-	@Value("${spring.datasource.username}")
+	@Value("${spring.datasource.username:null}")
 	private String dbUser;
-	@Value("${spring.datasource.password}")
+	@Value("${spring.datasource.password:null}")
 	private String dbPassword;
-	@Value("${elasticsearch.rest.indexName}")
+	@Value("${elasticsearch.rest.indexName:null}")
 	private String EsIndex;
-	@Value("${elasticsearch.rest.indexType}")
+	@Value("${elasticsearch.rest.indexType:null}")
 	private String EsIndexType;
-	@Value("${spring.datasource.dbTable}")
+	@Value("${spring.datasource.dbTable:null}")
 	private String dbTableName;
 	private final int dbCount=10000;
 	private final int esCount=20000;

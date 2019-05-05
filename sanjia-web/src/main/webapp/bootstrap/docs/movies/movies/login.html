@@ -17,7 +17,7 @@
 		if(alogin_info!=""){
 			var infos=alogin_info.split(":");
 			//alert(infos[0]+"    "+infos[1]);
-			$("form input[name=username]").val(infos[0]);
+			$("input[name=username]").val(infos[0]);
 			$("form input[name=password]").val(infos[1]);
 			return login();
 		}
@@ -32,7 +32,7 @@
 	});
 	function login(){
 		//获取页面数据
-		var userName=$("form input[name=username]").val();
+		var userName=$("input[name=username]").val();
 		var userPassword=$("form input[name=password]").val();
 		var remember=$("form input[name=remname]").get(0).checked;
 		var autologin=$("form input[name=autologin]").get(0).checked;
