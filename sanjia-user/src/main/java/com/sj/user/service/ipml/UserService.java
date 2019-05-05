@@ -27,9 +27,11 @@ public class UserService {
 		
 		return userMapper.checkExists(userName);
 	}
-	public Integer userSave(User user) {
+	public Integer userSave(String username,String userpass) {
 		try{
-			String password = MD5Util.md5(user.getPass());
+			String password = MD5Util.md5(userpass);
+			User user = new User();
+			user.setName(username);
 			user.setPass(password);
 			return userMapper.doRegist(user);
 		}catch(Exception e){
@@ -47,9 +49,10 @@ public class UserService {
 	 */
 	@Autowired
 	private JedisCluster cluster;
-	public String userLogin(User user) {
-		
-		String password = MD5Util.md5(user.getPass());
+	public String userLogin(String username,String userpass) {
+		User user = new User();
+		String password = MD5Util.md5(userpass);
+		user.setName(username);
 		user.setPass(password);
 		User exiUser = userMapper.login(user);
 		if(exiUser!=null){ 
@@ -60,11 +63,16 @@ public class UserService {
 				cluster.del(exitTicket);  //删除用户登录信息
 			}
 			
-			String key = "SJ_TICKET"+user.getName()+System.currentTimeMillis(); 			
+			String key = "SJ_TICKET"+user.getName()+System.currentTimeMillis(); 
+			
 			String jsondata;
 			try {
 				jsondata = ObjectUtil.mapper.writeValueAsString(exiUser);
 				String ticket=MD5Util.md5(key);
+				//打桩 打印cluster中的key
+				System.out.println(exitTicket);
+				//打桩 打印cluster中的key
+				System.out.println(ticket);
 				cluster.set(exiUser.getName(), ticket);//在redis中注册用户登录信息
 				cluster.set(ticket, jsondata);//加入用户ticket 为跨域获取用户信息 和用户续约使用
 				return ticket;

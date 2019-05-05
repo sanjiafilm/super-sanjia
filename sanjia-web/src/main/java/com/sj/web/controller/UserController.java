@@ -46,9 +46,9 @@ public class UserController {
 	public SysResult doRegist(User user){
 		//传递给service封装数据调用持久层处理
 		try{
-			userService.doRegist(user);
+			SysResult result=userService.doRegist(user);
 			//新增成功,返回1
-			return SysResult.build(1, "success", null);
+			return result;
 		}catch(Exception e){
 			e.printStackTrace();
 			return SysResult.build(2, "fail", null);

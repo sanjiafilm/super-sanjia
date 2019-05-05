@@ -17,14 +17,3 @@
 		 and pass=#{pass}
 	</select>
 </mapper> 
-
-
-
-
-
-
-
-
-
-
-

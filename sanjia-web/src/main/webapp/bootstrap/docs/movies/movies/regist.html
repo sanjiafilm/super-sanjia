@@ -1,0 +1,160 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+	<title>欢迎注册sanjiaFilm</title>
+	<link rel="stylesheet" href="/bootstrap/docs/movies/movies/css/regist.css"/>
+	<script type="text/javascript" src="/bootstrap/docs/movies/movies/js/jquery-1.11.3.min.js"></script>
+<!-- 	<script type="text/javascript" src="/bootstrap/docs/movies/movies/js/regist_ajax.js"></script> -->
+	<script type="text/javascript">
+	
+	$(function() {
+		$("input[name='username']").blur(
+				function() {
+					var userName = $(this).val();
+					if (!formObj.checkNull("username", "用户名不能为空")) {
+						setMsg("username", "用户名不能为空");
+					} else {
+						setMsg("username", "");
+					$.ajax({
+						url:"/user/checkUserName",
+						type:"post",
+						data:{"userName":userName},
+						dataType:"json",
+						success:function(result){
+							
+							if (result.status==1) {
+								$("#username_msg").html("用户名已存在");
+							} else if (result.status==0) {
+								$("#username_msg").html("<font color='green'>用户名可用</font>");
+							}
+						},
+						error:function(){
+							
+							alert("请求失败！");
+						}
+					});
+					}
+				});
+		$("input[name='password']").blur(function(){
+			formObject.checkNull("password", "密码不能为空");
+		});
+		$("input[name='password2']").blur(function(){
+			formObject.checkNull("password2", "确认密码不能为空");
+			//在两次密码一致性的校验中，判断语句中已经将两个密码框为空的状态排除在外，所以不会出现错误提示的情况。
+			formObject.checkPassword("password", "两次密码不一致");
+		});
+		//给注册表单注册submit事件
+		$("form").submit(function(){
+			return register();
+		});
+	});
+	function register(){
+		var userName=$("input[name=username]").val();
+		var userPassword=$("form input[name=password]").val();
+		var userPassword2=$("form input[name=password2]").val();
+		var flag=formObj.checkForm();
+		alert(userName,userPassword)
+		if(flag){
+			$.ajax({
+				url:"/user/regist",
+				type:"post",
+				data:{
+			//按照pojo的属性名称修改参数
+					  "name":userName,
+					  "pass":userPassword,
+					 },
+				dataType:"json",
+				success:function(result){
+					if(result.status==1){
+						alert(result.msg);
+						window.location.href="/page/login";
+					}else if(result.status==0){
+						alert(result.msg);
+					}
+				},
+				error:function(){
+					alert("请求失败！");
+				}
+			});
+		}		
+		return false;
+	}
+	var formObj = {
+		checkForm : function() {
+			var flag = true;
+			// 非空验证
+			flag = this.checkNull("username", "用户名不能为空!");
+			flag = this.checkNull("password", "密码不能为空") && flag;
+			flag = this.checkNull("password2", "确认密码不能为空") && flag;
+			// 两次输入的密码是否相同
+			flag = this.checkPassword("password", "两次密码不相同") && flag;
+			// 返回flag
+			return flag;
+		},
+		checkNull : function(name, msg) {
+			var value = $("input[name=" + name + "]").val();
+			if ($.trim(value) == "") {
+				this.setMsg(name, msg);
+				return false;
+			}
+			return true;
+		},
+		checkPassword : function(name, msg) {
+			var pwd = $("input[name=" + name + "]").val();
+			var pwd2 = $("input[name=" + name + "2]").val();
+			if ($.trim(pwd) != "" && $.trim(pwd2) != "") {
+				if (pwd != pwd2) {
+					this.setMsg(name, msg);
+					return false;
+				}
+			}
+			return true;
+		},
+
+		setMsg : function(name, msg) {
+			$("#" + name + "_msg").text(msg);
+		}
+	};
+	
+	</script>
+</head>
+<body>
+	<form >
+		<h1>欢迎注册SanjiaFilm</h1>
+		<table>
+			<tr>
+				<td colspan="2"><font color="red">
+				
+				</font></td>
+			</tr>
+			<tr>
+				<td class="tds">用户名：</td>
+				<td>
+					<input type="text" name="username" />
+					<span style="color: red" id="username_msg"></span>
+				</td>
+			</tr>
+			<tr>
+				<td class="tds">密码：</td>
+				<td>
+					<input type="password" name="password" />
+					<span style="color: red" id="password_msg"></span>
+				</td>
+			</tr>
+			<tr>
+				<td class="tds">确认密码：</td>
+				<td>
+					<input type="password" name="password2" />
+					<span style="color: red" id="password2_msg"></span>
+				</td>
+			</tr>
+			
+			<tr>
+				<td class="sub_td" colspan="2" class="tds">
+					<input type="submit" value="注册用户"/>
+				</td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

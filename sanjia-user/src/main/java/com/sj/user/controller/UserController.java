@@ -32,14 +32,14 @@ public class UserController {
 	
 	
 	@RequestMapping(value="save" )
-	public Integer userSave(@RequestBody User user){
-		return userService.userSave(user);
+	public Integer userSave(String username,String userpass){
+		return userService.userSave(username,userpass);
 	}
 	
 	
 	@RequestMapping("login")
-	public String userLogin(User user){
-		return userService.userLogin(user);
+	public String userLogin(String username,String userpass){
+		return userService.userLogin(username,userpass);
 	}
 	
 	@RequestMapping("query/{ticket}")

@@ -38,16 +38,23 @@ public class UserServiceIpml {
 	 * 用户注册
 	 * @param user
 	 */
-	public void doRegist(User user) {
+	public SysResult doRegist(User user) {
 		String url = UrlAddr.userRegistUrl+UrlAddr.userRegisterKey02;
 		Map<String,Object> param = new HashMap<String,Object>();
 		param.put("username", user.getName());
 		param.put("userpass", user.getPass());
 		
 		try{
-			client.doPost(url, param);
+			String res = client.doGet(url, param);
+			if(res!=null) {
+				return SysResult.build(1, "查询成功", null);				
+			}
+			else {
+				return SysResult.build(0, "查询失败", null);
+			}
 		}catch(Exception e){
 			e.printStackTrace();
+			return SysResult.build(0, "出现异常了", null);
 		}
 		
 	}
