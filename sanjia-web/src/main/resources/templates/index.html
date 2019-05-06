@@ -34,6 +34,13 @@
             border: 0.1px solid #e6e6e6;
             padding: 4px 0px;
         }
+                /* 地图 */
+ #l-map{ position:absolute;
+  left:0px;
+  top:0px;
+  width:100%;
+  height:100%;}
+     #r-result{width:100%;}
     </style>
     <script src="resources/scripts/jquery-1.7.1.min.js"></script>
     <script src="resources/scripts/jquery-ui-1.8.10.custom.min.js"></script>
@@ -79,6 +86,163 @@
             return 'resources/reload.html';
         };
     </script>-->
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=vVY5bVt0DYs4XH9cZYFelfDoQ76MN3st"></script>
+    <script src="js/jquery-1.4.2.js"></script>
+     <script type="text/javascript">
+     $(function(){
+    		// 百度地图API功能
+        function G(id) {
+            return document.getElementById(id);
+        }
+
+        var map = new BMap.Map("l-map");
+        map.centerAndZoom("成都",10);                   // 初始化地图,设置城市和地图级别。
+
+
+			//根据浏览器定位  返回经纬度
+    		var geolocation = new BMap.Geolocation();
+    	geolocation.getCurrentPosition(function(r){
+    		if(this.getStatus() == BMAP_STATUS_SUCCESS){
+    			var mk = new BMap.Marker(r.point);
+    			map.addOverlay(mk);
+    			mk.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+    			map.panTo(r.point);
+    			
+    			
+    		//根据经纬度获取地名
+    		var point = new BMap.Point(r.point.lng,r.point.lat);
+    		var gc = new BMap.Geocoder();
+			gc.getLocation(point, function(rs){
+   			var addComp = rs.addressComponents;
+			
+			var nn=addComp.province +  addComp.city + addComp.district +  addComp.street ;
+			$(".p_showlocat").text(nn);
+   			//alert(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
+		});
+
+    			
+    			
+    			//根据ip默认定位  返回地名
+    			/* function myFun(result){
+    				var cityName = result.name;
+    				map.setCenter(cityName);
+    				alert("当前定位城市:"+cityName);
+    				$(".p_showlocat").text(cityName);
+    			}
+    			var myCity = new BMap.LocalCity();
+    			myCity.get(myFun); */
+    			
+    			
+    			
+    			//alert('您的位置：'+r.point.lng+','+r.point.lat);
+
+    	/* var pointB = new BMap.Point(104.06,30.67);  // 创建点坐标B
+    	 alert((map.getDistance(r.point,pointB)).toFixed(2)+' 米。');  */ //获取两点距离,保留小数点后两位
+    		}
+    		else {
+    			alert('failed'+this.getStatus());
+    		}        
+    	},{enableHighAccuracy: true})
+
+
+        
+    	map.enableScrollWheelZoom(true); 
+    	map.addControl(new BMap.ScaleControl());    
+    	map.addControl(new BMap.OverviewMapControl());    
+    	map.addControl(new BMap.MapTypeControl());
+    	
+        // 定义一个控件类,即function
+        function ZoomControl() {
+            this.defaultAnchor = BMAP_ANCHOR_TOP_LEFT;
+            this.defaultOffset = new BMap.Size(10, 10);
+        }
+
+        // 通过JavaScript的prototype属性继承于BMap.Control
+        ZoomControl.prototype = new BMap.Control();
+
+        // 自定义控件必须实现自己的initialize方法,并且将控件的DOM元素返回
+        // 在本方法中创建个div元素作为控件的容器,并将其添加到地图容器中
+        ZoomControl.prototype.initialize = function(map){
+          // 创建一个DOM元素
+          var div = document.createElement("div");
+          div.innerHTML = '<div id="r-result">搜索地址:<input type="text" id="suggestId" size="50" value="百度" style="width:300px;" /></div><div id="searchResultPanel" style="border:2px solid #C0C0C0;width:300px;height:auto; display:none;"></div>';
+
+          // 添加DOM元素到地图中
+          map.getContainer().appendChild(div);
+          // 将DOM元素返回
+     		return div;
+        }
+
+        // 创建控件
+        var myZoomCtrl = new ZoomControl();
+        // 添加到地图当中
+        map.addControl(myZoomCtrl);
+
+
+        var ac = new BMap.Autocomplete(    //建立一个自动完成的对象
+            {"input" : "suggestId"
+            ,"location" : map
+        });
+
+        ac.addEventListener("onhighlight", function(e) {  //鼠标放在下拉列表上的事件
+        var str = "";
+            var _value = e.fromitem.value;
+            var value = "";
+            if (e.fromitem.index > -1) {
+                value = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+            }
+            str = "FromItem<br />index = " + e.fromitem.index + "<br />value = " + value;
+
+            value = "";
+            if (e.toitem.index > -1) {
+                _value = e.toitem.value;
+                value = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+            }
+     str += "<br />ToItem<br />index = " + e.toitem.index + "<br />value = " + value;
+            G("searchResultPanel").innerHTML = str;
+        });
+
+        var myValue;
+        ac.addEventListener("onconfirm", function(e) {    //鼠标点击下拉列表后的事件
+        var _value = e.item.value;
+            myValue = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+            G("searchResultPanel").innerHTML ="onconfirm<br />index = " + e.item.index + "<br />myValue = " + myValue;
+
+            setPlace();
+        });
+
+        function setPlace(){
+            map.clearOverlays();    //清除地图上所有覆盖物
+            function myFun(){
+                var pp = local.getResults().getPoi(0).point;    //获取第一个智能搜索的结果
+                map.centerAndZoom(pp, 14);
+                //map.addOverlay(new BMap.Marker(pp));    //添加标注
+    			
+                var marker = new BMap.Marker(pp);  // 创建标注
+    	map.addOverlay(marker);               // 将标注添加到地图中
+    	marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+
+    	//重新选择后的地址
+    	//alert('您的位置：'+pp.lng+','+pp.lat);
+
+    	
+    	/* var pointC = new BMap.Point(104.06,30.67);  // 创建点坐标B
+    	 alert((map.getDistance(pp,pointC)).toFixed(2)+' 米。');  //获取两点距离,保留小数点后两位 */
+    	
+            }
+             var local = new BMap.LocalSearch(map, { //智能搜索
+              onSearchComplete: myFun
+            });
+            local.search(myValue);
+    	} 
+    	    });
+        function submit(){
+       	 var tt=$("#suggestId").val();
+       	 $(".p_showlocat").text(tt);
+       	 //alert($(".p_showlocat").text());
+       	//alert(tt);
+       }
+    </script>
 </head>
 <body>
 <div id="base" class="">
@@ -182,7 +346,7 @@
                         <div id="u29" class="ax_default label">
                             <div id="u29_div" class=""></div>
                             <div id="u30" class="text" style="visibility: visible;">
-                                <p><span>成都市锦江区成都日报大厦</span></p>
+                                <p class="p_showlocat"></p>
                             </div>
                         </div>
                         <div id="u31" class="ax_default">
@@ -1118,27 +1282,28 @@
                     <div id="u712_div" class=""></div>
                     <!-- Unnamed () -->
                     <div id="u713" class="text" style="visibility: visible;">
-                        <p><span>确定</span></p>
+                    	<p onclick="submit()">确定</p>
+                       <!--  <input type="submit" class="text" onclick="submit()" value="确定" /> -->
                     </div>
                 </div>
 
-                <!-- Unnamed (组合) -->
+              <!-- 
                 <div id="u714" class="ax_default">
 
-                    <!-- Unnamed (矩形) -->
+                    Unnamed (矩形)
                     <div id="u715" class="ax_default box_1">
                         <div id="u715_div" class=""></div>
-                        <!-- Unnamed () -->
+                        Unnamed ()
                         <div id="u716" class="text" style="display: none; visibility: hidden">
                             <p><span></span></p>
                         </div>
                     </div>
 
-                    <!-- regist_input_username (文本框) -->
+                    regist_input_username (文本框)
                     <div id="u717" class="ax_default text_field" data-label="regist_input_username">
                         <input id="u717_input" type="text" value=""/>
                     </div>
-                </div>
+                </div> --> 
 
                 <!-- tip (组合) -->
                 <div id="u718" class="ax_default" data-label="tip">
@@ -1173,11 +1338,12 @@
 
                 <!-- Unnamed (图片) -->
                 <div id="u725" class="ax_default image">
-                    <img id="u725_img" class="img " src="images/index/u725.png"/>
-                    <!-- Unnamed () -->
+                    <!-- <img id="u725_img" class="img " src="images/index/u725.png"/>
+                    Unnamed ()
                     <div id="u726" class="text" style="display: none; visibility: hidden">
                         <p><span></span></p>
-                    </div>
+                    </div> -->
+                    <div id="l-map"></div>
                 </div>
             </div>
         </div>
