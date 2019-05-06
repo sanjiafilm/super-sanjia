@@ -265,8 +265,7 @@
                                 <div class="ax_default label"
                                      style="position:absolute;left:177px;top:20px;font-size:16px;color:#40C0A2;">
                                     <div class="text" style="visibility: visible;white-space: nowrap;">
-                                        <p><span>
-                                        <p th:text="${movie.name}">3333</p></span></p>
+                                        <p><span th:text="${movie.name}">电影名</span></p>
                                     </div>
                                 </div>
                                 <!--信息-->
@@ -320,7 +319,7 @@
                                 </table>
                                 <!-- 电影图片 -->
                                 <div class="ax_default image">
-                                    <img class="img " src="images/index/u150.png"
+                                    <img class="img" th:src="'http://image' + ${movie.location}" src="images/index/u150.png"
                                          style="position:relative;width: 160px;height: 221px;"/>
                                     <div class="text" style="display: none; visibility: hidden">
                                         <p><span></span></p>

@@ -102,7 +102,7 @@ public class GradeMovieService {
 
 
 	public PageInfo<Movie> getAll(Integer page) {
-		PageHelper.startPage(1, 3);
+		PageHelper.startPage(page, 3);
 		List<Movie> ss = movieMapper.selectAll();
 		for (Movie s : ss) {
 			PageHelper.startPage(1, 4);

@@ -33,6 +33,14 @@ public class GradeMovieController {
 		System.out.println(count);
 		return data ;
 	}
+
+	/**
+	 * Description: 分页查询全部电影数据
+	 *
+	 * @Date: 2019/5/6 20:31
+	 * @param: [page]
+	 * @author: ls
+	 */
 	@RequestMapping("/all")
 	@ResponseBody
 	public PageInfo<Movie> getIndex(@RequestParam(required = false, defaultValue = "1") Integer page){
