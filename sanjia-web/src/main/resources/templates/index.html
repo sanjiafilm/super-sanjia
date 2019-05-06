@@ -158,7 +158,6 @@
 
     <!--电影列表-->
     <div id="u22" class="ax_default" data-label="index_main" style="position: relative">
-
         <!-- 最新上映 -->
         <div id="u22_state0" class="panel_state" data-label="最新上映" style="position: relative">
             <div id="u22_state0_content" class="panel_state_content" style="position: relative">
@@ -258,7 +257,7 @@
                 </div>
 
                 <!-- 电影详情 -->
-                <div th:each="str : ${list}">
+                <div th:each="movie : ${movie_page.list}">
                     <div class="ax_default" style="position: relative;left: 66px;top: 55px; width: 160px;">
                         <div class="panel_state" data-label="State1">
                             <div class="panel_state_content">
@@ -267,7 +266,7 @@
                                      style="position:absolute;left:177px;top:20px;font-size:16px;color:#40C0A2;">
                                     <div class="text" style="visibility: visible;white-space: nowrap;">
                                         <p><span>
-                                        <p th:text="${str}">3333</p></span></p>
+                                        <p th:text="${movie.name}">3333</p></span></p>
                                     </div>
                                 </div>
                                 <!--信息-->
@@ -275,11 +274,11 @@
                                      style="position: relative;left:379px;top:25px;color:#D7D7D7;">
                                     <div class="text" style="visibility: visible; white-space: nowrap;">
                                         <p>
-                                            <span style="padding-left: 50px" th:text="${str}">2019-04-04大陆上映</span>
-                                            <span style="padding-left: 50px" th:text="${str}">剧情,动作,犯罪</span>
-                                            <span style="padding-left: 50px" th:text="${str}">豆瓣评分：9.1</span>
-                                            <span style="padding-left: 50px" th:text="${str}">时长：90分钟</span>
-                                            <span style="padding-left: 50px" th:text="${str}">时长：90分钟</span>
+                                            <span style="padding-left: 50px" th:text="${movie.showTime}">2019-04-04大陆上映</span>
+                                            <span style="padding-left: 50px" th:text="${movie.catagory}">剧情,动作,犯罪</span>
+                                            <span style="padding-left: 50px" th:text="${movie.score}">豆瓣评分：9.1</span>
+                                            <span style="padding-left: 50px" th:text="${movie.duration}">时长：90分钟</span>
+                                            <span style="padding-left: 50px" th:text="${movie.actors}">时长：90分钟</span>
                                         </p>
                                     </div>
                                 </div>
@@ -308,25 +307,15 @@
                                         <td class="table-header">票价</td>
                                         <td class="table-header">操作</td>
                                     </tr>
-                                    <tr>
-                                        <td class="table-body">1</td>
-                                        <td class="table-body">太平洋影院</td>
-                                        <td class="table-body">10:00</td>
-                                        <td class="table-body">猫眼</td>
-                                        <td class="table-body">成都市锦江区春熙路</td>
+                                    <tr th:each="pur,sta : ${movie.purchase}">
+                                        <td th:text="${sta.index + 1}" class="table-body">1</td>
+                                        <td th:text="${pur.cinemaName}" class="table-body">太平洋影院</td>
+                                        <td th:text="${pur.playTime}" class="table-body">10:00</td>
+                                        <td th:text="${pur.platform}" class="table-body">猫眼</td>
+                                        <td th:text="${pur.address}" class="table-body">成都市锦江区春熙路</td>
                                         <td class="table-body">1.2km</td>
-                                        <td class="table-body">￥39.9</td>
-                                        <td class="table-body"><a href="#">购票</a>&nbsp;&nbsp;<a href="#">收藏</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="table-body">1</td>
-                                        <td class="table-body">太平洋影院</td>
-                                        <td class="table-body">10:00</td>
-                                        <td class="table-body">猫眼</td>
-                                        <td class="table-body">成都市锦江区春熙路</td>
-                                        <td class="table-body">1.2km</td>
-                                        <td class="table-body">￥39.9</td>
-                                        <td class="table-body"><a href="#">购票</a>&nbsp;&nbsp;<a href="#">收藏</a></td>
+                                        <td th:text="${pur.price}" class="table-body">￥39.9</td>
+                                        <td class="table-body"><a th:href="@{${pur.href}}" href="#">购票</a>&nbsp;&nbsp;<a href="#">收藏</a></td>
                                     </tr>
                                 </table>
                                 <!-- 电影图片 -->

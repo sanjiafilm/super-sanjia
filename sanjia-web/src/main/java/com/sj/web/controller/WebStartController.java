@@ -1,15 +1,16 @@
 package com.sj.web.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClients;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,12 +22,13 @@ public class WebStartController {
     private static byte[] bytes = new byte[2048 * 1024];
 
     @RequestMapping("/")
-    public String start() throws IOException {
+    public String start(Model model) throws IOException {
         HttpClient httpClient = HttpClients.createDefault();
-        HttpGet httpGet = new HttpGet("http://movie/?page=1");
+        HttpGet httpGet = new HttpGet("http://movie/all?page=1");
         HttpResponse response = httpClient.execute(httpGet);
         HttpEntity entity = response.getEntity();
         String res = tostr(entity.getContent());
+        model.addAttribute("movie_page", JSONObject.parse(res));
         System.out.println(res);
         return "index";
     }
