@@ -11,7 +11,7 @@ public class WebStartController {
 	@RequestMapping("/")
 	public String start() {
 		
-	return "index";
+	return "movies";
 	}
 	
 	/*页面的跳转，跳转到后台商品管理，登录，

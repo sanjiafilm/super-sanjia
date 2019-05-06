@@ -27,6 +27,9 @@ public class SearchService {
 	private TransportClient search;
 	@Autowired
 	private SearchMapper searchMapper;
+	
+	@Autowired
+	private JedisCluster cluster;
 
 	/**
 	 * 从elasticSearch中查找电影字段名包含filmName的文档
@@ -56,14 +59,15 @@ public class SearchService {
 		
 	}
 	
+	
+	
 	/**
 	 * 查找电影名称为movieName的电影信息和购票信息
 	 * 先从redis 中拿取信息 如果没有直接到数据库中拿，并且将数据写入到redis
 	 * @param filmName
 	 * @return
 	 */
-	@Autowired
-	private JedisCluster cluster;
+
 	public MovieDetail getFilmDetail(String movieName) {
 		String name = movieName;
 		List<Purchase> purchaseL = new ArrayList<Purchase>();
@@ -120,7 +124,7 @@ public class SearchService {
 					movieDetail.setTotalPage(1);
 					movieDetail.setMovie(movie);
 					if(purchaseL.size()>2) {
-						List<Purchase> purchases = purchaseL.subList(0, 2);
+						List<Purchase> purchases = purchaseL.subList(0, 3);
 						movieDetail.setPurchases(purchases);
 					}else {
 						movieDetail.setPurchases(purchaseL);
@@ -139,6 +143,91 @@ public class SearchService {
 		}
 		
 	}
+
+
+
+	public Movie getMovieInfo(String movieName) {
+		String name = movieName;
+		Movie movie = new Movie();
+		//先将name 转为hash 码，根据hash码查询redis中对应内容
+		try {
+			String nameHash = "MOVIEINFO"+Integer.toHexString(name.hashCode());
+			System.out.println(nameHash);
+			// 先从redis查找 如果redis没有则从数据库查找
+			String movieInfo = cluster.get(nameHash);
+			if(StringUtils.isNotEmpty(movieInfo)) { //说明redis中已经存在该值
+				//直接将该json串转化为Object后返回
+				movie = ObjectUtil.mapper.readValue(movieInfo, Movie.class);
+				System.out.println("go to redis for search movie "+name);
+				return movie;
+			}else {
+				//从数据库查询movieName对应t_movie的表数据
+				movie = searchMapper.getMovieInfo(name);
+				if(movie != null) {					
+					//将movie 转为json 串 
+					String value = ObjectUtil.mapper.writeValueAsString(movie);
+					//将movieName 对应的电影信息写入到redis
+					cluster.set(nameHash, value);
+				}
+				return movie;
+			}
+		}catch(Exception e){
+			return null;
+		}
+		
+	}
+
+
+
+	public List<Purchase> getpurchInfo(String movieName) {
+		String name = movieName;
+		List<Purchase> purchaseL = new ArrayList<Purchase>();
+		List<Purchase> purchases = new ArrayList<Purchase>();
+		try{
+			String purchaseHash ="PURCHASE"+Integer.toHexString(name.hashCode());
+			System.out.println(purchaseHash);
+			// 先从redis查找 如果redis没有则从数据库查找
+			String purchaseInfo = cluster.get(purchaseHash);
+			if(StringUtils.isNotEmpty(purchaseInfo)) {//说明redis中已经存在该值
+				//直接将json串转化为Objiec后返回
+				 JsonNode purchaseData = ObjectUtil.mapper.readTree(purchaseInfo);
+				 if(purchaseData.isArray() && purchaseData.size()>0) {
+					 purchaseL = ObjectUtil.mapper.readValue(purchaseData.traverse(), 
+							 ObjectUtil.mapper.getTypeFactory().
+							 constructCollectionType(List.class, Purchase.class));
+					 System.out.println("go to redis for search purchases "+name);
+					 if(purchaseL.size()>3) {
+						 purchases = purchaseL.subList(0, 3);
+						 return purchases;
+					 }
+					 return purchaseL;
+				 }
+				 else{
+					 return null;
+				 }
+				
+			}else {
+				//数据库查询购票信息
+				purchaseL = searchMapper.getPurchaseInfo(movieName);
+				if(purchaseL != null) {					
+					//将movie 转为json 串 
+					String value = ObjectUtil.mapper.writeValueAsString(purchaseL);
+					//将movieName 对应的电影信息写入到redis
+					cluster.set(purchaseHash, value);
+				}
+				return purchaseL;
+			}			
+			
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	
+	 
+	
+	
 	
 	/*public MovieDetail getFilmDetail(String movieName) {
 		String name = movieName;
