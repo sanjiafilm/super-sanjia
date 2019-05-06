@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @MapperScan("com.sj.show.mapper")
 public class StarterMovie {
 	public static void main(String[] args) {
+		///666666666666666666666666666666666666
 		SpringApplication.run(StarterMovie.class, args);
 	}
 }
