@@ -8,15 +8,28 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.sj.common.pojo.Purchase;
+import com.sj.movie.mapper.MovieMapper;
+import com.sj.movie.mapper.PurchaseMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sj.common.pojo.Movie;
 import com.sj.movie.mapper.GradeMovieMapper;
+import tk.mybatis.mapper.entity.Example;
 
 @Service
 public class GradeMovieService {
 	@Resource
 	private GradeMovieMapper gradeMapper;
+
+	@Autowired
+	private MovieMapper movieMapper;
+
+	@Autowired
+	private PurchaseMapper purchaseMapper;
 	
 	public List<Movie> getGradeMovieData(int page) {
 		try {
@@ -87,8 +100,18 @@ public class GradeMovieService {
 		return i;
 	}
 
-	
 
-	
-
+	public PageInfo<Movie> getAll(Integer page) {
+		PageHelper.startPage(1, 3);
+		List<Movie> ss = movieMapper.selectAll();
+		for (Movie s : ss) {
+			PageHelper.startPage(1, 4);
+            Example example = new Example(Purchase.class);
+			Example.Criteria criteria = example.createCriteria();
+			criteria.andEqualTo("movieName", s.getName());
+			List<Purchase> purchases = purchaseMapper.selectByExample(example);
+			s.setPurchase(purchases);
+		}
+		return new PageInfo<>(ss);
+	}
 }

@@ -1,7 +1,10 @@
 package com.sj.common.pojo;
 
+import javax.persistence.Table;
 import java.io.Serializable;
+import java.util.List;
 
+@Table(name = "t_movie")
 public class Movie implements Serializable{
 	/**
 	 * 
@@ -28,7 +31,16 @@ public class Movie implements Serializable{
 	private String introduction;  //简介
 	private String score;
 	private String location;
-	
+	private List<Purchase> purchase;
+
+	public List<Purchase> getPurchase() {
+		return purchase;
+	}
+
+	public void setPurchase(List<Purchase> purchase) {
+		this.purchase = purchase;
+	}
+
 	public int getId() {
 		return id;
 	}

@@ -4,11 +4,9 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import com.sj.common.pojo.Movie;
 import com.sj.movie.service.GradeMovieService;
@@ -35,8 +33,11 @@ public class GradeMovieController {
 		System.out.println(count);
 		return data ;
 	}
-	
-	
+	@RequestMapping("/all")
+	@ResponseBody
+	public PageInfo<Movie> getIndex(@RequestParam(required = false, defaultValue = "1") Integer page){
+		return gradeService.getAll(page);
+	}
 	
 	
 	//显示全部数据

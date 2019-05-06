@@ -1,8 +1,10 @@
 package com.sj.common.pojo;
 
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
 
+@Table(name = "t_purchase")
 public class Purchase implements Serializable{
 	
 	/**

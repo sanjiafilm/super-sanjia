@@ -1,0 +1,1539 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>电影推荐</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link rel='icon' href='favicon.ico' type='image/x-ico'/>
+    <link href="resources/css/jquery-ui-themes.css" type="text/css" rel="stylesheet"/>
+    <link href="resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
+    <link href="data/styles.css" type="text/css" rel="stylesheet"/>
+    <link href="files/index/styles.css" type="text/css" rel="stylesheet"/>
+    <style>
+        .table {
+            width: 1100px;
+            position: absolute;
+            left: 185px;
+            top: 70px;
+            border: 0.1px solid #e6e6e6;
+        }
+
+        .table-header {
+            width: 52px;
+            white-space: nowrap;
+            color: #40C0A2;
+            font-weight: 700;
+            border: 0.1px solid #e6e6e6;
+            padding: 4px 0px;
+        }
+
+        .table-body {
+            width: 52px;
+            white-space: nowrap;
+            border: 0.1px solid #e6e6e6;
+            padding: 4px 0px;
+        }
+    </style>
+    <script src="resources/scripts/jquery-1.7.1.min.js"></script>
+    <script src="resources/scripts/jquery-ui-1.8.10.custom.min.js"></script>
+    <script src="resources/scripts/axure/axQuery.js"></script>
+    <script src="resources/scripts/axure/globals.js"></script>
+    <script src="resources/scripts/axutils.js"></script>
+    <script src="resources/scripts/axure/annotation.js"></script>
+    <script src="resources/scripts/axure/axQuery.std.js"></script>
+    <script src="resources/scripts/axure/doc.js"></script>
+    <script src="data/document.js"></script>
+    <script src="resources/scripts/messagecenter.js"></script>
+    <script src="resources/scripts/axure/events.js"></script>
+    <script src="resources/scripts/axure/recording.js"></script>
+    <script src="resources/scripts/axure/action.js"></script>
+    <script src="resources/scripts/axure/expr.js"></script>
+    <script src="resources/scripts/axure/geometry.js"></script>
+    <script src="resources/scripts/axure/flyout.js"></script>
+    <script src="resources/scripts/axure/ie.js"></script>
+    <script src="resources/scripts/axure/model.js"></script>
+    <script src="resources/scripts/axure/repeater.js"></script>
+    <script src="resources/scripts/axure/sto.js"></script>
+    <script src="resources/scripts/axure/utils.temp.js"></script>
+    <script src="resources/scripts/axure/variables.js"></script>
+    <script src="resources/scripts/axure/drag.js"></script>
+    <script src="resources/scripts/axure/move.js"></script>
+    <script src="resources/scripts/axure/visibility.js"></script>
+    <script src="resources/scripts/axure/style.js"></script>
+    <script src="resources/scripts/axure/adaptive.js"></script>
+    <script src="resources/scripts/axure/tree.js"></script>
+    <script src="resources/scripts/axure/init.temp.js"></script>
+    <script src="files/index/data.js"></script>
+    <script src="resources/scripts/axure/legacy.js"></script>
+    <script src="resources/scripts/axure/viewer.js"></script>
+    <script src="resources/scripts/axure/math.js"></script>
+    <!--<script type="text/javascript">
+        $axure.utils.getTransparentGifPath = function () {
+            return 'resources/images/transparent.gif';
+        };
+        $axure.utils.getOtherPath = function () {
+            return 'resources/Other.html';
+        };
+        $axure.utils.getReloadPath = function () {
+            return 'resources/reload.html';
+        };
+    </script>-->
+</head>
+<body>
+<div id="base" class="">
+
+    <div id="u0" class="ax_default box_1">
+        <div id="u0_div" class=""></div>
+        <div id="u1" class="text" style="display: none; visibility: hidden">
+            <p><span></span></p>
+        </div>
+    </div>
+
+    <div id="u2" class="ax_default box_1">
+        <div id="u2_div" class=""></div>
+        <div id="u3" class="text" style="display: none; visibility: hidden">
+            <p><span></span></p>
+        </div>
+    </div>
+
+    <!-- 地区 -->
+    <div id="u4" class="ax_default">
+        <div id="u5" class="ax_default shape" data-label="city_input">
+            <div id="u5_div" class=""></div>
+            <div id="u6" class="text" style="visibility: visible;">
+                <p><span>成都</span></p>
+            </div>
+        </div>
+        <div id="u7" class="ax_default image1" data-label="选择符">
+            <img id="u7_img" class="img " src="images/index/选择符_u7.png"/>
+            <div id="u8" class="text" style="display: none; visibility: hidden">
+                <p><span></span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 最新上映/豆瓣高分切换 -->
+    <div id="u9" class="ax_default">
+        <div id="u10" class="ax_default box_1 selected" data-label="最新" selectiongroup="首页导航">
+            <div id="u10_div" class="selected"></div>
+            <div id="u11" class="text" style="visibility: visible;">
+                <a href="" style="text-decoration:none;"><span
+                        style="font-size: 16px; color: rgb(64, 192, 162);">最新上映</span></a>
+            </div>
+        </div>
+        <div id="u12" class="ax_default box_1" data-label="豆瓣" selectiongroup="首页导航">
+            <div id="u12_div" class=""></div>
+            <div id="u13" class="text" style="visibility: visible;">
+                <a href="" style="text-decoration:none;"><span>豆瓣高分</span></a>
+            </div>
+        </div>
+        <div id="u14" class="ax_default box_1">
+            <div id="u14_div" class=""></div>
+            <div id="u15" class="text" style="visibility: visible;">
+                <p><span>/</span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 搜索框 -->
+    <div id="u16" class="ax_default" data-label="search">
+        <div id="u17" class="ax_default box_1">
+            <div id="u17_div" class=""></div>
+            <!-- Unnamed () -->
+            <div id="u18" class="text" style="display: none; visibility: hidden">
+                <p><span></span></p>
+            </div>
+        </div>
+        <div id="u19" class="ax_default button">
+            <div id="u19_div" class=""></div>
+            <div id="u20" class="text" style="visibility: visible;">
+                <p><span>搜索</span></p>
+            </div>
+        </div>
+        <div id="u21" class="ax_default text_field">
+            <input id="u21_input" type="text" value=""/>
+        </div>
+    </div>
+
+    <!--电影列表-->
+    <div id="u22" class="ax_default" data-label="index_main" style="position: relative">
+
+        <!-- 最新上映 -->
+        <div id="u22_state0" class="panel_state" data-label="最新上映" style="position: relative">
+            <div id="u22_state0_content" class="panel_state_content" style="position: relative">
+
+                <!-- 头信息 -->
+                <div id="u23" class="ax_default box_1">
+                    <div id="u23_div" class=""></div>
+                    <div id="u24" class="text" style="display: none; visibility: hidden">
+                        <p><span></span></p>
+                    </div>
+                </div>
+
+                <!-- 位置 -->
+                <div id="u25" class="ax_default">
+                    <div id="u26" class="ax_default">
+                        <div id="u27" class="ax_default label">
+                            <div id="u27_div" class=""></div>
+                            <div id="u28" class="text" style="visibility: visible;">
+                                <p><span>您当前的位置：</span></p>
+                            </div>
+                        </div>
+                        <div id="u29" class="ax_default label">
+                            <div id="u29_div" class=""></div>
+                            <div id="u30" class="text" style="visibility: visible;">
+                                <p><span>成都市锦江区成都日报大厦</span></p>
+                            </div>
+                        </div>
+                        <div id="u31" class="ax_default">
+                            <img id="u31_img" class="img " src="images/index/u31.png"/>
+                            <div id="u32" class="text" style="display: none; visibility: hidden">
+                                <p><span></span></p>
+                            </div>
+                        </div>
+                        <div id="u33" class="ax_default label">
+                            <div id="u33_div" class=""></div>
+                            <div id="u34" class="text" style="visibility: visible;">
+                                <p><span style="text-decoration:underline;">选择其他位置</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Unnamed (椭圆形) -->
+                    <div id="u35" class="ax_default">
+                        <img id="u35_img" class="img " src="images/index/u35.png"/>
+                        <!-- Unnamed () -->
+                        <div id="u36" class="text" style="display: none; visibility: hidden">
+                            <p><span></span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 购票方案 -->
+                <div id="u37" class="ax_default label">
+                    <div id="u37_div" class=""></div>
+                    <div id="u38" class="text" style="visibility: visible;">
+                        <p><span>最佳购票方案：</span></p>
+                    </div>
+                </div>
+
+                <!-- 观影时间 -->
+                <div id="u39" class="ax_default">
+                    <div id="u40" class="ax_default shape">
+                        <div id="u40_div" class=""></div>
+                        <div id="u41" class="text" style="visibility: visible;">
+                            <p><span>观影时间：</span></p>
+                        </div>
+                    </div>
+                    <div id="u42" class="ax_default">
+                        <div id="u43" class="ax_default image1" data-label="datechoose-icon">
+                            <img id="u43_img" class="img " src="images/index/datechoose-icon_u43.png"/>
+                            <div id="u44" class="text" style="display: none; visibility: hidden">
+                                <p><span></span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 观影时间 (文本框) -->
+                <div id="u74" class="ax_default text_field" data-label="dateInput">
+                    <input id="u74_input" type="text" value="2019-01-02&nbsp;&nbsp; "/>
+                </div>
+
+                <!-- 电影类型 -->
+                <div id="u45" class="ax_default shape">
+                    <div id="u45_div" class=""></div>
+                    <!-- Unnamed () -->
+                    <div id="u46" class="text" style="visibility: visible;">
+                        <p><span>电影类型</span></p>
+                    </div>
+                </div>
+
+                <div id="u47" class="ax_default image1">
+                    <img id="u47_img" class="img " src="images/index/选择符_u7.png"/>
+                    <!-- Unnamed () -->
+                    <div id="u48" class="text" style="display: none; visibility: hidden">
+                        <p><span></span></p>
+                    </div>
+                </div>
+
+                <!-- 电影详情 -->
+                <div th:each="str : ${list}">
+                    <div class="ax_default" style="position: relative;left: 66px;top: 55px; width: 160px;">
+                        <div class="panel_state" data-label="State1">
+                            <div class="panel_state_content">
+                                <!--名称-->
+                                <div class="ax_default label"
+                                     style="position:absolute;left:177px;top:20px;font-size:16px;color:#40C0A2;">
+                                    <div class="text" style="visibility: visible;white-space: nowrap;">
+                                        <p><span>
+                                        <p th:text="${str}">3333</p></span></p>
+                                    </div>
+                                </div>
+                                <!--信息-->
+                                <div class="ax_default _文本段落"
+                                     style="position: relative;left:379px;top:25px;color:#D7D7D7;">
+                                    <div class="text" style="visibility: visible; white-space: nowrap;">
+                                        <p>
+                                            <span style="padding-left: 50px" th:text="${str}">2019-04-04大陆上映</span>
+                                            <span style="padding-left: 50px" th:text="${str}">剧情,动作,犯罪</span>
+                                            <span style="padding-left: 50px" th:text="${str}">豆瓣评分：9.1</span>
+                                            <span style="padding-left: 50px" th:text="${str}">时长：90分钟</span>
+                                            <span style="padding-left: 50px" th:text="${str}">时长：90分钟</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="ax_default label"
+                                     style="position: absolute; left: 185px;top: 48px;width: 71px;height: 16px;">
+                                    <div class="text" style="visibility: visible;white-space: nowrap;">
+                                        <p><span>购票方案：</span></p>
+                                    </div>
+                                </div>
+                                <div class="ax_default label"
+                                     style="position: absolute;left: 185px;top: 205px;text-decoration: underline;color: #40C0A2;">
+                                    <div class="text" style="visibility: visible; white-space: nowrap;">
+                                        <!--<p><span style="text-decoration:underline;">查看更多购票方案</span></p>-->
+                                        <a href="/" th:href="@{/b}">查看更多购票方案</a>
+                                    </div>
+                                </div>
+                                <!--影院列表-->
+                                <table class="ax_default table" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <td class="table-header"></td>
+                                        <td class="table-header">影院名称</td>
+                                        <td class="table-header">场次</td>
+                                        <td class="table-header">购票平台</td>
+                                        <td class="table-header">影院地址</td>
+                                        <td class="table-header">距离</td>
+                                        <td class="table-header">票价</td>
+                                        <td class="table-header">操作</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="table-body">1</td>
+                                        <td class="table-body">太平洋影院</td>
+                                        <td class="table-body">10:00</td>
+                                        <td class="table-body">猫眼</td>
+                                        <td class="table-body">成都市锦江区春熙路</td>
+                                        <td class="table-body">1.2km</td>
+                                        <td class="table-body">￥39.9</td>
+                                        <td class="table-body"><a href="#">购票</a>&nbsp;&nbsp;<a href="#">收藏</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="table-body">1</td>
+                                        <td class="table-body">太平洋影院</td>
+                                        <td class="table-body">10:00</td>
+                                        <td class="table-body">猫眼</td>
+                                        <td class="table-body">成都市锦江区春熙路</td>
+                                        <td class="table-body">1.2km</td>
+                                        <td class="table-body">￥39.9</td>
+                                        <td class="table-body"><a href="#">购票</a>&nbsp;&nbsp;<a href="#">收藏</a></td>
+                                    </tr>
+                                </table>
+                                <!-- 电影图片 -->
+                                <div class="ax_default image">
+                                    <img class="img " src="images/index/u150.png"
+                                         style="position:relative;width: 160px;height: 221px;"/>
+                                    <div class="text" style="display: none; visibility: hidden">
+                                        <p><span></span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ax_default line"
+                         style="position: relative;left: 66px;top: 66px;width: 1320px;height: 1px;color: #CCCCCC;">
+                        <img class="img " src="images/index/u152.png"
+                             style="position: absolute;left: 0px;top: 0px;width: 1321px;height: 2px;"/>
+                        <div class="text" style="display: none; visibility: hidden">
+                            <p><span></span></p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!--豆瓣高分-->
+        <div id="u22_state1" class="panel_state" data-label="豆瓣高分" style="display: none; visibility: hidden;">
+            <div id="u22_state1_content" class="panel_state_content" style="position: relative">
+                <!-- 头信息 -->
+                <div id="u312" class="ax_default box_1">
+                    <div id="u312_div" class=""></div>
+                    <div id="u313" class="text" style="display: none; visibility: hidden">
+                        <p><span></span></p>
+                    </div>
+                </div>
+                <!-- 位置 -->
+                <div id="u314" class="ax_default">
+
+                    <div id="u315" class="ax_default">
+
+                        <div id="u316" class="ax_default label">
+                            <div id="u316_div" class=""></div>
+                            <div id="u317" class="text" style="visibility: visible;">
+                                <p><span>您当前的位置：</span></p>
+                            </div>
+                        </div>
+
+                        <div id="u318" class="ax_default label">
+                            <div id="u318_div" class=""></div>
+                            <div id="u319" class="text" style="visibility: visible;">
+                                <p><span>成都市锦江区成都日报大厦</span></p>
+                            </div>
+                        </div>
+
+                        <div id="u320" class="ax_default">
+                            <img id="u320_img" class="img " src="images/index/u31.png"/>
+                            <div id="u321" class="text" style="display: none; visibility: hidden">
+                                <p><span></span></p>
+                            </div>
+                        </div>
+
+                        <div id="u322" class="ax_default label">
+                            <div id="u322_div" class=""></div>
+                            <div id="u323" class="text" style="visibility: visible;">
+                                <p><span style="text-decoration:underline;">选择其他位置</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Unnamed (椭圆形) -->
+                    <div id="u324" class="ax_default">
+                        <img id="u324_img" class="img " src="images/index/u35.png"/>
+                        <!-- Unnamed () -->
+                        <div id="u325" class="text" style="display: none; visibility: hidden">
+                            <p><span></span></p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 方案选择 -->
+                <div id="u326" class="ax_default label">
+                    <div id="u326_div" class=""></div>
+                    <!-- Unnamed () -->
+                    <div id="u327" class="text" style="visibility: visible;">
+                        <p><span>最佳购票方案：</span></p>
+                    </div>
+                </div>
+                <!-- 观影时间 -->
+                <div id="u407" class="ax_default">
+                    <div id="u408" class="ax_default shape">
+                        <div id="u408_div" class=""></div>
+                        <div id="u409" class="text" style="visibility: visible;">
+                            <p><span>观影时间：</span></p>
+                        </div>
+                    </div>
+                    <div id="u410" class="ax_default">
+                        <div id="u411" class="ax_default image1" data-label="datechoose-icon">
+                            <img id="u411_img" class="img " src="images/index/datechoose-icon_u43.png"/>
+                            <div id="u412" class="text" style="display: none; visibility: hidden">
+                                <p><span></span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 观影时间 (文本框) -->
+                <div id="u600" class="ax_default text_field" data-label="dateInput">
+                    <input id="u600_input" type="text" value="2019-01-02&nbsp;&nbsp; "/>
+                </div>
+                <!-- 电影类型 -->
+                <div id="u413" class="ax_default shape">
+                    <div id="u413_div" class=""></div>
+                    <div id="u414" class="text" style="visibility: visible;">
+                        <p><span>电影类型</span></p>
+                    </div>
+                </div>
+                <!-- 电影类型 -->
+                <div id="u415" class="ax_default image1">
+                    <img id="u415_img" class="img " src="images/index/选择符_u7.png"/>
+                    <div id="u416" class="text" style="display: none; visibility: hidden">
+                        <p><span></span></p>
+                    </div>
+                </div>
+
+
+                <!-- 电影 -->
+                <div class="ax_default" style="position: relative;left: 66px;top: 55px;">
+                    <div class="panel_state" data-label="State1">
+                        <div class="panel_state_content">
+                            <!--名称-->
+                            <div class="ax_default label"
+                                 style="position:absolute;left:177px;top:20px;font-size:16px;color:#40C0A2;">
+                                <div class="text" style="visibility: visible;white-space: nowrap;">
+                                    <p><span>qwerqwerqwer</span></p>
+                                </div>
+                            </div>
+                            <!--信息-->
+                            <div class="ax_default _文本段落" style="position: relative;left:379px;top:25px;color:#D7D7D7;">
+                                <div class="text" style="visibility: visible; white-space: nowrap;">
+                                    <p>
+                                        <span>2019-04-04大陆上映</span>
+                                        <span style="padding-left: 50px">剧情,动作,犯罪</span>
+                                        <span style="padding-left: 50px">豆瓣评分：9.1</span>
+                                        <span style="padding-left: 50px">时长：90分钟</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="ax_default label"
+                                 style="position: absolute; left: 185px;top: 48px;width: 71px;height: 16px;">
+                                <div class="text" style="visibility: visible;white-space: nowrap;">
+                                    <p><span>购票方案：</span></p>
+                                </div>
+                            </div>
+                            <div class="ax_default label"
+                                 style="position: absolute;left: 185px;top: 205px;text-decoration: underline;color: #40C0A2;">
+                                <div class="text" style="visibility: visible; white-space: nowrap;">
+                                    <p><span style="text-decoration:underline;">查看更多购票方案</span></p>
+                                </div>
+                            </div>
+                            <!--影院列表-->
+                            <table class="ax_default table" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td class="table-header"></td>
+                                    <td class="table-header">影院名称</td>
+                                    <td class="table-header">场次</td>
+                                    <td class="table-header">购票平台</td>
+                                    <td class="table-header">影院地址</td>
+                                    <td class="table-header">距离</td>
+                                    <td class="table-header">票价</td>
+                                    <td class="table-header">操作</td>
+                                </tr>
+                                <tr>
+                                    <td class="table-body">1</td>
+                                    <td class="table-body">太平洋影院</td>
+                                    <td class="table-body">10:00</td>
+                                    <td class="table-body">猫眼</td>
+                                    <td class="table-body">成都市锦江区春熙路</td>
+                                    <td class="table-body">1.2km</td>
+                                    <td class="table-body">￥39.9</td>
+                                    <td class="table-body"><a href="#">购票</a>&nbsp;&nbsp;<a href="#">收藏</a></td>
+                                </tr>
+                                <tr>
+                                    <td class="table-body">1</td>
+                                    <td class="table-body">太平洋影院</td>
+                                    <td class="table-body">10:00</td>
+                                    <td class="table-body">猫眼</td>
+                                    <td class="table-body">成都市锦江区春熙路</td>
+                                    <td class="table-body">1.2km</td>
+                                    <td class="table-body">￥39.9</td>
+                                    <td class="table-body"><a href="#">购票</a>&nbsp;&nbsp;<a href="#">收藏</a></td>
+                                </tr>
+                            </table>
+                            <!-- 电影图片 -->
+                            <div class="ax_default image">
+                                <img class="img " src="images/index/u150.png"
+                                     style="position:relative;width: 160px;height: 221px;"/>
+                                <div class="text" style="display: none; visibility: hidden">
+                                    <p><span></span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- (水平线) -->
+                <div class="ax_default line"
+                     style="position: relative;left: 66px;top: 66px;width: 1320px;height: 1px;color: #CCCCCC;">
+                    <img class="img " src="images/index/u152.png"
+                         style="position: absolute;left: 0px;top: 0px;width: 1321px;height: 2px;"/>
+                    <div class="text" style="display: none; visibility: hidden">
+                        <p><span></span></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <!-- 分页 -->
+    <!--<div id="u49" class="ax_default" style="position: relative; left: 468px; top:0px">
+        <div id="u49_state0" class="panel_state" data-label="State1">
+            <div id="u49_state0_content" class="panel_state_content">
+
+                <div class="ax_default box_1"
+                     style="position: relative; width: 56px;height: 25px;color: #999999; display: inline">
+                    <div class=""
+                         style="position: absolute;width: 56px;height: 25px;background: inherit;background-color: rgba(255, 255, 255, 1);box-sizing: border-box;border-width: 1px;border-style: solid;border-color: rgba(242, 242, 242, 1);border-radius: 0px;box-shadow: none;color: #999999;"></div>
+                    <div class="text"
+                         style="visibility: visible;position: absolute;left: 2px;top: 4px;width: 52px;word-wrap: break-word;">
+                        <p><span>首页</span></p>
+                    </div>
+                </div>
+
+                <div class="ax_default box_1"
+                     style="position: relative; width: 56px;height: 25px;color: #999999; display: inline">
+                    <div class=""
+                         style="position: absolute;width: 56px;height: 25px;background: inherit;background-color: rgba(255, 255, 255, 1);box-sizing: border-box;border-width: 1px;border-style: solid;border-color: rgba(242, 242, 242, 1);border-radius: 0px;box-shadow: none;color: #999999;"></div>
+                    <div class="text"
+                         style="visibility: visible;position: absolute;left: 2px;top: 4px;width: 52px;word-wrap: break-word;">
+                        <p><span>首页</span></p>
+                    </div>
+                </div>
+                &lt;!&ndash;<div id="u66" class="ax_default box_1">
+                    <div id="u66_div" class=""></div>
+                    <div id="u67" class="text" style="visibility: visible;">
+                        <p><span>上一页</span></p>
+                    </div>
+                </div>&ndash;&gt;
+                <div id="u68" class="ax_default box_1">
+                    <div id="u68_div" class=""></div>
+                    <div id="u69" class="text" style="visibility: visible;">
+                        <p><span>下一页</span></p>
+                    </div>
+                </div>
+                <div id="u72" class="ax_default box_1">
+                    <div id="u72_div" class=""></div>
+                    <div id="u73" class="text" style="visibility: visible;">
+                        <p><span>尾页 </span></p>
+                    </div>
+                </div>
+
+                <div id="u50" class="ax_default box_1">
+                    <div id="u50_div" class=""></div>
+                    <div id="u51" class="text" style="visibility: visible;">
+                        <p><span>1</span></p>
+                    </div>
+                </div>
+                <div id="u52" class="ax_default box_1">
+                    <div id="u52_div" class=""></div>
+                    <div id="u53" class="text" style="visibility: visible;">
+                        <p><span>2</span></p>
+                    </div>
+                </div>
+                <div id="u54" class="ax_default box_1">
+                    <div id="u54_div" class=""></div>
+                    <div id="u55" class="text" style="visibility: visible;">
+                        <p><span>3</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>-->
+    <table style="position: relative; left: 550px; width: 350px;">
+        <tr>
+            <td class="table-body" style="text-align: center; white-space: nowrap; padding: 2px"><a href="#" style="text-decoration:none;">首页</a></td>
+            <td class="table-body" style="text-align: center; white-space: nowrap; padding: 2px"><a href="#" style="text-decoration:none;">上一页</a>
+            </td>
+            <td class="table-body" style="text-align: center; white-space: nowrap; padding: 2px"><a href="#" style="text-decoration:none;">1</a></td>
+            <td class="table-body" style="text-align: center; white-space: nowrap; padding: 2px"><a href="#" style="text-decoration:none;">2</a></td>
+            <td class="table-body" style="text-align: center; white-space: nowrap; padding: 2px"><a href="#" style="text-decoration:none;">3</a></td>
+            <td class="table-body" style="text-align: center; white-space: nowrap; padding: 2px"><a href="#" style="text-decoration:none;">4</a></td>
+            <td class="table-body" style="text-align: center; white-space: nowrap; padding: 2px"><a href="#" style="text-decoration:none;">5</a></td>
+            <td class="table-body" style="text-align: center; white-space: nowrap; padding: 2px"><a href="#" style="text-decoration:none;">下一页</a>
+            </td>
+            <td class="table-body" style="text-align: center; white-space: nowrap; padding: 2px"><a href="#" style="text-decoration:none;">尾页</a></td>
+        </tr>
+    </table>
+
+
+    <!-- 底部导航 -->
+    <div id="u601" class="ax_default box_1"
+         style="position: relative; left: 0px; top: 35px; width: 1600px; height: 134px;">
+        <div id="u601_div" class=""></div>
+        <div id="u602" class="text" style="visibility: visible;">
+            <p><span><br></span></p>
+            <p><span><br></span></p>
+            <p><span>关于电影推荐 : 关于我们&nbsp; &nbsp; &nbsp;&nbsp; 友情链接 : 美团网 格瓦拉 美团下载 欢喜首映</span></p>
+            <p><span><br></span></p>
+            <p><span><br></span></p>
+            <p><span>©2019 电影推荐 ttmovie.com 蜀ICP证666666号&nbsp; xxxxxx经营许可证 </span></p>
+            <p><span><br></span></p>
+            <p><span>xxxxx有限公司</span></p>
+            <p><span><br></span></p>
+        </div>
+    </div>
+
+    <!-- 登录状态 (动态面板) -->
+    <div id="u603" class="ax_default" data-label="login_status">
+        <div th:if="${session.username} == null" id="u603_state0" class="panel_state" data-label="未登录">
+            <div id="u603_state0_content" class="panel_state_content">
+
+                <!-- Unnamed (矩形) -->
+                <div id="u604" class="ax_default box_1">
+                    <div id="u604_div" class=""></div>
+                    <!-- Unnamed () -->
+                    <div id="u605" class="text" style="display: none; visibility: hidden">
+                        <p><span></span></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (组合) -->
+                <div id="u606" class="ax_default">
+
+                    <!-- Unnamed (矩形) -->
+                    <div id="u607" class="ax_default label">
+                        <div id="u607_div" class=""></div>
+                        <!-- Unnamed () -->
+                        <div id="u608" class="text" style="visibility: visible;">
+                            <p><span>登录</span></p>
+                        </div>
+                    </div>
+
+                    <!-- Unnamed (矩形) -->
+                    <div id="u609" class="ax_default label">
+                        <div id="u609_div" class=""></div>
+                        <!-- Unnamed () -->
+                        <div id="u610" class="text" style="visibility: visible;">
+                            <p><span>注册</span></p>
+                        </div>
+                    </div>
+
+                    <!-- Unnamed (垂直线) -->
+                    <div id="u611" class="ax_default line">
+                        <img id="u611_img" class="img " src="images/index/u611.png"/>
+                        <!-- Unnamed () -->
+                        <div id="u612" class="text" style="display: none; visibility: hidden">
+                            <p><span></span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div th:if="${session.username} != null" id="u603_state1" class="panel_state" data-label="已登录">
+            <div id="u603_state1_content" class="panel_state_content">
+
+                <!-- Unnamed (图片) -->
+                <div id="u613" class="ax_default image">
+                    <img id="u613_img" class="img " src="images/index/u613.png"/>
+                    <!-- Unnamed () -->
+                    <div id="u614" class="text" style="display: none; visibility: hidden">
+                        <p><span></span></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (矩形) -->
+                <div id="u615" class="ax_default label">
+                    <div id="u615_div" class=""></div>
+                    <!-- Unnamed () -->
+                    <div id="u616" class="text" style="visibility: visible;">
+                        <p><span>欢迎您！</span></p>
+                    </div>
+                </div>
+
+                <!-- output_username (矩形) -->
+                <div id="u617" class="ax_default label" data-label="output_username">
+                    <div id="u617_div" class=""></div>
+                    <!-- Unnamed () -->
+                    <div id="u618" class="text" style="visibility: visible;">
+                        <p><span th:text="${session.username}">老王</span></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (组合) -->
+                <div id="u619" class="ax_default">
+
+                    <!-- Unnamed (矩形) -->
+                    <div id="u620" class="ax_default label">
+                        <div id="u620_div" class=""></div>
+                        <!-- Unnamed () -->
+                        <div id="u621" class="text" style="visibility: visible;">
+                            <p><span>退出</span></p>
+                        </div>
+                    </div>
+
+                    <!-- Unnamed (图片) -->
+                    <div id="u622" class="ax_default image">
+                        <img id="u622_img" class="img " src="images/index/u622.png"/>
+                        <!-- Unnamed () -->
+                        <div id="u623" class="text" style="display: none; visibility: hidden">
+                            <p><span></span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 登录/注册页面 -->
+    <div id="u624" class="ax_default ax_default_hidden" data-label="登录/注册" style="display: none; visibility: hidden">
+        <div id="u624_state0" class="panel_state" data-label="登录">
+            <div id="u624_state0_content" class="panel_state_content">
+                <div id="u625" class="ax_default box_1">
+                    <div id="u625_div" class=""></div>
+                    <div id="u626" class="text" style="display: none; visibility: hidden">
+                        <p><span></span></p>
+                    </div>
+                </div>
+                <div id="u627" class="ax_default box_3">
+                    <div id="u627_div" class=""></div>
+                    <div id="u628" class="text" style="display: none; visibility: hidden">
+                        <p><span></span></p>
+                    </div>
+                </div>
+                <div id="u629" class="ax_default label">
+                    <div id="u629_div" class=""></div>
+                    <div id="u630" class="text" style="visibility: visible;">
+                        <p><span>用户登录</span></p>
+                    </div>
+                </div>
+                <div id="u631" class="ax_default placeholder">
+                    <img id="u631_img" class="img " src="images/index/u631.png"/>
+                    <div id="u632" class="text" style="display: none; visibility: hidden">
+                        <p><span></span></p>
+                    </div>
+                </div>
+                <div id="u633" class="ax_default">
+                    <div id="u634" class="ax_default box_1">
+                        <div id="u634_div" class=""></div>
+                        <div id="u635" class="text" style="display: none; visibility: hidden">
+                            <p><span></span></p>
+                        </div>
+                    </div>
+
+                    <!-- 密码 -->
+                    <div id="u636" class="ax_default text_field" data-label="input_password">
+                        <input id="u636_input" type="password" value=""/>
+                    </div>
+                </div>
+                <div id="u637" class="ax_default box_1">
+                    <div id="u637_div" class=""></div>
+                    <div id="u638" class="text" style="visibility: visible;">
+                        <p><span>登录</span></p>
+                    </div>
+                </div>
+                <div id="u639" class="ax_default">
+                    <div id="u640" class="ax_default box_1">
+                        <div id="u640_div" class=""></div>
+                        <div id="u641" class="text" style="display: none; visibility: hidden">
+                            <p><span></span></p>
+                        </div>
+                    </div>
+                    <!-- 用户名输入框 -->
+                    <div id="u642" class="ax_default text_field" data-label="input_username">
+                        <input id="u642_input" type="text" value=""/>
+                    </div>
+
+                    <!-- Unnamed (图片) -->
+                    <div id="u643" class="ax_default image">
+                        <img id="u643_img" class="img " src="images/index/u613.png"/>
+                        <!-- Unnamed () -->
+                        <div id="u644" class="text" style="display: none; visibility: hidden">
+                            <p><span></span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Unnamed (矩形) -->
+                <div id="u645" class="ax_default label">
+                    <div id="u645_div" class=""></div>
+                    <!-- Unnamed () -->
+                    <div id="u646" class="text" style="visibility: visible;">
+                        <p><span>欢迎登录</span></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (组合) -->
+                <div id="u647" class="ax_default">
+
+                    <!-- Unnamed (矩形) -->
+                    <div id="u648" class="ax_default label">
+                        <div id="u648_div" class=""></div>
+                        <!-- Unnamed () -->
+                        <div id="u649" class="text" style="visibility: visible;">
+                            <p><span style="text-decoration:underline;">忘记密码？</span></p>
+                        </div>
+                    </div>
+
+                    <!-- Unnamed (矩形) -->
+                    <div id="u650" class="ax_default label">
+                        <div id="u650_div" class=""></div>
+                        <!-- Unnamed () -->
+                        <div id="u651" class="text" style="visibility: visible;">
+                            <p><span style="text-decoration:underline;">注册</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Unnamed (图片) -->
+                <div id="u652" class="ax_default image">
+                    <img id="u652_img" class="img " src="images/index/u652.png"/>
+                    <!-- Unnamed () -->
+                    <div id="u653" class="text" style="display: none; visibility: hidden">
+                        <p><span></span></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (图片) -->
+                <div id="u654" class="ax_default image">
+                    <img id="u654_img" class="img " src="images/index/u654.png"/>
+                    <!-- Unnamed () -->
+                    <div id="u655" class="text" style="display: none; visibility: hidden">
+                        <p><span></span></p>
+                    </div>
+                </div>
+
+                <!-- tip (组合) -->
+                <div id="u656" class="ax_default" data-label="tip">
+
+                    <!-- tip_userinput (矩形) -->
+                    <div id="u657" class="ax_default label" data-label="tip_userinput">
+                        <div id="u657_div" class=""></div>
+                        <!-- Unnamed () -->
+                        <div id="u658" class="text" style="display: none; visibility: hidden">
+                            <p><span></span></p>
+                        </div>
+                    </div>
+
+                    <!-- tip_passwordinput (矩形) -->
+                    <div id="u659" class="ax_default label" data-label="tip_passwordinput">
+                        <div id="u659_div" class=""></div>
+                        <!-- Unnamed () -->
+                        <div id="u660" class="text" style="display: none; visibility: hidden">
+                            <p><span></span></p>
+                        </div>
+                    </div>
+
+                    <!-- tip (矩形) -->
+                    <div id="u661" class="ax_default label" data-label="tip">
+                        <div id="u661_div" class=""></div>
+                        <!-- Unnamed () -->
+                        <div id="u662" class="text" style="display: none; visibility: hidden">
+                            <p><span></span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="u624_state1" class="panel_state" data-label="注册" style="display: none; visibility: hidden;">
+            <div id="u624_state1_content" class="panel_state_content">
+
+                <!-- Unnamed (矩形) -->
+                <div id="u663" class="ax_default box_1">
+                    <div id="u663_div" class=""></div>
+                    <!-- Unnamed () -->
+                    <div id="u664" class="text" style="display: none; visibility: hidden">
+                        <p><span></span></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (矩形) -->
+                <div id="u665" class="ax_default box_3">
+                    <div id="u665_div" class=""></div>
+                    <!-- Unnamed () -->
+                    <div id="u666" class="text" style="display: none; visibility: hidden">
+                        <p><span></span></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (矩形) -->
+                <div id="u667" class="ax_default label">
+                    <div id="u667_div" class=""></div>
+                    <!-- Unnamed () -->
+                    <div id="u668" class="text" style="visibility: visible;">
+                        <p><span>用户注册</span></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (占位符) -->
+                <div id="u669" class="ax_default placeholder">
+                    <img id="u669_img" class="img " src="images/index/u631.png"/>
+                    <!-- Unnamed () -->
+                    <div id="u670" class="text" style="display: none; visibility: hidden">
+                        <p><span></span></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (组合) -->
+                <div id="u671" class="ax_default">
+
+                    <!-- Unnamed (矩形) -->
+                    <div id="u672" class="ax_default box_1">
+                        <div id="u672_div" class=""></div>
+                        <!-- Unnamed () -->
+                        <div id="u673" class="text" style="display: none; visibility: hidden">
+                            <p><span></span></p>
+                        </div>
+                    </div>
+
+                    <!-- regist_input_password (文本框) -->
+                    <div id="u674" class="ax_default text_field" data-label="regist_input_password">
+                        <input id="u674_input" type="password" value=""/>
+                    </div>
+                </div>
+
+                <!-- regist (矩形) -->
+                <div id="u675" class="ax_default box_1" data-label="regist">
+                    <div id="u675_div" class=""></div>
+                    <!-- Unnamed () -->
+                    <div id="u676" class="text" style="visibility: visible;">
+                        <p><span>注册</span></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (组合) -->
+                <div id="u677" class="ax_default">
+
+                    <!-- Unnamed (矩形) -->
+                    <div id="u678" class="ax_default box_1">
+                        <div id="u678_div" class=""></div>
+                        <!-- Unnamed () -->
+                        <div id="u679" class="text" style="display: none; visibility: hidden">
+                            <p><span></span></p>
+                        </div>
+                    </div>
+
+                    <!-- regist_input_username (文本框) -->
+                    <div id="u680" class="ax_default text_field" data-label="regist_input_username">
+                        <input id="u680_input" type="text" value=""/>
+                    </div>
+
+                    <!-- Unnamed (图片) -->
+                    <div id="u681" class="ax_default image">
+                        <img id="u681_img" class="img " src="images/index/u613.png"/>
+                        <!-- Unnamed () -->
+                        <div id="u682" class="text" style="display: none; visibility: hidden">
+                            <p><span></span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Unnamed (矩形) -->
+                <div id="u683" class="ax_default label">
+                    <div id="u683_div" class=""></div>
+                    <!-- Unnamed () -->
+                    <div id="u684" class="text" style="visibility: visible;">
+                        <p><span>欢迎注册</span></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (图片) -->
+                <div id="u685" class="ax_default image">
+                    <img id="u685_img" class="img " src="images/index/u652.png"/>
+                    <!-- Unnamed () -->
+                    <div id="u686" class="text" style="display: none; visibility: hidden">
+                        <p><span></span></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (图片) -->
+                <div id="u687" class="ax_default image">
+                    <img id="u687_img" class="img " src="images/index/u654.png"/>
+                    <!-- Unnamed () -->
+                    <div id="u688" class="text" style="display: none; visibility: hidden">
+                        <p><span></span></p>
+                    </div>
+                </div>
+
+                <!-- tip (组合) -->
+                <div id="u689" class="ax_default" data-label="tip">
+
+                    <!-- tip_username_input (矩形) -->
+                    <div id="u690" class="ax_default label" data-label="tip_username_input">
+                        <div id="u690_div" class=""></div>
+                        <!-- Unnamed () -->
+                        <div id="u691" class="text" style="display: none; visibility: hidden">
+                            <p><span></span></p>
+                        </div>
+                    </div>
+
+                    <!-- tip_passwordinput (矩形) -->
+                    <div id="u692" class="ax_default label" data-label="tip_passwordinput">
+                        <div id="u692_div" class=""></div>
+                        <!-- Unnamed () -->
+                        <div id="u693" class="text" style="display: none; visibility: hidden">
+                            <p><span></span></p>
+                        </div>
+                    </div>
+
+                    <!-- tip_passwordinput_firm (矩形) -->
+                    <div id="u694" class="ax_default label" data-label="tip_passwordinput_firm">
+                        <div id="u694_div" class=""></div>
+                        <!-- Unnamed () -->
+                        <div id="u695" class="text" style="display: none; visibility: hidden">
+                            <p><span></span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Unnamed (组合) -->
+                <div id="u696" class="ax_default">
+
+                    <!-- Unnamed (矩形) -->
+                    <div id="u697" class="ax_default box_1">
+                        <div id="u697_div" class=""></div>
+                        <!-- Unnamed () -->
+                        <div id="u698" class="text" style="display: none; visibility: hidden">
+                            <p><span></span></p>
+                        </div>
+                    </div>
+
+                    <!-- regist_input_firm_password (文本框) -->
+                    <div id="u699" class="ax_default text_field" data-label="regist_input_firm_password">
+                        <input id="u699_input" type="password" value=""/>
+                    </div>
+                </div>
+
+                <!-- Unnamed (图片) -->
+                <div id="u700" class="ax_default image">
+                    <img id="u700_img" class="img " src="images/index/u654.png"/>
+                    <!-- Unnamed () -->
+                    <div id="u701" class="text" style="display: none; visibility: hidden">
+                        <p><span></span></p>
+                    </div>
+                </div>
+
+                <!-- tip_rigest_success (矩形) -->
+                <div id="u702" class="ax_default label ax_default_hidden" data-label="tip_rigest_success"
+                     style="display: none; visibility: hidden">
+                    <div id="u702_div" class=""></div>
+                    <!-- Unnamed () -->
+                    <div id="u703" class="text" style="visibility: visible;">
+                        <p><span>注册成功......</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="u624_state2" class="panel_state" data-label="位置选择" style="display: none; visibility: hidden;">
+            <div id="u624_state2_content" class="panel_state_content">
+
+                <!-- Unnamed (矩形) -->
+                <div id="u704" class="ax_default box_1">
+                    <div id="u704_div" class=""></div>
+                    <!-- Unnamed () -->
+                    <div id="u705" class="text" style="display: none; visibility: hidden">
+                        <p><span></span></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (矩形) -->
+                <div id="u706" class="ax_default box_3">
+                    <div id="u706_div" class=""></div>
+                    <!-- Unnamed () -->
+                    <div id="u707" class="text" style="display: none; visibility: hidden">
+                        <p><span></span></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (矩形) -->
+                <div id="u708" class="ax_default label">
+                    <div id="u708_div" class=""></div>
+                    <!-- Unnamed () -->
+                    <div id="u709" class="text" style="visibility: visible;">
+                        <p><span>位置选择</span></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (占位符) -->
+                <div id="u710" class="ax_default placeholder">
+                    <img id="u710_img" class="img " src="images/index/u631.png"/>
+                    <!-- Unnamed () -->
+                    <div id="u711" class="text" style="display: none; visibility: hidden">
+                        <p><span></span></p>
+                    </div>
+                </div>
+
+                <!-- regist (矩形) -->
+                <div id="u712" class="ax_default box_1" data-label="regist">
+                    <div id="u712_div" class=""></div>
+                    <!-- Unnamed () -->
+                    <div id="u713" class="text" style="visibility: visible;">
+                        <p><span>确定</span></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (组合) -->
+                <div id="u714" class="ax_default">
+
+                    <!-- Unnamed (矩形) -->
+                    <div id="u715" class="ax_default box_1">
+                        <div id="u715_div" class=""></div>
+                        <!-- Unnamed () -->
+                        <div id="u716" class="text" style="display: none; visibility: hidden">
+                            <p><span></span></p>
+                        </div>
+                    </div>
+
+                    <!-- regist_input_username (文本框) -->
+                    <div id="u717" class="ax_default text_field" data-label="regist_input_username">
+                        <input id="u717_input" type="text" value=""/>
+                    </div>
+                </div>
+
+                <!-- tip (组合) -->
+                <div id="u718" class="ax_default" data-label="tip">
+
+                    <!-- tip_username_input (矩形) -->
+                    <div id="u719" class="ax_default label" data-label="tip_username_input">
+                        <div id="u719_div" class=""></div>
+                        <!-- Unnamed () -->
+                        <div id="u720" class="text" style="display: none; visibility: hidden">
+                            <p><span></span></p>
+                        </div>
+                    </div>
+
+                    <!-- tip_passwordinput (矩形) -->
+                    <div id="u721" class="ax_default label" data-label="tip_passwordinput">
+                        <div id="u721_div" class=""></div>
+                        <!-- Unnamed () -->
+                        <div id="u722" class="text" style="display: none; visibility: hidden">
+                            <p><span></span></p>
+                        </div>
+                    </div>
+
+                    <!-- tip_passwordinput_firm (矩形) -->
+                    <div id="u723" class="ax_default label" data-label="tip_passwordinput_firm">
+                        <div id="u723_div" class=""></div>
+                        <!-- Unnamed () -->
+                        <div id="u724" class="text" style="display: none; visibility: hidden">
+                            <p><span></span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Unnamed (图片) -->
+                <div id="u725" class="ax_default image">
+                    <img id="u725_img" class="img " src="images/index/u725.png"/>
+                    <!-- Unnamed () -->
+                    <div id="u726" class="text" style="display: none; visibility: hidden">
+                        <p><span></span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Unnamed (组合) -->
+    <div id="u727" class="ax_default">
+
+        <!-- Unnamed (图片) -->
+        <div id="u728" class="ax_default image">
+            <img id="u728_img" class="img " src="images/index/u728.png"/>
+            <!-- Unnamed () -->
+            <div id="u729" class="text" style="display: none; visibility: hidden">
+                <p><span></span></p>
+            </div>
+        </div>
+
+        <!-- Unnamed (矩形) -->
+        <div id="u730" class="ax_default label">
+            <div id="u730_div" class=""></div>
+            <!-- Unnamed () -->
+            <div id="u731" class="text" style="visibility: visible;">
+                <p><span>收藏夹</span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Unnamed (图片) -->
+    <div id="u732" class="ax_default image">
+        <img id="u732_img" class="img " src="images/index/u652.png"/>
+        <!-- Unnamed () -->
+        <div id="u733" class="text" style="display: none; visibility: hidden">
+            <p><span></span></p>
+        </div>
+    </div>
+
+    <!-- 日期选择器 (动态面板) -->
+    <div id="u734" class="ax_default ax_default_hidden" data-label="日期选择器" style="display: none; visibility: hidden">
+        <div id="u734_state0" class="panel_state" data-label="State1">
+            <div id="u734_state0_content" class="panel_state_content">
+
+                <!-- Unnamed (矩形) -->
+                <div id="u735" class="ax_default box_1">
+                    <div id="u735_div" class=""></div>
+                    <!-- Unnamed () -->
+                    <div id="u736" class="text" style="display: none; visibility: hidden">
+                        <p><span></span></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (矩形) -->
+                <div id="u737" class="ax_default label">
+                    <div id="u737_div" class=""></div>
+                    <!-- Unnamed () -->
+                    <div id="u738" class="text" style="visibility: visible;">
+                        <p><span style="text-decoration:underline;">确定</span></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (矩形) -->
+                <div id="u739" class="ax_default label">
+                    <div id="u739_div" class=""></div>
+                    <!-- Unnamed () -->
+                    <div id="u740" class="text" style="visibility: visible;">
+                        <p><span style="text-decoration:underline;">取消</span></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (矩形) -->
+                <div id="u741" class="ax_default box_1" selectiongroup="日期选择">
+                    <div id="u741_div" class=""></div>
+                    <!-- Unnamed () -->
+                    <div id="u742" class="text" style="visibility: visible;">
+                        <p><span>今天&nbsp;&nbsp; 2019-05-01</span></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (矩形) -->
+                <div id="u743" class="ax_default box_1" selectiongroup="日期选择">
+                    <div id="u743_div" class=""></div>
+                    <!-- Unnamed () -->
+                    <div id="u744" class="text" style="visibility: visible;">
+                        <p><span>明天&nbsp;&nbsp; 2019-05-02</span></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (矩形) -->
+                <div id="u745" class="ax_default box_1" selectiongroup="日期选择">
+                    <div id="u745_div" class=""></div>
+                    <!-- Unnamed () -->
+                    <div id="u746" class="text" style="visibility: visible;">
+                        <p><span>后天&nbsp;&nbsp; 2019-05-03</span></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (矩形) -->
+                <div id="u747" class="ax_default box_1" selectiongroup="日期选择">
+                    <div id="u747_div" class=""></div>
+                    <!-- Unnamed () -->
+                    <div id="u748" class="text" style="visibility: visible;">
+                        <p><span>周四&nbsp;&nbsp; 2019-05-04</span></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (矩形) -->
+                <div id="u749" class="ax_default box_1" selectiongroup="日期选择">
+                    <div id="u749_div" class=""></div>
+                    <!-- Unnamed () -->
+                    <div id="u750" class="text" style="visibility: visible;">
+                        <p><span>周五&nbsp;&nbsp; 2019-05-05</span></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (矩形) -->
+                <div id="u751" class="ax_default box_1" selectiongroup="日期选择">
+                    <div id="u751_div" class=""></div>
+                    <!-- Unnamed () -->
+                    <div id="u752" class="text" style="visibility: visible;">
+                        <p><span>周六&nbsp;&nbsp; 2019-05-06</span></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (矩形) -->
+                <div id="u753" class="ax_default box_1" selectiongroup="日期选择">
+                    <div id="u753_div" class=""></div>
+                    <!-- Unnamed () -->
+                    <div id="u754" class="text" style="visibility: visible;">
+                        <p><span>周日&nbsp;&nbsp; 2019-05-07</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 类型选择器 (动态面板) -->
+    <div id="u755" class="ax_default ax_default_hidden" data-label="类型选择器" style="display: none; visibility: hidden">
+        <div id="u755_state0" class="panel_state" data-label="State1">
+            <div id="u755_state0_content" class="panel_state_content">
+
+                <!-- Unnamed (矩形) -->
+                <div id="u756" class="ax_default box_1">
+                    <div id="u756_div" class=""></div>
+                    <!-- Unnamed () -->
+                    <div id="u757" class="text" style="display: none; visibility: hidden">
+                        <p><span></span></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (矩形) -->
+                <div id="u758" class="ax_default box_1" selectiongroup="日期选择">
+                    <div id="u758_div" class=""></div>
+                    <!-- Unnamed () -->
+                    <div id="u759" class="text" style="visibility: visible;">
+                        <p><span>悬疑</span></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (矩形) -->
+                <div id="u760" class="ax_default box_1" selectiongroup="日期选择">
+                    <div id="u760_div" class=""></div>
+                    <!-- Unnamed () -->
+                    <div id="u761" class="text" style="visibility: visible;">
+                        <p><span>惊悚</span></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (矩形) -->
+                <div id="u762" class="ax_default box_1" selectiongroup="日期选择">
+                    <div id="u762_div" class=""></div>
+                    <!-- Unnamed () -->
+                    <div id="u763" class="text" style="visibility: visible;">
+                        <p><span>爱情</span></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (矩形) -->
+                <div id="u764" class="ax_default box_1" selectiongroup="日期选择">
+                    <div id="u764_div" class=""></div>
+                    <!-- Unnamed () -->
+                    <div id="u765" class="text" style="visibility: visible;">
+                        <p><span>玄幻</span></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (矩形) -->
+                <div id="u766" class="ax_default box_1" selectiongroup="日期选择">
+                    <div id="u766_div" class=""></div>
+                    <!-- Unnamed () -->
+                    <div id="u767" class="text" style="visibility: visible;">
+                        <p><span>科幻</span></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (矩形) -->
+                <div id="u768" class="ax_default box_1" selectiongroup="日期选择">
+                    <div id="u768_div" class=""></div>
+                    <!-- Unnamed () -->
+                    <div id="u769" class="text" style="visibility: visible;">
+                        <p><span>神话</span></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (矩形) -->
+                <div id="u770" class="ax_default box_1" selectiongroup="日期选择">
+                    <div id="u770_div" class=""></div>
+                    <!-- Unnamed () -->
+                    <div id="u771" class="text" style="visibility: visible;">
+                        <p><span>都市</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 城市选择器 (动态面板) -->
+    <div id="u772" class="ax_default ax_default_hidden" data-label="城市选择器" style="display: none; visibility: hidden">
+        <div id="u772_state0" class="panel_state" data-label="State1">
+            <div id="u772_state0_content" class="panel_state_content">
+
+                <!-- Unnamed (气泡) -->
+                <div id="u773" class="ax_default box_1">
+                    <img id="u773_img" class="img " src="images/index/u773.png"/>
+                    <!-- Unnamed () -->
+                    <div id="u774" class="text" style="display: none; visibility: hidden">
+                        <p><span></span></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (矩形) -->
+                <div id="u775" class="ax_default box_1" selectiongroup="city">
+                    <div id="u775_div" class=""></div>
+                    <!-- Unnamed () -->
+                    <div id="u776" class="text" style="visibility: visible;">
+                        <p><span>成都</span></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (矩形) -->
+                <div id="u777" class="ax_default box_1" selectiongroup="city">
+                    <div id="u777_div" class=""></div>
+                    <!-- Unnamed () -->
+                    <div id="u778" class="text" style="visibility: visible;">
+                        <p><span>绵阳</span></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (矩形) -->
+                <div id="u779" class="ax_default box_1" selectiongroup="city">
+                    <div id="u779_div" class=""></div>
+                    <!-- Unnamed () -->
+                    <div id="u780" class="text" style="visibility: visible;">
+                        <p><span>资阳</span></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (矩形) -->
+                <div id="u781" class="ax_default box_1" selectiongroup="city">
+                    <div id="u781_div" class=""></div>
+                    <!-- Unnamed () -->
+                    <div id="u782" class="text" style="visibility: visible;">
+                        <p><span>遂宁</span></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (矩形) -->
+                <div id="u783" class="ax_default box_1" selectiongroup="city">
+                    <div id="u783_div" class=""></div>
+                    <!-- Unnamed () -->
+                    <div id="u784" class="text" style="visibility: visible;">
+                        <p><span>资中</span></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (矩形) -->
+                <div id="u785" class="ax_default box_1" selectiongroup="city">
+                    <div id="u785_div" class=""></div>
+                    <!-- Unnamed () -->
+                    <div id="u786" class="text" style="visibility: visible;">
+                        <p><span>绵竹</span></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (矩形) -->
+                <div id="u787" class="ax_default box_1" selectiongroup="city">
+                    <div id="u787_div" class=""></div>
+                    <!-- Unnamed () -->
+                    <div id="u788" class="text" style="visibility: visible;">
+                        <p><span>泸州</span></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (矩形) -->
+                <div id="u789" class="ax_default box_1" selectiongroup="city">
+                    <div id="u789_div" class=""></div>
+                    <!-- Unnamed () -->
+                    <div id="u790" class="text" style="visibility: visible;">
+                        <p><span>都江堰</span></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (矩形) -->
+                <div id="u791" class="ax_default box_1" selectiongroup="city">
+                    <div id="u791_div" class=""></div>
+                    <!-- Unnamed () -->
+                    <div id="u792" class="text" style="visibility: visible;">
+                        <p><span>重庆</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        //测试登录
+        $("#u637").click(function () {
+            var username = $("#u642_input").val();
+            var password = $("#u636_input").val();
+            $.get("/login?name=" + username + "&pass=" + password, "", function (data) {
+                console.log(data);
+                if(data.status == 1){
+                    //$("#u624_lightbox").click();
+                    window.location.reload();
+                }else{
+                    alert("登录失败");
+                    console.log(data);
+                }
+            });
+        });
+
+        $("#u621").click(function () {
+            $.get("/logout", "", function (data) {
+                window.location.reload();
+                console.log("退出登录");
+            });
+        });
+
+        //style="display: none; visibility: hidden;"
+        $("#u603_state0").css({"display": ""}, {"visibility": ""});
+        $("#u603_state1").css({"display": ""}, {"visibility": ""});
+
+    });
+</script>
+</html>

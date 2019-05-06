@@ -42,22 +42,21 @@
 		t_movie.name,
 		t_movie.actors,
 		t_movie.catagory,
-		t_movie.show_time,
+		t_movie.show_time as showTime,
 		t_movie.duration,
 		t_movie.actors,
-
 		t_movie.score,
-		t_purchase.movie_name,
-		t_purchase.show_time,
+		t_purchase.movie_name as movieName,
+		t_purchase.show_time as showTime,
 		t_purchase.category,
 		t_purchase.score,
-		t_purchase.cinema_name,
+		t_purchase.cinema_name as cinemaName,
 		t_purchase.address,
-		t_purchase.play_time,
+		t_purchase.play_time as playTime,
 		t_purchase.platform,
 		t_purchase.price,
 		t_purchase.href,
-		t_purchase.favorite_id
+		t_purchase.favorite_id as favoriteId
 
 		FROM t_movie,t_purchase
 
