@@ -11,7 +11,9 @@ import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.sj.common.config.HttpClientService;
 import com.sj.common.config.UrlAddr;
+import com.sj.common.pojo.Movie;
 import com.sj.common.pojo.ObjectUtil;
+import com.sj.common.pojo.Purchase;
 import com.sj.common.vo.MovieDetail;
 
 import io.netty.util.internal.StringUtil;
@@ -58,5 +60,51 @@ public class SearchService {
 			return null;
 		}
 	}
+	
+	
+	
+	public List<Movie> getMovieInfo(List<String> movieNameL){
+		List<Movie> movies = new ArrayList<Movie>();
+		String url = UrlAddr.searchqueryUrl + UrlAddr.searchquerykey03;
+		Map<String,Object> param=new HashMap<String,Object>();
+		try {
+			for (String movieName : movieNameL) {
+				param.put("movieName", movieName);
+				String data = client.doGet(url,param);
+				if(!StringUtil.isNullOrEmpty(data)) {					
+					Movie movie = ObjectUtil.mapper.readValue(data, Movie.class);
+					movies.add(movie);
+				}
+			}
+			return movies;
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public List<Purchase> getpurchInfo(List<String> movieNameL){
+		List<Purchase> purchases = new ArrayList<Purchase>();
+		String url = UrlAddr.searchqueryUrl + UrlAddr.searchquerykey04;
+		Map<String,Object> param=new HashMap<String,Object>();
+		try {
+			for (String movieName : movieNameL) {
+				param.put("movieName", movieName);
+				String data = client.doGet(url,param);
+				if(!StringUtil.isNullOrEmpty(data)) {					
+					Purchase purchase = ObjectUtil.mapper.readValue(data, Purchase.class);
+					purchases.add(purchase);
+				}
+			}
+			return purchases;
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+
 
 }

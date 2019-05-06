@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.sj.common.pojo.Movie;
 import com.sj.common.pojo.ObjectUtil;
+import com.sj.common.pojo.Purchase;
 import com.sj.common.vo.MovieDetail;
 import com.sj.search.service.SearchService;
 
@@ -39,5 +41,15 @@ public class SearchController {
 	@RequestMapping("films")
 	public MovieDetail getFilmDetail(String movieName) {
 		return searchService.getFilmDetail(movieName);
+	}
+	
+	@RequestMapping("movies")
+	public Movie getMovieInfo(String movieName) {
+		return searchService.getMovieInfo(movieName);
+	}
+	
+	@RequestMapping("purchase")
+	public List<Purchase> getpurchInfo(String movieName) {
+		return searchService.getpurchInfo(movieName);
 	}
 }
