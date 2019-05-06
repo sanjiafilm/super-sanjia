@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sj.movie.mapper.TimeAndTypeMapper">
+
+<select id="getMovieName" parameterType="com.sj.movie.entity.MovieVo" resultType="string" >
+SELECT t_movie.name FROM t_movie 
+<where>
+<foreach collection="jedisType" item="id"  separator="or">
+t_movie.id=#{id}
+</foreach>
+ORDER BY t_movie.score DESC;
+</where>
+</select>
+<!-- LIMIT #{page},3 -->
+
+
+
+
+
+
+
+<resultMap type="Purchase" id="PurchaseData">
+<result property="movieName" column="movie_name"/>
+<result property="showTime" column="show_time"/>
+<result property="category" column="category"/>
+<result property="score" column="score"/>
+<result property="cinemaName" column="cinema_name"/>
+<result property="address" column="address"/>
+<result property="playTime" column="play_time"/>
+<result property="platform" column="platform"/>
+<result property="price" column="price"/>
+<result property="href" column="href"/>
+<result property="favoriteId" column="favorite_id"/>
+</resultMap>
+
+
+<resultMap type="Movie" id="GradeData">
+<result property="name" column="name"/>
+<result property="actors" column="actors"/>
+<result property="catagory" column="catagory"/>
+<result property="show_time" column="show_time"/>
+<result property="duration" column="duration"/>
+<result property="actors" column="actors"/>
+
+<result property="score" column="score"/>
+<collection property="data" ofType="Purchase" javaType="java.util.List" resultMap="PurchaseData">
+</collection>
+</resultMap>
+<select id="getMovieData" resultMap="GradeData">
+ SELECT 
+ t_movie.name,
+ t_movie.actors,
+ t_movie.catagory,
+ t_movie.show_time,
+ t_movie.duration,
+ t_movie.actors,
+
+ t_movie.score,
+ t_purchase.movie_name,
+t_purchase.show_time,
+t_purchase.category,
+t_purchase.score,
+t_purchase.cinema_name,
+t_purchase.address,
+t_purchase.play_time,
+t_purchase.platform,
+t_purchase.price,
+t_purchase.href,
+t_purchase.favorite_id
+
+FROM t_movie,t_purchase
+ 
+ 
+WHERE t_purchase.play_time BETWEEN #{oneday} AND #{towday} and
+t_purchase.movie_name=#{name} and t_movie.name=#{name} LIMIT 0,2;
+
+</select>
+
+
+<!-- <select id="getCount">
+
+</select> -->
+</mapper> 
+
+
+
+
+
+
+
+
+
+
+
+

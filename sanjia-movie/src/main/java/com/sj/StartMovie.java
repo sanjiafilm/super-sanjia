@@ -5,10 +5,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan("com.sj.show.mapper")
-public class StarterMovie {
+@MapperScan(value="com.sj.movie.mapper")
+public class StartMovie {
 	public static void main(String[] args) {
-		
-		SpringApplication.run(StarterMovie.class, args);
+		SpringApplication.run(StartMovie.class, args);
 	}
 }
