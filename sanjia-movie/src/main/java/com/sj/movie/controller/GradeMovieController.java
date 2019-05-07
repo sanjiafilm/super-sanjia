@@ -113,7 +113,16 @@ public class GradeMovieController {
 		return "access";
 	}
 	
-	
+	/**
+	 * Description: 最新上映
+	 * @param page
+	 * 
+	 */
+	@RequestMapping("/newplay")
+	@ResponseBody
+	public PageInfo<Movie> NewPlay(@RequestParam(required = false, defaultValue = "1") Integer page2){
+		return gradeService.getNewPlay(page2);
+	}
 	
 	
 }

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sj.movie.mapper.MovieSortMapper">
+
+<select id="sortData" resultType="Movie" >
+	select * from t_movie order by show_time desc 
+</select>
+
+
+
+
+
+
+</mapper> 
+
+
+
+
+
+
+
+
+
+
+
+

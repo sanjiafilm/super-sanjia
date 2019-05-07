@@ -17,6 +17,7 @@ import com.sj.common.pojo.Purchase;
 import com.sj.common.utils.DistanceUtiles;
 import com.sj.movie.mapper.ActorMapper;
 import com.sj.movie.mapper.MovieMapper;
+import com.sj.movie.mapper.MovieSortMapper;
 import com.sj.movie.mapper.PurchaseMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,6 +39,9 @@ public class GradeMovieService {
 
 	@Autowired
 	private ActorMapper actorMapper;
+	
+	@Autowired
+	private MovieSortMapper movieSortMapper;
 	
 	public List<Movie> getGradeMovieData(int page) {
 		try {
@@ -177,4 +181,27 @@ public class GradeMovieService {
 	    movie.setActors(actors);
 	    return movie;
     }
+    
+  //最新上映
+		public PageInfo<Movie> getNewPlay(Integer page2) {
+ 
+			PageHelper.startPage(page2, 3);
+			List<Movie> ss = movieSortMapper.sortData();
+			for (Movie s : ss) {
+				PageHelper.startPage(1, 4);
+	            Example example1 = new Example(Purchase.class);
+	            
+				Example.Criteria criteria1 = example1.createCriteria();			
+				
+				example1.setOrderByClause("'playTime' 'price' ASC");  				
+				criteria1.andEqualTo("movieName", s.getName());      
+				
+				List<Purchase> purchases1 = purchaseMapper.selectByExample(example1);
+				for (Purchase purchase : purchases1) {
+				System.out.println(purchase.toString());
+			}
+				s.setPurchase(purchases1);
+			}
+			return new PageInfo<>(ss);
+		}
 }
