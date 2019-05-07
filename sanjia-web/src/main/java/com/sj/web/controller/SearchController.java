@@ -27,49 +27,88 @@ public class SearchController {
 	@Autowired
 	private SearchService searchService;
 	
-	@RequestMapping(value="associate/{searchkey}",method=RequestMethod.GET)
-	@ResponseBody
-	public String getFilmName(@PathVariable String searchkey){
-		List<String> filmNameL = new ArrayList<String>();
-		filmNameL =searchService.getFilmName(searchkey);
-//		model.addAttribute("filmNames", filmNameL);
-		try {
-			String filmNames = ObjectUtil.mapper.writeValueAsString(filmNameL);
-			
-				return filmNames;
-						
-		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return "";
-		}
-	}
+//	@RequestMapping(value="associate/{searchkey}",method=RequestMethod.GET)
+//	@ResponseBody
+//	public String getFilmName(@PathVariable String searchkey){
+//		List<String> filmNameL = new ArrayList<String>();
+//		filmNameL =searchService.getFilmName(searchkey);
+////		model.addAttribute("filmNames", filmNameL);
+//		try {
+//			String filmNames = ObjectUtil.mapper.writeValueAsString(filmNameL);
+//			
+//				return filmNames;
+//						
+//		} catch (JsonProcessingException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//			return "";
+//		}
+//	}
 	
-	@RequestMapping(value="films",method=RequestMethod.GET)	
-	public String getFilmDetail(String text,Model model) {
+//	@RequestMapping(value="films",method=RequestMethod.GET)	
+//	public String getFilmDetail(String text,Integer page,Model model) {
+//		FilmsInfo filmsInfo = new FilmsInfo();
+//		try {
+//			/*JsonNode josndata = ObjectUtil.mapper.readTree(json);
+//			List<String> movieNameL = new ArrayList<>();
+//			if(josndata.isArray()&&josndata.size()>0){
+//				//data数据合法,第一个参数是jsonNode获取的数据
+//				//解析器parser
+//				//第二个参数,构造一个返回的类型工程,List<Cart>
+//				movieNameL=ObjectUtil.mapper.readValue(josndata.traverse()
+//						, ObjectUtil.mapper
+//						.getTypeFactory().constructCollectionType(List.class, String.class));
+//			}*/
+//			System.out.println(text);
+//			List<String> filmNameL = new ArrayList<String>();
+//			filmNameL =searchService.getFilmName(text);
+//			Integer count = filmNameL.size();
+//			List<MovieDetail> movieds =searchService.getFilmDetail(filmNameL);
+//			filmsInfo.setTotalPage(1);
+//			filmsInfo.setCurrentPage(1);
+//			filmsInfo.setMovieDetails(movieds);
+//			model.addAttribute("page", filmsInfo);
+////			return filmsInfo;
+//			return "movies";
+//		}catch(Exception e) {
+//			System.out.println("error ");
+//			e.printStackTrace();
+//			return "error";
+////			return null;
+//		}
+//		
+//	}
+	
+//	@RequestMapping(value="page",method=RequestMethod.GET)
+//	public FilmsDetail getFilmPage(String text,Model model) {
+//		FilmsDetail filmsDetail = new FilmsDetail();
+//		List<Movie> movies = new ArrayList<Movie>();
+//		System.out.println(text);
+//		List<String> filmNameL = new ArrayList<String>();
+//		filmNameL =searchService.getFilmName(text);
+//		Integer count = filmNameL.size();
+//		filmsDetail.setTotalPage(1);
+//		filmsDetail.setCurrentPage(1);			
+//		movies=searchService.getMovieInfo(filmNameL);
+//		filmsDetail.setMovies(movies);
+//		model.addAttribute("page", filmsDetail);
+//		return filmsDetail;
+//		
+//	}
+	
+	@RequestMapping(value="movie",method=RequestMethod.GET)	
+	@ResponseBody
+	public String getMovieDetail(String text,Integer page,Model model) {
 		FilmsInfo filmsInfo = new FilmsInfo();
-		try {
-			/*JsonNode josndata = ObjectUtil.mapper.readTree(json);
-			List<String> movieNameL = new ArrayList<>();
-			if(josndata.isArray()&&josndata.size()>0){
-				//data数据合法,第一个参数是jsonNode获取的数据
-				//解析器parser
-				//第二个参数,构造一个返回的类型工程,List<Cart>
-				movieNameL=ObjectUtil.mapper.readValue(josndata.traverse()
-						, ObjectUtil.mapper
-						.getTypeFactory().constructCollectionType(List.class, String.class));
-			}*/
+		try {	
 			System.out.println(text);
 			List<String> filmNameL = new ArrayList<String>();
 			filmNameL =searchService.getFilmName(text);
 			Integer count = filmNameL.size();
-			List<MovieDetail> movieds =searchService.getFilmDetail(filmNameL);
-			filmsInfo.setTotalPage(1);
-			filmsInfo.setCurrentPage(1);
-			filmsInfo.setMovieDetails(movieds);
-			model.addAttribute("page", filmsInfo);
+			String movieds =searchService.getMovieDetail(filmNameL,page);			
+//			model.addAttribute("page", movieds);
 //			return filmsInfo;
-			return "movies";
+			return movieds;
 		}catch(Exception e) {
 			System.out.println("error ");
 			e.printStackTrace();
@@ -77,23 +116,9 @@ public class SearchController {
 //			return null;
 		}
 		
-	}
-	
-	@RequestMapping(value="page",method=RequestMethod.GET)
-	public FilmsDetail getFilmPage(String text,Model model) {
-		FilmsDetail filmsDetail = new FilmsDetail();
-		List<Movie> movies = new ArrayList<Movie>();
-		System.out.println(text);
-		List<String> filmNameL = new ArrayList<String>();
-		filmNameL =searchService.getFilmName(text);
-		Integer count = filmNameL.size();
-		filmsDetail.setTotalPage(1);
-		filmsDetail.setCurrentPage(1);			
-		movies=searchService.getMovieInfo(filmNameL);
-		filmsDetail.setMovies(movies);
-		model.addAttribute("page", filmsDetail);
-		return filmsDetail;
 		
 	}
+	
+	
 
 }

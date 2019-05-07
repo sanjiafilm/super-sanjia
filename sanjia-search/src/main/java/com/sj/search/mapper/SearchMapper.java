@@ -11,4 +11,6 @@ public interface SearchMapper {
 
 	List<Purchase> getPurchaseInfo(String movieName);
 
+	Integer getall();
+
 }

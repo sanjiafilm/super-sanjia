@@ -13,13 +13,15 @@ import com.sj.common.pojo.Movie;
 import com.sj.common.pojo.ObjectUtil;
 import com.sj.common.pojo.Purchase;
 import com.sj.common.vo.MovieDetail;
+import com.sj.search.mapper.SearchMapper;
 import com.sj.search.service.SearchService;
 
 @RestController
-@RequestMapping("search")
 public class SearchController {
 	@Autowired
 	private SearchService searchService;
+	@Autowired
+	private SearchMapper searchMapper;
 	
 	@RequestMapping("associate/{searchkey}")
 	public String getFilmName(@PathVariable String searchkey){
@@ -38,18 +40,27 @@ public class SearchController {
 		}
 	}
 	
-	@RequestMapping("films")
+	/*@RequestMapping("films")
 	public MovieDetail getFilmDetail(String movieName) {
 		return searchService.getFilmDetail(movieName);
-	}
+	}*/
 	
 	@RequestMapping("movies")
-	public Movie getMovieInfo(String movieName) {
-		return searchService.getMovieInfo(movieName);
+	public Movie getMovieInfo(String movieName ,Integer page) {
+		return searchService.getFilmDetail(movieName,page);
 	}
 	
 	@RequestMapping("purchase")
 	public List<Purchase> getpurchInfo(String movieName) {
 		return searchService.getpurchInfo(movieName);
+	}
+	
+	@RequestMapping("test")
+	public Integer index() {
+		String name = "何以为家";
+		Integer count = searchMapper.getall();
+		Movie movie = searchMapper.getMovieInfo(name);
+		List<Purchase> purchaseL = searchMapper.getPurchaseInfo(name);
+		return count;
 	}
 }

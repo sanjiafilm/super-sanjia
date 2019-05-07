@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.github.pagehelper.PageHelper;
 import com.sj.common.pojo.Movie;
 import com.sj.common.pojo.ObjectUtil;
 import com.sj.common.pojo.Purchase;
@@ -68,7 +69,7 @@ public class SearchService {
 	 * @return
 	 */
 
-	public MovieDetail getFilmDetail(String movieName) {
+	/*public MovieDetail getFilmDetail(String movieName) {
 		String name = movieName;
 		List<Purchase> purchaseL = new ArrayList<Purchase>();
 		MovieDetail movieDetail = new MovieDetail();
@@ -142,8 +143,70 @@ public class SearchService {
 			return null;
 		}
 		
+	}*/
+	
+	public Movie getFilmDetail(String movieName,Integer page) {
+		String name = movieName;
+		List<Purchase> purchaseL = new ArrayList<Purchase>();
+		MovieDetail movieDetail = new MovieDetail();
+		Movie movie = new Movie();
+		//先将name 转为hash 码，根据hash码查询redis中对应内容
+		try {
+			String nameHash = "MOVIEINFO"+Integer.toHexString(name.hashCode());
+			System.out.println(nameHash);
+			// 先从redis查找 如果redis没有则从数据库查找
+			String movieInfo = cluster.get(nameHash);
+			if(StringUtils.isNotEmpty(movieInfo)) { //说明redis中已经存在该值
+				//直接将该json串转化为Object后返回
+				movie = ObjectUtil.mapper.readValue(movieInfo, Movie.class);
+				System.out.println("go to redis for search movie "+name);
+			}else {
+				//从数据库查询movieName对应t_movie的表数据
+				movie = searchMapper.getMovieInfo(name);
+				
+			}
+//			return movie;
+			//判断数据是否存在			
+			if (movie != null) {  //如果存在就继续查询对应movieName对应在t_purchase的表信息
+				PageHelper.startPage(page, 4);
+				String purchaseHash ="PURCHASE"+Integer.toHexString(name.hashCode());
+				System.out.println(purchaseHash);
+				// 先从redis查找 如果redis没有则从数据库查找
+				String purchaseInfo = cluster.get(purchaseHash);
+				if(StringUtils.isNotEmpty(purchaseInfo)) {//说明redis中已经存在该值
+					//直接将json串转化为Objiec后返回
+					 JsonNode purchaseData = ObjectUtil.mapper.readTree(purchaseInfo);
+					 if(purchaseData.isArray() && purchaseData.size()>0) {
+						 purchaseL = ObjectUtil.mapper.readValue(purchaseData.traverse(), 
+								 ObjectUtil.mapper.getTypeFactory().
+								 constructCollectionType(List.class, Purchase.class));
+					 }
+					 System.out.println("go to redis for search purchases "+name);
+				}else {
+					//数据库查询购票信息
+					purchaseL = searchMapper.getPurchaseInfo(movieName);
+					if(purchaseL != null) {						
+						//将Purchase 转为json 串 
+						String value = ObjectUtil.mapper.writeValueAsString(purchaseL);
+						//将movieName 对应的电影信息写入到redis
+//						cluster.set(purchaseHash, value);
+					}					
+				}
+				movie.setPurchase(purchaseL);
+				//将movies 转为json 串 
+				String value = ObjectUtil.mapper.writeValueAsString(movie);
+				//将movieName 对应的电影信息写入到redis
+//				cluster.set(purchaseHash, value);	
+				return movie;
+			}else {			
+				return null;
+			}	
+		}catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		
 	}
-
 
 
 	public Movie getMovieInfo(String movieName) {
