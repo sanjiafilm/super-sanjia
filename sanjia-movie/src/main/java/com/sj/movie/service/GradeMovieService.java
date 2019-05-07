@@ -12,7 +12,9 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.sj.common.pojo.Actor;
+import com.sj.common.pojo.Cinema;
 import com.sj.common.pojo.Purchase;
+import com.sj.common.utils.DistanceUtiles;
 import com.sj.movie.mapper.ActorMapper;
 import com.sj.movie.mapper.MovieMapper;
 import com.sj.movie.mapper.PurchaseMapper;
@@ -123,6 +125,21 @@ public class GradeMovieService {
             criteria.andEqualTo("movieName", s.getName());
 			List<Purchase> purchases = purchaseMapper.selectByExample(example);
 			s.setPurchase(purchases);
+			for(Purchase pur : purchases) {
+				System.out.println("进入距离设置");
+				String cinameName = pur.getCinemaName();
+				try {
+					Cinema cinema = gradeMapper.getCinema(cinameName);
+					System.out.println(cinema);//打桩
+					//todo:
+					double distance = DistanceUtiles.getDistance(cinema, 104.0826545833, 30.6655390000);//给的当前位置（日报大厦）
+					pur.setDistance(distance);
+				}catch (Exception e) {
+					e.printStackTrace();
+					System.out.println("未找到影院！设置一个默认距离");
+					pur.setDistance(2.40);
+				}								
+			}
 		}
 		return new PageInfo<>(movies);
 	}

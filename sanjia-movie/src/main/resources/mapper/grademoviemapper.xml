@@ -71,6 +71,10 @@
 	<select id="getGradeMovieCountMapper" resultType="Integer">
 		SELECT COUNT(*) FROM t_movie WHERE t_movie.status='正在热映';
 	</select>
+	
+	<select id="getCinema" resultType="Cinema">
+	    SELECT * FROM t_cinema WHERE t_cinema.name=#{cinameName};
+	</select>
 
 </mapper> 
 

@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Table(name = "t_purchase")
-public class Purchase implements Serializable{
+public class Purchase extends PurchaseProxy implements Serializable{
 	
 	/**
 	 * 
