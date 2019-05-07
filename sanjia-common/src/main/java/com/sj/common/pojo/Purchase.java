@@ -14,18 +14,18 @@ public class Purchase extends PurchaseProxy implements Serializable{
 	private String movieName;  //电影名称
 	private String showTime;   //上映时间
 	private String category;   //分类
-	private float  score;   //评分
+	private String score;   //评分
 	private String cinemaName;   //影院名字
 	private String address;   //影院地址
 	private Date playTime;  //场次
 	private String platform;   //购票平台
-	private double price;   //价格	
+	private Double price;   //价格	
 	private String href;   //购票链接
 	private String favoriteId;//唯一标识，只做收藏的关联字段
 	
 	
-	public Purchase(String movieName, String showTime, String category, float score, String cinemaName,
-			String address, Date playTime, String platform, double price, String href,String favoriteId) {
+	public Purchase(String movieName, String showTime, String category, String score, String cinemaName,
+			String address, Date playTime, String platform, Double price, String href,String favoriteId) {
 		super();
 		this.movieName = movieName;
 		this.showTime = showTime;
@@ -68,11 +68,11 @@ public class Purchase extends PurchaseProxy implements Serializable{
 		this.category = category;
 	}
 
-	public float getScore() {
+	public String getScore() {
 		return score;
 	}
 
-	public void setScore(float score) {
+	public void setScore(String score) {
 		this.score = score;
 	}
 
@@ -108,11 +108,11 @@ public class Purchase extends PurchaseProxy implements Serializable{
 		this.platform = platform;
 	}
 
-	public double getPrice() {
+	public Double getPrice() {
 		return price;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}
 

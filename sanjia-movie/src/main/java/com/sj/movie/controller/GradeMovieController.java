@@ -14,11 +14,6 @@ import com.sj.movie.service.GradeMovieService;
 import com.sj.movie.service.MoiveByTimeAndType;
 import com.sj.movie.service.MovieInfoService;
 import com.sj.movie.service.MovieUtilsService;
-import com.sj.movie.utils.JdiesMovieType;
-
-import io.netty.util.internal.ObjectUtil;
-
-
 
 @Controller
 public class GradeMovieController {

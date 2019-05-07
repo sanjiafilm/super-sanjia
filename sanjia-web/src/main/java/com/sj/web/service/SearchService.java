@@ -127,8 +127,7 @@ public class SearchService {
 		 String url="http://search/movies?movieName="; 
 	        try{
 	        	for (String movieName : filmNameL) {
-	        		url = url+movieName+"&page="+page;
-	        		HttpGet httpGet = new HttpGet(url);
+	        		HttpGet httpGet = new HttpGet(url + movieName+"&page="+page);
 	        		HttpResponse response = httpClient.execute(httpGet);
 	        		HttpEntity entity = response.getEntity(); 
 	        		String res = ToStr.tostr(entity.getContent());

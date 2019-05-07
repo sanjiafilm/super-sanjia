@@ -48,7 +48,7 @@
         }
 
         ul.imglist{ margin:0 auto; width:1100px; overflow:hidden}
-        ul.imglist li{ float:left; padding:20px 10px; width:160px; list-style:none;}
+        ul.imglist li{ float:left; padding:20px 10px; width:160px; height: 255px; list-style:none;}
         ul.imglist li img{ display:block; width:160px; height:90px}
         ul.imglist li span{ display:block; width:100%; height:30px; line-height:30px; background:#F6F6F6}
     </style>
@@ -329,35 +329,30 @@
         </div>
     </div>
 
-    <!-- Unnamed (组合) -->
+    <!-- 回到首页 -->
     <div id="u892" class="ax_default">
 
-        <!-- 最新 (矩形) -->
         <div id="u893" class="ax_default box_1 selected" data-label="最新" selectiongroup="首页导航">
             <div id="u893_div" class="selected"></div>
             <!-- Unnamed () -->
             <div id="u894" class="text" style="visibility: visible;">
-                <p><span>最新上映</span></p>
+                <a href="/" style="text-decoration:none;"><span style="font-size: 16px; color: rgb(64, 192, 162);">回到首页</span></a>
             </div>
         </div>
 
-        <!-- 豆瓣 (矩形) -->
-        <div id="u895" class="ax_default box_1" data-label="豆瓣" selectiongroup="首页导航">
+        <!--<div id="u895" class="ax_default box_1" data-label="豆瓣" selectiongroup="首页导航">
             <div id="u895_div" class=""></div>
-            <!-- Unnamed () -->
             <div id="u896" class="text" style="visibility: visible;">
                 <p><span>豆瓣高分</span></p>
             </div>
         </div>
 
-        <!-- Unnamed (矩形) -->
         <div id="u897" class="ax_default box_1">
             <div id="u897_div" class=""></div>
-            <!-- Unnamed () -->
             <div id="u898" class="text" style="visibility: visible;">
                 <p><span>/</span></p>
             </div>
-        </div>
+        </div>-->
     </div>
 
     <!-- Unnamed (组合) -->
@@ -514,7 +509,7 @@
     <ul class="imglist" style="left: 165px; top:800px;position: relative;">
         <th:block th:each="actor: ${movie_info.actors}">
             <li>
-                <a href="#" target="_blank" style="text-decoration:none;">
+                <a href="#" style="text-decoration:none;">
                     <img th:src="'http://image' + ${actor.actorLocation}" src="images/i160x90.jpg" style="width: 160px;height: 217px;" />
                     <span th:text="${actor.actorName} + '  /' + ${actor.actorRole}" style="text-align: center">文本内容</span>
                 </a>
@@ -1148,4 +1143,14 @@
     </div>
 </div>
 </body>
+<script type="text/javascript" src="/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        //搜索
+        $("#u939").click(function () {
+            var text = $("#u940_input").val();
+            window.location.href = "http://127.0.0.1/search/movie?text=" + text;
+        });
+    });
+</script>
 </html>

@@ -2,7 +2,10 @@ package com.sj.search.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import com.alibaba.fastjson.JSONObject;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.StringUtils;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.transport.TransportClient;
@@ -48,7 +51,10 @@ public class SearchService {
 			List<String> filmNameL = new ArrayList<String>();
 			for(SearchHit hit : hits) {
 				String json = hit.getSourceAsString();
-				Movie movie = ObjectUtil.mapper.readValue(json, Movie.class);
+				//System.out.println(json);
+				Map m = ObjectUtil.mapper.readValue(json, Map.class);
+				m.remove("actors");
+				Movie movie = ObjectUtil.mapper.readValue(ObjectUtil.mapper.writeValueAsString(m), Movie.class);
 				filmNameL.add(movie.getName());
 			}
 //			System.out.println(filmNameL.toString());

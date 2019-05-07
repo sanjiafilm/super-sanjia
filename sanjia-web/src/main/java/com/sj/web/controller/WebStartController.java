@@ -8,10 +8,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClients;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -30,16 +27,23 @@ public class WebStartController {
      * @author: ls
      */
     @RequestMapping("/")
-    public String start(Model model, @RequestParam(required = false, defaultValue = "1")int page ) throws IOException {
-        HttpClient httpClient = HttpClients.createDefault();
-        HttpGet httpGet = new HttpGet("http://movie/all?page=" + page);
-        HttpResponse response = httpClient.execute(httpGet);
-        HttpEntity entity = response.getEntity();
-        String res = tostr(entity.getContent());
+    public String start(Model model, @RequestParam(required = false, defaultValue = "1")int page) throws IOException {
+        String url = "http://movie/all?page=" + page;
+        HttpResponse response = HttpClients.createDefault().execute(new HttpGet(url));
+        String res = tostr(response.getEntity().getContent());
         model.addAttribute("movie_page", JSONObject.parse(res));
+        model.addAttribute("page_url", "");
+        model.addAttribute("page_params", "");
         return "index";
     }
 
+    /**
+     * Description: 购票信息详情页
+     *
+     * @Date: 2019/5/7 11:26
+     * @param: [model, name, page]
+     * @author: ls
+     */
     @RequestMapping("/buy")
     public String purchase(Model model, String name, @RequestParam(required = false, defaultValue = "1")int page) throws IOException {
         HttpClient httpClient = HttpClients.createDefault();
@@ -52,6 +56,24 @@ public class WebStartController {
         HttpEntity movieEntity = httpClient.execute(new HttpGet("http://movie/movie_info?name=" + name)).getEntity();
         model.addAttribute("movie_info", JSONObject.parse(tostr(movieEntity.getContent())));
         return "buy_list";
+    }
+
+    /**
+     * Description: 搜索功能
+     *
+     * @Date: 2019/5/7 11:30
+     * @param: [model, name, page]
+     * @author: ls
+     */
+    @RequestMapping("/search")
+    public String search(Model model, String name, @RequestParam(required = false, defaultValue = "1")int page) throws IOException {
+        String url = "http://movie/all?page=" + page;
+        //String url = "http://search/?name=" + name + "&page=" + page;
+        HttpEntity movieEntity = HttpClients.createDefault().execute(new HttpGet(url)).getEntity();
+        model.addAttribute("movie_page", JSONObject.parse(tostr(movieEntity.getContent())));
+        model.addAttribute("page_url", "search");
+        model.addAttribute("page_params", "name=" + name);
+        return "index";
     }
 
     /*页面的跳转，跳转到后台商品管理，登录，

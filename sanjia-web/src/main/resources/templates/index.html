@@ -6,10 +6,10 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <link rel='icon' href='favicon.ico' type='image/x-ico'/>
-    <link href="resources/css/jquery-ui-themes.css" type="text/css" rel="stylesheet"/>
-    <link href="resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
-    <link href="data/styles.css" type="text/css" rel="stylesheet"/>
-    <link href="files/index/styles.css" type="text/css" rel="stylesheet"/>
+    <link href="/resources/css/jquery-ui-themes.css" type="text/css" rel="stylesheet"/>
+    <link href="/resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
+    <link href="/data/styles.css" type="text/css" rel="stylesheet"/>
+    <link href="/files/index/styles.css" type="text/css" rel="stylesheet"/>
     <style>
         .table {
             width: 1100px;
@@ -35,49 +35,64 @@
             padding: 4px 0px;
         }
 
-        .page-table{position: relative; left: 550px; width: 350px;}
-        .page-td{text-align: center; white-space: nowrap; padding: 2px;}
-                /* 地图 */
- #l-map{ position:absolute;
-  left:0px;
-  top:0px;
-  width:100%;
-  height:100%;}
-     #r-result{width:100%;}
+        .page-table {
+            position: relative;
+            left: 550px;
+            width: 350px;
+        }
+
+        .page-td {
+            text-align: center;
+            white-space: nowrap;
+            padding: 2px;
+        }
+
+        /* 地图 */
+        #l-map {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+        }
+
+        #r-result {
+            width: 100%;
+        }
     </style>
-    <script src="resources/scripts/jquery-1.7.1.min.js"></script>
-    <script src="resources/scripts/jquery-ui-1.8.10.custom.min.js"></script>
-    <script src="resources/scripts/axure/axQuery.js"></script>
-    <script src="resources/scripts/axure/globals.js"></script>
-    <script src="resources/scripts/axutils.js"></script>
-    <script src="resources/scripts/axure/annotation.js"></script>
-    <script src="resources/scripts/axure/axQuery.std.js"></script>
-    <script src="resources/scripts/axure/doc.js"></script>
-    <script src="data/document.js"></script>
-    <script src="resources/scripts/messagecenter.js"></script>
-    <script src="resources/scripts/axure/events.js"></script>
-    <script src="resources/scripts/axure/recording.js"></script>
-    <script src="resources/scripts/axure/action.js"></script>
-    <script src="resources/scripts/axure/expr.js"></script>
-    <script src="resources/scripts/axure/geometry.js"></script>
-    <script src="resources/scripts/axure/flyout.js"></script>
-    <script src="resources/scripts/axure/ie.js"></script>
-    <script src="resources/scripts/axure/model.js"></script>
-    <script src="resources/scripts/axure/repeater.js"></script>
-    <script src="resources/scripts/axure/sto.js"></script>
-    <script src="resources/scripts/axure/utils.temp.js"></script>
-    <script src="resources/scripts/axure/variables.js"></script>
-    <script src="resources/scripts/axure/drag.js"></script>
-    <script src="resources/scripts/axure/move.js"></script>
-    <script src="resources/scripts/axure/visibility.js"></script>
-    <script src="resources/scripts/axure/style.js"></script>
-    <script src="resources/scripts/axure/adaptive.js"></script>
-    <script src="resources/scripts/axure/tree.js"></script>
-    <script src="resources/scripts/axure/init.temp.js"></script>
-    <script src="files/index/data.js"></script>
-    <script src="resources/scripts/axure/legacy.js"></script>
-    <script src="resources/scripts/axure/viewer.js"></script>
-    <script src="resources/scripts/axure/math.js"></script>
+    <script src="/resources/scripts/jquery-1.7.1.min.js"></script>
+    <script src="/resources/scripts/jquery-ui-1.8.10.custom.min.js"></script>
+    <script src="/resources/scripts/axure/axQuery.js"></script>
+    <script src="/resources/scripts/axure/globals.js"></script>
+    <script src="/resources/scripts/axutils.js"></script>
+    <script src="/resources/scripts/axure/annotation.js"></script>
+    <script src="/resources/scripts/axure/axQuery.std.js"></script>
+    <script src="/resources/scripts/axure/doc.js"></script>
+    <script src="/data/document.js"></script>
+    <script src="/resources/scripts/messagecenter.js"></script>
+    <script src="/resources/scripts/axure/events.js"></script>
+    <script src="/resources/scripts/axure/recording.js"></script>
+    <script src="/resources/scripts/axure/action.js"></script>
+    <script src="/resources/scripts/axure/expr.js"></script>
+    <script src="/resources/scripts/axure/geometry.js"></script>
+    <script src="/resources/scripts/axure/flyout.js"></script>
+    <script src="/resources/scripts/axure/ie.js"></script>
+    <script src="/resources/scripts/axure/model.js"></script>
+    <script src="/resources/scripts/axure/repeater.js"></script>
+    <script src="/resources/scripts/axure/sto.js"></script>
+    <script src="/resources/scripts/axure/utils.temp.js"></script>
+    <script src="/resources/scripts/axure/variables.js"></script>
+    <script src="/resources/scripts/axure/drag.js"></script>
+    <script src="/resources/scripts/axure/move.js"></script>
+    <script src="/resources/scripts/axure/visibility.js"></script>
+    <script src="/resources/scripts/axure/style.js"></script>
+    <script src="/resources/scripts/axure/adaptive.js"></script>
+    <script src="/resources/scripts/axure/tree.js"></script>
+    <script src="/resources/scripts/axure/init.temp.js"></script>
+    <script src="/files/index/data.js"></script>
+    <script src="/resources/scripts/axure/legacy.js"></script>
+    <script src="/resources/scripts/axure/viewer.js"></script>
+    <script src="/resources/scripts/axure/math.js"></script>
     <!--<script type="text/javascript">
         $axure.utils.getTransparentGifPath = function () {
             return 'resources/images/transparent.gif';
@@ -89,162 +104,163 @@
             return 'resources/reload.html';
         };
     </script>-->
-    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=vVY5bVt0DYs4XH9cZYFelfDoQ76MN3st"></script>
-    <script src="js/jquery-1.4.2.js"></script>
-     <script type="text/javascript">
-     $(function(){
-    		// 百度地图API功能
-        function G(id) {
-            return document.getElementById(id);
-        }
-
-        var map = new BMap.Map("l-map");
-        map.centerAndZoom("成都",10);                   // 初始化地图,设置城市和地图级别。
-
-
-			//根据浏览器定位  返回经纬度
-    		var geolocation = new BMap.Geolocation();
-    	geolocation.getCurrentPosition(function(r){
-    		if(this.getStatus() == BMAP_STATUS_SUCCESS){
-    			var mk = new BMap.Marker(r.point);
-    			map.addOverlay(mk);
-    			mk.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
-    			map.panTo(r.point);
-
-
-    		//根据经纬度获取地名
-    		var point = new BMap.Point(r.point.lng,r.point.lat);
-    		var gc = new BMap.Geocoder();
-			gc.getLocation(point, function(rs){
-   			var addComp = rs.addressComponents;
-
-			var nn=addComp.province +  addComp.city + addComp.district +  addComp.street ;
-			$(".p_showlocat").text(nn);
-   			//alert(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
-		});
-
-
-
-    			//根据ip默认定位  返回地名
-    			/* function myFun(result){
-    				var cityName = result.name;
-    				map.setCenter(cityName);
-    				alert("当前定位城市:"+cityName);
-    				$(".p_showlocat").text(cityName);
-    			}
-    			var myCity = new BMap.LocalCity();
-    			myCity.get(myFun); */
-
-
-
-    			//alert('您的位置：'+r.point.lng+','+r.point.lat);
-
-    	/* var pointB = new BMap.Point(104.06,30.67);  // 创建点坐标B
-    	 alert((map.getDistance(r.point,pointB)).toFixed(2)+' 米。');  */ //获取两点距离,保留小数点后两位
-    		}
-    		else {
-    			alert('failed'+this.getStatus());
-    		}
-    	},{enableHighAccuracy: true})
-
-
-
-    	map.enableScrollWheelZoom(true);
-    	map.addControl(new BMap.ScaleControl());
-    	map.addControl(new BMap.OverviewMapControl());
-    	map.addControl(new BMap.MapTypeControl());
-
-        // 定义一个控件类,即function
-        function ZoomControl() {
-            this.defaultAnchor = BMAP_ANCHOR_TOP_LEFT;
-            this.defaultOffset = new BMap.Size(10, 10);
-        }
-
-        // 通过JavaScript的prototype属性继承于BMap.Control
-        ZoomControl.prototype = new BMap.Control();
-
-        // 自定义控件必须实现自己的initialize方法,并且将控件的DOM元素返回
-        // 在本方法中创建个div元素作为控件的容器,并将其添加到地图容器中
-        ZoomControl.prototype.initialize = function(map){
-          // 创建一个DOM元素
-          var div = document.createElement("div");
-          div.innerHTML = '<div id="r-result">搜索地址:<input type="text" id="suggestId" size="50" value="百度" style="width:300px;" /></div><div id="searchResultPanel" style="border:2px solid #C0C0C0;width:300px;height:auto; display:none;"></div>';
-
-          // 添加DOM元素到地图中
-          map.getContainer().appendChild(div);
-          // 将DOM元素返回
-     		return div;
-        }
-
-        // 创建控件
-        var myZoomCtrl = new ZoomControl();
-        // 添加到地图当中
-        map.addControl(myZoomCtrl);
-
-
-        var ac = new BMap.Autocomplete(    //建立一个自动完成的对象
-            {"input" : "suggestId"
-            ,"location" : map
-        });
-
-        ac.addEventListener("onhighlight", function(e) {  //鼠标放在下拉列表上的事件
-        var str = "";
-            var _value = e.fromitem.value;
-            var value = "";
-            if (e.fromitem.index > -1) {
-                value = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+    <script type="text/javascript"
+            src="http://api.map.baidu.com/api?v=2.0&ak=vVY5bVt0DYs4XH9cZYFelfDoQ76MN3st"></script>
+    <script src="/js/jquery-1.4.2.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            // 百度地图API功能
+            function G(id) {
+                return document.getElementById(id);
             }
-            str = "FromItem<br />index = " + e.fromitem.index + "<br />value = " + value;
 
-            value = "";
-            if (e.toitem.index > -1) {
-                _value = e.toitem.value;
-                value = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+            var map = new BMap.Map("l-map");
+            map.centerAndZoom("成都", 10);                   // 初始化地图,设置城市和地图级别。
+
+
+            //根据浏览器定位  返回经纬度
+            var geolocation = new BMap.Geolocation();
+            geolocation.getCurrentPosition(function (r) {
+                if (this.getStatus() == BMAP_STATUS_SUCCESS) {
+                    var mk = new BMap.Marker(r.point);
+                    map.addOverlay(mk);
+                    mk.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+                    map.panTo(r.point);
+
+
+                    //根据经纬度获取地名
+                    var point = new BMap.Point(r.point.lng, r.point.lat);
+                    var gc = new BMap.Geocoder();
+                    gc.getLocation(point, function (rs) {
+                        var addComp = rs.addressComponents;
+
+                        var nn = addComp.province + addComp.city + addComp.district + addComp.street;
+                        //自动定位的名称
+                        $(".p_showlocat").text(nn);
+                        //alert(addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
+                    });
+
+
+                    //根据ip默认定位  返回地名
+                    /* function myFun(result){
+                        var cityName = result.name;
+                        map.setCenter(cityName);
+                        alert("当前定位城市:"+cityName);
+                        $(".p_showlocat").text(cityName);
+                    }
+                    var myCity = new BMap.LocalCity();
+                    myCity.get(myFun); */
+
+                    //自动定位的经纬度
+                    //alert('您的位置：'+r.point.lng+','+r.point.lat);
+
+                    /* var pointB = new BMap.Point(104.06,30.67);  // 创建点坐标B
+                     alert((map.getDistance(r.point,pointB)).toFixed(2)+' 米。');  */ //获取两点距离,保留小数点后两位
+                } else {
+                    alert('failed' + this.getStatus());
+                }
+            }, {enableHighAccuracy: true})
+
+
+            map.enableScrollWheelZoom(true);
+            map.addControl(new BMap.ScaleControl());
+            map.addControl(new BMap.OverviewMapControl());
+            map.addControl(new BMap.MapTypeControl());
+
+            // 定义一个控件类,即function
+            function ZoomControl() {
+                this.defaultAnchor = BMAP_ANCHOR_TOP_LEFT;
+                this.defaultOffset = new BMap.Size(10, 10);
             }
-     str += "<br />ToItem<br />index = " + e.toitem.index + "<br />value = " + value;
-            G("searchResultPanel").innerHTML = str;
-        });
 
-        var myValue;
-        ac.addEventListener("onconfirm", function(e) {    //鼠标点击下拉列表后的事件
-        var _value = e.item.value;
-            myValue = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
-            G("searchResultPanel").innerHTML ="onconfirm<br />index = " + e.item.index + "<br />myValue = " + myValue;
+            // 通过JavaScript的prototype属性继承于BMap.Control
+            ZoomControl.prototype = new BMap.Control();
 
-            setPlace();
-        });
+            // 自定义控件必须实现自己的initialize方法,并且将控件的DOM元素返回
+            // 在本方法中创建个div元素作为控件的容器,并将其添加到地图容器中
+            ZoomControl.prototype.initialize = function (map) {
+                // 创建一个DOM元素
+                var div = document.createElement("div");
+                div.innerHTML = '<div id="r-result">搜索地址:<input type="text" id="suggestId" size="50" value="百度" style="width:300px;" /></div><div id="searchResultPanel" style="border:2px solid #C0C0C0;width:300px;height:auto; display:none;"></div>';
 
-        function setPlace(){
-            map.clearOverlays();    //清除地图上所有覆盖物
-            function myFun(){
-                var pp = local.getResults().getPoi(0).point;    //获取第一个智能搜索的结果
-                map.centerAndZoom(pp, 14);
-                //map.addOverlay(new BMap.Marker(pp));    //添加标注
-
-                var marker = new BMap.Marker(pp);  // 创建标注
-    	map.addOverlay(marker);               // 将标注添加到地图中
-    	marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
-
-    	//重新选择后的地址
-    	//alert('您的位置：'+pp.lng+','+pp.lat);
-
-
-    	/* var pointC = new BMap.Point(104.06,30.67);  // 创建点坐标B
-    	 alert((map.getDistance(pp,pointC)).toFixed(2)+' 米。');  //获取两点距离,保留小数点后两位 */
-
+                // 添加DOM元素到地图中
+                map.getContainer().appendChild(div);
+                // 将DOM元素返回
+                return div;
             }
-             var local = new BMap.LocalSearch(map, { //智能搜索
-              onSearchComplete: myFun
+
+            // 创建控件
+            var myZoomCtrl = new ZoomControl();
+            // 添加到地图当中
+            map.addControl(myZoomCtrl);
+
+
+            var ac = new BMap.Autocomplete(    //建立一个自动完成的对象
+                {
+                    "input": "suggestId"
+                    , "location": map
+                });
+
+            ac.addEventListener("onhighlight", function (e) {  //鼠标放在下拉列表上的事件
+                var str = "";
+                var _value = e.fromitem.value;
+                var value = "";
+                if (e.fromitem.index > -1) {
+                    value = _value.province + _value.city + _value.district + _value.street + _value.business;
+                }
+                str = "FromItem<br />index = " + e.fromitem.index + "<br />value = " + value;
+
+                value = "";
+                if (e.toitem.index > -1) {
+                    _value = e.toitem.value;
+                    value = _value.province + _value.city + _value.district + _value.street + _value.business;
+                }
+                str += "<br />ToItem<br />index = " + e.toitem.index + "<br />value = " + value;
+                G("searchResultPanel").innerHTML = str;
             });
-            local.search(myValue);
-    	}
-    	    });
-        function submit(){
-       	 var tt=$("#suggestId").val();
-       	 $(".p_showlocat").text(tt);
-       	 //alert($(".p_showlocat").text());
-       	//alert(tt);
-       }
+
+            var myValue;
+            ac.addEventListener("onconfirm", function (e) {    //鼠标点击下拉列表后的事件
+                var _value = e.item.value;
+                myValue = _value.province + _value.city + _value.district + _value.street + _value.business;
+                G("searchResultPanel").innerHTML = "onconfirm<br />index = " + e.item.index + "<br />myValue = " + myValue;
+
+                setPlace();
+            });
+
+            function setPlace() {
+                map.clearOverlays();    //清除地图上所有覆盖物
+                function myFun() {
+                    var pp = local.getResults().getPoi(0).point;    //获取第一个智能搜索的结果
+                    map.centerAndZoom(pp, 14);
+                    //map.addOverlay(new BMap.Marker(pp));    //添加标注
+
+                    var marker = new BMap.Marker(pp);  // 创建标注
+                    map.addOverlay(marker);               // 将标注添加到地图中
+                    marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+
+                    //重新选择后的地址
+                    //alert('您的位置：'+pp.lng+','+pp.lat);
+
+
+                    /* var pointC = new BMap.Point(104.06,30.67);  // 创建点坐标B
+                     alert((map.getDistance(pp,pointC)).toFixed(2)+' 米。');  //获取两点距离,保留小数点后两位 */
+
+                }
+
+                var local = new BMap.LocalSearch(map, { //智能搜索
+                    onSearchComplete: myFun
+                });
+                local.search(myValue);
+            }
+        });
+
+        function submit() {
+            var tt = $("#suggestId").val();
+            $(".p_showlocat").text(tt);
+            //alert($(".p_showlocat").text());
+            //alert(tt);
+        }
     </script>
 </head>
 <body>
@@ -273,7 +289,7 @@
             </div>
         </div>
         <div id="u7" class="ax_default image1" data-label="选择符">
-            <img id="u7_img" class="img " src="images/index/选择符_u7.png"/>
+            <img id="u7_img" class="img " src="/images/index/选择符_u7.png"/>
             <div id="u8" class="text" style="display: none; visibility: hidden">
                 <p><span></span></p>
             </div>
@@ -285,11 +301,11 @@
         <div id="u10" class="ax_default box_1 selected" data-label="最新" selectiongroup="首页导航">
             <div id="u10_div" class="selected"></div>
             <div id="u11" class="text" style="visibility: visible;">
-                <a href="" style="text-decoration:none;"><span
+                <a href="/" style="text-decoration:none;"><span
                         style="font-size: 16px; color: rgb(64, 192, 162);">最新上映</span></a>
             </div>
         </div>
-        <div id="u12" class="ax_default box_1" data-label="豆瓣" selectiongroup="首页导航">
+        <!--<div id="u12" class="ax_default box_1" data-label="豆瓣" selectiongroup="首页导航">
             <div id="u12_div" class=""></div>
             <div id="u13" class="text" style="visibility: visible;">
                 <a href="" style="text-decoration:none;"><span>豆瓣高分</span></a>
@@ -300,7 +316,7 @@
             <div id="u15" class="text" style="visibility: visible;">
                 <p><span>/</span></p>
             </div>
-        </div>
+        </div>-->
     </div>
 
     <!-- 搜索框 -->
@@ -353,7 +369,7 @@
                             </div>
                         </div>
                         <div id="u31" class="ax_default">
-                            <img id="u31_img" class="img " src="images/index/u31.png"/>
+                            <img id="u31_img" class="img " src="/images/index/u31.png"/>
                             <div id="u32" class="text" style="display: none; visibility: hidden">
                                 <p><span></span></p>
                             </div>
@@ -368,7 +384,7 @@
 
                     <!-- Unnamed (椭圆形) -->
                     <div id="u35" class="ax_default">
-                        <img id="u35_img" class="img " src="images/index/u35.png"/>
+                        <img id="u35_img" class="img " src="/images/index/u35.png"/>
                         <!-- Unnamed () -->
                         <div id="u36" class="text" style="display: none; visibility: hidden">
                             <p><span></span></p>
@@ -394,7 +410,7 @@
                     </div>
                     <div id="u42" class="ax_default">
                         <div id="u43" class="ax_default image1" data-label="datechoose-icon">
-                            <img id="u43_img" class="img " src="images/index/datechoose-icon_u43.png"/>
+                            <img id="u43_img" class="img " src="/images/index/datechoose-icon_u43.png"/>
                             <div id="u44" class="text" style="display: none; visibility: hidden">
                                 <p><span></span></p>
                             </div>
@@ -416,7 +432,7 @@
                 </div>
 
                 <div id="u47" class="ax_default image1">
-                    <img id="u47_img" class="img " src="images/index/选择符_u7.png"/>
+                    <img id="u47_img" class="img " src="/images/index/选择符_u7.png"/>
                     <!-- Unnamed () -->
                     <div id="u48" class="text" style="display: none; visibility: hidden">
                         <p><span></span></p>
@@ -440,7 +456,8 @@
                                      style="position: relative;left:379px;top:25px;color:#D7D7D7;">
                                     <div class="text" style="visibility: visible; white-space: nowrap;">
                                         <p>
-                                            <span style="padding-left: 50px" th:text="${movie.showTime}">2019-04-04大陆上映</span>
+                                            <span style="padding-left: 50px"
+                                                  th:text="${movie.showTime}">2019-04-04大陆上映</span>
                                             <span style="padding-left: 50px" th:text="${movie.catagory}">剧情,动作,犯罪</span>
                                             <span style="padding-left: 50px" th:text="${movie.score}">豆瓣评分：9.1</span>
                                             <span style="padding-left: 50px" th:text="${movie.duration}">时长：90分钟</span>
@@ -476,17 +493,21 @@
                                     <tr th:each="pur,sta : ${movie.purchase}">
                                         <td th:text="${sta.index + 1}" class="table-body">1</td>
                                         <td th:text="${pur.cinemaName}" class="table-body">太平洋影院</td>
-                                        <td th:text="${#dates.format(pur.playTime, 'yyyy-MM-dd HH:mm')}" class="table-body">10:00</td>
+                                        <td th:text="${#dates.format(pur.playTime, 'yyyy-MM-dd HH:mm')}"
+                                            class="table-body">10:00
+                                        </td>
                                         <td th:text="${pur.platform}" class="table-body">猫眼</td>
                                         <td th:text="${pur.address}" class="table-body">成都市锦江区春熙路</td>
-                                        <td class="table-body">1.2km</td>
+                                        <td th:text="${pur.distance}" class="table-body">1.2km</td>
                                         <td th:text="${pur.price}" class="table-body">￥39.9</td>
-                                        <td class="table-body"><a th:href="@{${pur.href}}" href="#">购票</a>&nbsp;&nbsp;<a href="#">收藏</a></td>
+                                        <td class="table-body"><a th:href="@{${pur.href}}" href="#">购票</a>&nbsp;&nbsp;<a
+                                                href="#">收藏</a></td>
                                     </tr>
                                 </table>
                                 <!-- 电影图片 -->
                                 <div class="ax_default image">
-                                    <img class="img" th:src="'http://image' + ${movie.location}" src="images/index/u150.png"
+                                    <img class="img" th:src="'http://image' + ${movie.location}"
+                                         src="images/index/u150.png"
                                          style="position:relative;width: 160px;height: 221px;"/>
                                     <div class="text" style="display: none; visibility: hidden">
                                         <p><span></span></p>
@@ -497,7 +518,7 @@
                     </div>
                     <div class="ax_default line"
                          style="position: relative;left: 66px;top: 66px;width: 1320px;height: 1px;color: #CCCCCC;">
-                        <img class="img " src="images/index/u152.png"
+                        <img class="img " src="/images/index/u152.png"
                              style="position: absolute;left: 0px;top: 0px;width: 1321px;height: 2px;"/>
                         <div class="text" style="display: none; visibility: hidden">
                             <p><span></span></p>
@@ -539,7 +560,7 @@
                         </div>
 
                         <div id="u320" class="ax_default">
-                            <img id="u320_img" class="img " src="images/index/u31.png"/>
+                            <img id="u320_img" class="img " src="/images/index/u31.png"/>
                             <div id="u321" class="text" style="display: none; visibility: hidden">
                                 <p><span></span></p>
                             </div>
@@ -555,7 +576,7 @@
 
                     <!-- Unnamed (椭圆形) -->
                     <div id="u324" class="ax_default">
-                        <img id="u324_img" class="img " src="images/index/u35.png"/>
+                        <img id="u324_img" class="img " src="/images/index/u35.png"/>
                         <!-- Unnamed () -->
                         <div id="u325" class="text" style="display: none; visibility: hidden">
                             <p><span></span></p>
@@ -580,7 +601,7 @@
                     </div>
                     <div id="u410" class="ax_default">
                         <div id="u411" class="ax_default image1" data-label="datechoose-icon">
-                            <img id="u411_img" class="img " src="images/index/datechoose-icon_u43.png"/>
+                            <img id="u411_img" class="img " src="/images/index/datechoose-icon_u43.png"/>
                             <div id="u412" class="text" style="display: none; visibility: hidden">
                                 <p><span></span></p>
                             </div>
@@ -600,7 +621,7 @@
                 </div>
                 <!-- 电影类型 -->
                 <div id="u415" class="ax_default image1">
-                    <img id="u415_img" class="img " src="images/index/选择符_u7.png"/>
+                    <img id="u415_img" class="img " src="/images/index/选择符_u7.png"/>
                     <div id="u416" class="text" style="display: none; visibility: hidden">
                         <p><span></span></p>
                     </div>
@@ -676,7 +697,7 @@
                             </table>
                             <!-- 电影图片 -->
                             <div class="ax_default image">
-                                <img class="img " src="images/index/u150.png"
+                                <img class="img " src="/images/index/u150.png"
                                      style="position:relative;width: 160px;height: 221px;"/>
                                 <div class="text" style="display: none; visibility: hidden">
                                     <p><span></span></p>
@@ -688,7 +709,7 @@
                 <!-- (水平线) -->
                 <div class="ax_default line"
                      style="position: relative;left: 66px;top: 66px;width: 1320px;height: 1px;color: #CCCCCC;">
-                    <img class="img " src="images/index/u152.png"
+                    <img class="img " src="/images/index/u152.png"
                          style="position: absolute;left: 0px;top: 0px;width: 1321px;height: 2px;"/>
                     <div class="text" style="display: none; visibility: hidden">
                         <p><span></span></p>
@@ -705,13 +726,24 @@
     <!-- 分页 -->
     <table class="page-table">
         <tr>
-            <td th:if="${!movie_page.isFirstPage}" class="table-body page-td"><a href="/?page=1" style="text-decoration:none;">首页</a></td>
-            <td th:if="${movie_page.hasPreviousPage}" class="table-body page-td"><a th:href="@{'/?page=' +${movie_page.prePage}}" href="#" style="text-decoration:none;">上一页</a></td>
+            <td th:if="${!movie_page.isFirstPage}" class="table-body page-td">
+                <a th:href="@{'/' + ${page_url} + '?page=1&' + ${page_params}}" style="text-decoration:none;">首页</a>
+            </td>
+            <td th:if="${movie_page.hasPreviousPage}" class="table-body page-td">
+                <a th:href="@{'/' + ${page_url} + '?page=' +${movie_page.prePage} + '&' + ${page_params}}" href="#"
+                    style="text-decoration:none;">上一页</a></td>
             <th:block th:each="page : ${movie_page.navigatepageNums}">
-                <td th:style="${movie_page.pageNum == page}?'background-color: #40C0A2;'" class="table-body page-td"><a th:text="${page}" th:href="@{'/?page=' + ${page}}" href="#" style="text-decoration:none;">4</a></td>
+                <td th:style="${movie_page.pageNum == page}?'background-color: #40C0A2;'" class="table-body page-td"><a
+                        th:text="${page}" th:href="@{'/' + ${page_url} + '?page=' + ${page} + '&' + ${page_params}}" href="#"
+                        style="text-decoration:none;">4</a>
+                </td>
             </th:block>
-            <td th:if="${movie_page.hasNextPage}" class="table-body page-td"><a th:href="@{'/?page=' +${movie_page.nextPage}}" href="#" style="text-decoration:none;">下一页</a></td>
-            <td th:if="${!movie_page.isLastPage}" class="table-body page-td"><a th:href="@{'/?page=' +${movie_page.pages}}" href="#" style="text-decoration:none;">尾页</a></td>
+            <td th:if="${movie_page.hasNextPage}" class="table-body page-td"><a
+                    th:href="@{'/' + ${page_url} + '?page=' +${movie_page.nextPage} + '&' + ${page_params}}" href="#"
+                    style="text-decoration:none;">下一页</a></td>
+            <td th:if="${!movie_page.isLastPage}" class="table-body page-td"><a
+                    th:href="@{'/' + ${page_url} + '?page=' +${movie_page.pages} + '&' + ${page_params}}" href="#"
+                    style="text-decoration:none;">尾页</a></td>
         </tr>
     </table>
 
@@ -770,7 +802,7 @@
 
                     <!-- Unnamed (垂直线) -->
                     <div id="u611" class="ax_default line">
-                        <img id="u611_img" class="img " src="images/index/u611.png"/>
+                        <img id="u611_img" class="img " src="/images/index/u611.png"/>
                         <!-- Unnamed () -->
                         <div id="u612" class="text" style="display: none; visibility: hidden">
                             <p><span></span></p>
@@ -784,7 +816,7 @@
 
                 <!-- Unnamed (图片) -->
                 <div id="u613" class="ax_default image">
-                    <img id="u613_img" class="img " src="images/index/u613.png"/>
+                    <img id="u613_img" class="img " src="/images/index/u613.png"/>
                     <!-- Unnamed () -->
                     <div id="u614" class="text" style="display: none; visibility: hidden">
                         <p><span></span></p>
@@ -823,7 +855,7 @@
 
                     <!-- Unnamed (图片) -->
                     <div id="u622" class="ax_default image">
-                        <img id="u622_img" class="img " src="images/index/u622.png"/>
+                        <img id="u622_img" class="img " src="/images/index/u622.png"/>
                         <!-- Unnamed () -->
                         <div id="u623" class="text" style="display: none; visibility: hidden">
                             <p><span></span></p>
@@ -858,7 +890,7 @@
                     </div>
                 </div>
                 <div id="u631" class="ax_default placeholder">
-                    <img id="u631_img" class="img " src="images/index/u631.png"/>
+                    <img id="u631_img" class="img " src="/images/index/u631.png"/>
                     <div id="u632" class="text" style="display: none; visibility: hidden">
                         <p><span></span></p>
                     </div>
@@ -896,7 +928,7 @@
 
                     <!-- Unnamed (图片) -->
                     <div id="u643" class="ax_default image">
-                        <img id="u643_img" class="img " src="images/index/u613.png"/>
+                        <img id="u643_img" class="img " src="/images/index/u613.png"/>
                         <!-- Unnamed () -->
                         <div id="u644" class="text" style="display: none; visibility: hidden">
                             <p><span></span></p>
@@ -937,7 +969,7 @@
 
                 <!-- Unnamed (图片) -->
                 <div id="u652" class="ax_default image">
-                    <img id="u652_img" class="img " src="images/index/u652.png"/>
+                    <img id="u652_img" class="img " src="/images/index/u652.png"/>
                     <!-- Unnamed () -->
                     <div id="u653" class="text" style="display: none; visibility: hidden">
                         <p><span></span></p>
@@ -946,7 +978,7 @@
 
                 <!-- Unnamed (图片) -->
                 <div id="u654" class="ax_default image">
-                    <img id="u654_img" class="img " src="images/index/u654.png"/>
+                    <img id="u654_img" class="img " src="/images/index/u654.png"/>
                     <!-- Unnamed () -->
                     <div id="u655" class="text" style="display: none; visibility: hidden">
                         <p><span></span></p>
@@ -1017,7 +1049,7 @@
 
                 <!-- Unnamed (占位符) -->
                 <div id="u669" class="ax_default placeholder">
-                    <img id="u669_img" class="img " src="images/index/u631.png"/>
+                    <img id="u669_img" class="img " src="/images/index/u631.png"/>
                     <!-- Unnamed () -->
                     <div id="u670" class="text" style="display: none; visibility: hidden">
                         <p><span></span></p>
@@ -1070,7 +1102,7 @@
 
                     <!-- Unnamed (图片) -->
                     <div id="u681" class="ax_default image">
-                        <img id="u681_img" class="img " src="images/index/u613.png"/>
+                        <img id="u681_img" class="img " src="/images/index/u613.png"/>
                         <!-- Unnamed () -->
                         <div id="u682" class="text" style="display: none; visibility: hidden">
                             <p><span></span></p>
@@ -1089,7 +1121,7 @@
 
                 <!-- Unnamed (图片) -->
                 <div id="u685" class="ax_default image">
-                    <img id="u685_img" class="img " src="images/index/u652.png"/>
+                    <img id="u685_img" class="img " src="/images/index/u652.png"/>
                     <!-- Unnamed () -->
                     <div id="u686" class="text" style="display: none; visibility: hidden">
                         <p><span></span></p>
@@ -1098,7 +1130,7 @@
 
                 <!-- Unnamed (图片) -->
                 <div id="u687" class="ax_default image">
-                    <img id="u687_img" class="img " src="images/index/u654.png"/>
+                    <img id="u687_img" class="img " src="/images/index/u654.png"/>
                     <!-- Unnamed () -->
                     <div id="u688" class="text" style="display: none; visibility: hidden">
                         <p><span></span></p>
@@ -1206,7 +1238,7 @@
 
                 <!-- Unnamed (占位符) -->
                 <div id="u710" class="ax_default placeholder">
-                    <img id="u710_img" class="img " src="images/index/u631.png"/>
+                    <img id="u710_img" class="img " src="/images/index/u631.png"/>
                     <!-- Unnamed () -->
                     <div id="u711" class="text" style="display: none; visibility: hidden">
                         <p><span></span></p>
@@ -1218,28 +1250,28 @@
                     <div id="u712_div" class=""></div>
                     <!-- Unnamed () -->
                     <div id="u713" class="text" style="visibility: visible;">
-                    	<p onclick="submit()">确定</p>
-                       <!--  <input type="submit" class="text" onclick="submit()" value="确定" /> -->
+                        <p onclick="submit()">确定</p>
+                        <!--  <input type="submit" class="text" onclick="submit()" value="确定" /> -->
                     </div>
                 </div>
 
-              <!--
-                <div id="u714" class="ax_default">
+                <!--
+                  <div id="u714" class="ax_default">
 
-                    Unnamed (矩形)
-                    <div id="u715" class="ax_default box_1">
-                        <div id="u715_div" class=""></div>
-                        Unnamed ()
-                        <div id="u716" class="text" style="display: none; visibility: hidden">
-                            <p><span></span></p>
-                        </div>
-                    </div>
+                      Unnamed (矩形)
+                      <div id="u715" class="ax_default box_1">
+                          <div id="u715_div" class=""></div>
+                          Unnamed ()
+                          <div id="u716" class="text" style="display: none; visibility: hidden">
+                              <p><span></span></p>
+                          </div>
+                      </div>
 
-                    regist_input_username (文本框)
-                    <div id="u717" class="ax_default text_field" data-label="regist_input_username">
-                        <input id="u717_input" type="text" value=""/>
-                    </div>
-                </div> -->
+                      regist_input_username (文本框)
+                      <div id="u717" class="ax_default text_field" data-label="regist_input_username">
+                          <input id="u717_input" type="text" value=""/>
+                      </div>
+                  </div> -->
 
                 <!-- tip (组合) -->
                 <div id="u718" class="ax_default" data-label="tip">
@@ -1291,7 +1323,7 @@
 
         <!-- Unnamed (图片) -->
         <div id="u728" class="ax_default image">
-            <img id="u728_img" class="img " src="images/index/u728.png"/>
+            <img id="u728_img" class="img " src="/images/index/u728.png"/>
             <!-- Unnamed () -->
             <div id="u729" class="text" style="display: none; visibility: hidden">
                 <p><span></span></p>
@@ -1310,7 +1342,7 @@
 
     <!-- Unnamed (图片) -->
     <div id="u732" class="ax_default image">
-        <img id="u732_img" class="img " src="images/index/u652.png"/>
+        <img id="u732_img" class="img " src="/images/index/u652.png"/>
         <!-- Unnamed () -->
         <div id="u733" class="text" style="display: none; visibility: hidden">
             <p><span></span></p>
@@ -1502,7 +1534,7 @@
 
                 <!-- Unnamed (气泡) -->
                 <div id="u773" class="ax_default box_1">
-                    <img id="u773_img" class="img " src="images/index/u773.png"/>
+                    <img id="u773_img" class="img " src="/images/index/u773.png"/>
                     <!-- Unnamed () -->
                     <div id="u774" class="text" style="display: none; visibility: hidden">
                         <p><span></span></p>
@@ -1603,10 +1635,10 @@
             var password = $("#u636_input").val();
             $.get("/login?name=" + username + "&pass=" + password, "", function (data) {
                 console.log(data);
-                if(data.status == 1){
+                if (data.status == 1) {
                     //$("#u624_lightbox").click();
                     window.location.reload();
-                }else{
+                } else {
                     alert("登录失败");
                     console.log(data);
                 }
@@ -1623,6 +1655,12 @@
         //style="display: none; visibility: hidden;"
         $("#u603_state0").css({"display": ""}, {"visibility": ""});
         $("#u603_state1").css({"display": ""}, {"visibility": ""});
+
+        //搜索
+        $("#u20").click(function () {
+            var text = $("#u21_input").val();
+            window.location.href = "http://127.0.0.1/search/movie?text=" + text;
+        });
 
     });
 </script>

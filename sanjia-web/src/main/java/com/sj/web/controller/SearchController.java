@@ -3,13 +3,11 @@ package com.sj.web.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.sj.common.pojo.Movie;
@@ -20,13 +18,12 @@ import com.sj.common.vo.MovieDetail;
 import com.sj.web.service.SearchService;
 
 
-
 @Controller
 @RequestMapping("search")
 public class SearchController {
-	@Autowired
-	private SearchService searchService;
-	
+    @Autowired
+    private SearchService searchService;
+
 //	@RequestMapping(value="associate/{searchkey}",method=RequestMethod.GET)
 //	@ResponseBody
 //	public String getFilmName(@PathVariable String searchkey){
@@ -44,7 +41,7 @@ public class SearchController {
 //			return "";
 //		}
 //	}
-	
+
 //	@RequestMapping(value="films",method=RequestMethod.GET)	
 //	public String getFilmDetail(String text,Integer page,Model model) {
 //		FilmsInfo filmsInfo = new FilmsInfo();
@@ -78,7 +75,7 @@ public class SearchController {
 //		}
 //		
 //	}
-	
+
 //	@RequestMapping(value="page",method=RequestMethod.GET)
 //	public FilmsDetail getFilmPage(String text,Model model) {
 //		FilmsDetail filmsDetail = new FilmsDetail();
@@ -95,30 +92,30 @@ public class SearchController {
 //		return filmsDetail;
 //		
 //	}
-	
-	@RequestMapping(value="movie",method=RequestMethod.GET)	
-	@ResponseBody
-	public String getMovieDetail(String text,Integer page,Model model) {
-		FilmsInfo filmsInfo = new FilmsInfo();
-		try {	
-			System.out.println(text);
-			List<String> filmNameL = new ArrayList<String>();
-			filmNameL =searchService.getFilmName(text);
-			Integer count = filmNameL.size();
-			String movieds =searchService.getMovieDetail(filmNameL,page);			
+
+    @RequestMapping(value = "movie", method = RequestMethod.GET)
+    //@ResponseBody
+    public String getMovieDetail(String text, @RequestParam(defaultValue = "1", required = false) Integer page, Model model) {
+        FilmsInfo filmsInfo = new FilmsInfo();
+        try {
+            System.out.println(text);
+            List<String> filmNameL = new ArrayList<>();
+            filmNameL = searchService.getFilmName(text);
+            Integer count = filmNameL.size();
+            String movieds = searchService.getMovieDetail(filmNameL, page);
 //			model.addAttribute("page", movieds);
 //			return filmsInfo;
-			return movieds;
-		}catch(Exception e) {
-			System.out.println("error ");
-			e.printStackTrace();
-			return "error";
+//            return movieds;
+            model.addAttribute("movie_page", JSONObject.parse(movieds));
+            model.addAttribute("page_url", "search/movie");
+            model.addAttribute("page_params", "text=" + text);
+            return "index";
+        } catch (Exception e) {
+            System.out.println("error ");
+            e.printStackTrace();
+            return "error";
 //			return null;
-		}
-		
-		
-	}
-	
-	
+        }
+    }
 
 }

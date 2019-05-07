@@ -8,7 +8,6 @@ import tk.mybatis.spring.annotation.MapperScan;
 @MapperScan(basePackages = "com.sj.movie.mapper")
 public class StarterMovie {
 	public static void main(String[] args) {
-		
 		SpringApplication.run(StarterMovie.class);
 	}
 }

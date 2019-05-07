@@ -11,7 +11,7 @@ import redis.clients.jedis.HostAndPort;
 import redis.clients.jedis.JedisCluster;
 import redis.clients.jedis.JedisPoolConfig;
 
-@Configuration
+//@Configuration
 public class JedisClusterConfig {
 	@Value("${spring.redis.pool.nodes:10.42.27.36:8004,10.42.27.36:8002,10.42.27.36:8002}")
 	private String nodes;
