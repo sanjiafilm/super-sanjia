@@ -23,11 +23,11 @@
 
 	<resultMap type="Movie" id="GradeData">
 		<result property="name" column="name" />
-		<result property="actors" column="actors" />
+		<!--<result property="actors" column="actors" />-->
 		<result property="catagory" column="catagory" />
 		<result property="show_time" column="show_time" />
 		<result property="duration" column="duration" />
-		<result property="actors" column="actors" />
+		<!--<result property="actors" column="actors" />-->
 
 		<result property="score" column="score" />
 		<collection property="data" ofType="Purchase" javaType="java.util.List"
@@ -40,11 +40,9 @@
 	<select id="getGradeData" resultMap="GradeData">
 		SELECT
 		t_movie.name,
-		t_movie.actors,
 		t_movie.catagory,
 		t_movie.show_time as showTime,
 		t_movie.duration,
-		t_movie.actors,
 		t_movie.score,
 		t_purchase.movie_name as movieName,
 		t_purchase.show_time as showTime,

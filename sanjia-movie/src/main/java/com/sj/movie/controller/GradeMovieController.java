@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import com.github.pagehelper.PageInfo;
+import com.sj.common.pojo.Purchase;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,6 +46,31 @@ public class GradeMovieController {
 	@ResponseBody
 	public PageInfo<Movie> getIndex(@RequestParam(required = false, defaultValue = "1") Integer page){
 		return gradeService.getAll(page);
+	}
+
+	/**
+	 * Description: 根据电影名称查询电影详情
+	 *
+	 * @Date: 2019/5/7 8:46
+	 * @param: [name]
+	 * @author: ls
+	 */
+	@RequestMapping("/movie_info")
+	@ResponseBody
+	public Movie movieInfo(String name){
+		return gradeService.getMovieInfo(name);
+	}
+	/**
+	 * Description: 分页查询购票信息
+	 *
+	 * @Date: 2019/5/6 22:27
+	 * @param: []
+	 * @author: ls
+	 */
+	@RequestMapping("/buy")
+	@ResponseBody
+	public PageInfo<Purchase> findPurchase(String name, Integer page){
+		return gradeService.findPurchaseInfo(name, page);
 	}
 	
 	

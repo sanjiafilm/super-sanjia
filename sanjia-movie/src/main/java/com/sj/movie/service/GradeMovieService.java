@@ -8,9 +8,12 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.sj.common.pojo.Actor;
 import com.sj.common.pojo.Purchase;
+import com.sj.movie.mapper.ActorMapper;
 import com.sj.movie.mapper.MovieMapper;
 import com.sj.movie.mapper.PurchaseMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +33,9 @@ public class GradeMovieService {
 
 	@Autowired
 	private PurchaseMapper purchaseMapper;
+
+	@Autowired
+	private ActorMapper actorMapper;
 	
 	public List<Movie> getGradeMovieData(int page) {
 		try {
@@ -100,18 +106,58 @@ public class GradeMovieService {
 		return i;
 	}
 
-
+	/**
+	 * Description: 分页查询所有电影
+	 *
+	 * @Date: 2019/5/6 22:29
+	 * @param: [page]
+	 * @author: ls
+	 */
 	public PageInfo<Movie> getAll(Integer page) {
 		PageHelper.startPage(page, 3);
-		List<Movie> ss = movieMapper.selectAll();
-		for (Movie s : ss) {
+		List<Movie> movies = movieMapper.selectAll();
+		for (Movie s : movies) {
 			PageHelper.startPage(1, 4);
             Example example = new Example(Purchase.class);
-			Example.Criteria criteria = example.createCriteria();
-			criteria.andEqualTo("movieName", s.getName());
+            Example.Criteria criteria = example.createCriteria();
+            criteria.andEqualTo("movieName", s.getName());
 			List<Purchase> purchases = purchaseMapper.selectByExample(example);
 			s.setPurchase(purchases);
 		}
-		return new PageInfo<>(ss);
+		return new PageInfo<>(movies);
 	}
+
+	/**
+	 * Description: 分页查询指定电影的所有购票信息
+	 *
+	 * @Date: 2019/5/6 22:29
+	 * @param: [name, page]
+	 * @author: ls
+	 */
+    public PageInfo<Purchase> findPurchaseInfo(String name, Integer page) {
+    	PageHelper.startPage(page, 12);
+	    Example example = new Example(Purchase.class);
+	    Example.Criteria criteria = example.createCriteria();
+	    criteria.andEqualTo("movieName", name);
+	    List<Purchase> purchases = purchaseMapper.selectByExample(example);
+	    return new PageInfo<>(purchases);
+    }
+
+    /**
+     * Description: 查询电影详情
+     *
+     * @Date: 2019/5/7 8:46
+     * @param: [name]：电影名称
+     * @author: ls
+     */
+    public Movie getMovieInfo(String name) {
+    	Movie movie = new Movie();
+    	movie.setName(name);
+	    movie = movieMapper.selectOne(movie);
+	    Actor actor = new Actor();
+	    actor.setActorMovie(name);
+	    List<Actor> actors = actorMapper.select(actor);
+	    movie.setActors(actors);
+	    return movie;
+    }
 }

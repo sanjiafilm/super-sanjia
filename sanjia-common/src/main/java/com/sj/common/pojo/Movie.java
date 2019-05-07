@@ -27,11 +27,11 @@ public class Movie implements Serializable{
 	private String catagory;  //类别
 	private String showTime;  //上映时间
 	private String duration;  //电影时长
-	private String actors;  //演员列表
 	private String introduction;  //简介
 	private String score;
 	private String location;
 	private List<Purchase> purchase;
+	private List<Actor> actors;  //演员列表
 
 	public List<Purchase> getPurchase() {
 		return purchase;
@@ -77,10 +77,10 @@ public class Movie implements Serializable{
 	public void setDuration(String duration) {
 		this.duration = duration;
 	}
-	public String getActors() {
+	public List<Actor> getActors() {
 		return actors;
 	}
-	public void setActors(String actors) {
+	public void setActors(List<Actor> actors) {
 		this.actors = actors;
 	}
 	
@@ -97,7 +97,7 @@ public class Movie implements Serializable{
 		this.location = location;
 	}
 	public Movie(int id,String name, String catagory,String status,
-				String showTime, String duration, String introduction, String actors,
+				String showTime, String duration, String introduction,
 				String score, String location) {
 		super();
 		this.id=id;
@@ -107,7 +107,6 @@ public class Movie implements Serializable{
 		this.showTime = showTime;
 		this.duration = duration;
 		this.setIntroduction(introduction);
-		this.actors = actors;
 		this.score= score;
 		this.location = location;
 	}
