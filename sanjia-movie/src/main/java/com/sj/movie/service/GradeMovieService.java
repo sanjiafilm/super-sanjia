@@ -124,11 +124,9 @@ public class GradeMovieService {
 	 * @param: [page]
 	 * @author: ls
 	 */
-	public PageInfo<Movie> getAll(Integer page) {
+	public PageInfo<Movie> getAll(Integer page, Double l_lng, Double l_lat) {
 		PageHelper.startPage(page, 3);
 		//List<Movie> movies = movieMapper.selectAll();
-		double l_lat = 30.65984;
-        double l_lng = 104.10194;
 		List<Movie> movies = gradeMapper.selectAllMovie(l_lat , l_lng);
 		
 		for (int i =0 ; i<movies.size() ; i++) { 									
@@ -155,12 +153,9 @@ public class GradeMovieService {
 	 * @param: [name, page]
 	 * @author: ls
 	 */
-    public PageInfo<Purchase> findPurchaseInfo(String name, Integer page) {
+    public PageInfo<Purchase> findPurchaseInfo(String name, Double lat, Double lng, Integer page) {
     	PageHelper.startPage(page, 12);
-	    Example example = new Example(Purchase.class);
-	    Example.Criteria criteria = example.createCriteria();
-	    criteria.andEqualTo("movieName", name);
-	    List<Purchase> purchases = purchaseMapper.selectByExample(example);
+	    List<Purchase> purchases = gradeMapper.selectPurchase(lat, lng, name);
 	    return new PageInfo<>(purchases);
     }
 

@@ -16,7 +16,7 @@ import com.sj.common.vo.SysResult;
 import com.sj.web.service.ipml.UserServiceIpml;
 
 @Controller
-@RequestMapping("user")
+@RequestMapping("/user")
 public class UserController {
 
 	@Autowired
@@ -76,6 +76,20 @@ public class UserController {
 			else{
 				return SysResult.build(2, "fail", null);
 			}		
+	}
+
+	@RequestMapping("/jdlogin")
+	@ResponseBody
+	public String login(String username, HttpServletRequest req){
+		req.getSession().setAttribute("username", username);
+		return "success";
+	}
+
+	@RequestMapping("/logout")
+	@ResponseBody
+	public String logout(String username, HttpServletRequest req){
+		req.getSession().removeAttribute("username");
+		return "success";
 	}
 	
 }

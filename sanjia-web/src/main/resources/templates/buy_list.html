@@ -229,7 +229,7 @@
             <div id="u824_div" class=""></div>
             <!-- Unnamed () -->
             <div id="u825" class="text" style="visibility: visible;">
-                <p><span>观影时间：2019-01-02&nbsp;&nbsp; </span></p>
+                <p><span>观影时间：2019-05-09&nbsp;&nbsp; </span></p>
             </div>
         </div>
 
@@ -546,22 +546,27 @@
                 <td colspan="8" style="text-align: center">
                     <table class="page-table">
                         <tr>
-                            <td th:if="${!purchase_page.isFirstPage}" class="table-body page-td">
-                                <a th:href="@{'/buy?name=' + ${movie_info.name} + '&page=1'}" href="#" style="text-decoration:none;">首页</a>
+                            <td th:if="!${movie_page!=null?movie_page.isFirstPage:true}" class="table-body page-td">
+                                <a th:href="@{'/' + ${page_url?:''} + '?page=1&' + ${page_params?:''}}"
+                                   style="text-decoration:none;">首页</a>
                             </td>
-                            <td th:if="${purchase_page.hasPreviousPage}" class="table-body page-td">
-                                <a th:href="@{'/buy?name=' + ${movie_info.name} + '&page=' +${purchase_page.prePage}}" href="#" style="text-decoration:none;">上一页</a>
+                            <td th:if="${movie_page?.hasPreviousPage}" class="table-body page-td">
+                                <a th:href="@{'/' + ${page_url?:''} + '?page=' +${movie_page.prePage} + '&' + ${page_params?:''}}"
+                                   href="#" style="text-decoration:none;">上一页</a>
                             </td>
-                            <th:block th:each="page : ${purchase_page.navigatepageNums}">
-                                <td th:style="${purchase_page.pageNum == page}?'background-color: #40C0A2;'" class="table-body page-td">
-                                    <a th:text="${page}" th:href="@{'/buy?name=' + ${movie_info.name} + '&page=' + ${page}}" href="#" style="text-decoration:none;">4</a>
+                            <th:block th:each="page : ${movie_page?.navigatepageNums}">
+                                <td th:style="${movie_page.pageNum == page}?'background-color: #40C0A2;'" class="table-body page-td">
+                                    <a th:text="${page}" th:href="@{'/' + ${page_url?:''} + '?page=' + ${page} + '&' + ${page_params?:''}}"
+                                       href="#" style="text-decoration:none;">4</a>
                                 </td>
                             </th:block>
-                            <td th:if="${purchase_page.hasNextPage}" class="table-body page-td">
-                                <a th:href="@{'/buy?name=' + ${movie_info.name} + '&page=' +${purchase_page.nextPage}}" href="#" style="text-decoration:none;">下一页</a>
+                            <td th:if="${movie_page?.hasNextPage}" class="table-body page-td">
+                                <a th:href="@{'/' + ${page_url?:''} + '?page=' +${movie_page.nextPage} + '&' + ${page_params?:''}}"
+                                   href="#" style="text-decoration:none;">下一页</a>
                             </td>
-                            <td th:if="${!purchase_page.isLastPage}" class="table-body page-td">
-                                <a th:href="@{'/buy?name=' + ${movie_info.name} + '&page=' +${purchase_page.pages}}" href="#" style="text-decoration:none;">尾页</a>
+                            <td th:if="!${movie_page!=null?movie_page.isLastPage:true}" class="table-body page-td">
+                                <a th:href="@{'/' + ${page_url?:''} + '?page=' +${movie_page.pages} + '&' + ${page_params?:''}}"
+                                   href="#" style="text-decoration:none;">尾页</a>
                             </td>
                         </tr>
                     </table>
@@ -1081,7 +1086,7 @@
                     <div id="u1236_div" class=""></div>
                     <!-- Unnamed () -->
                     <div id="u1237" class="text" style="visibility: visible;">
-                        <p><span>今天&nbsp;&nbsp; 2019-05-01</span></p>
+                        <p><span>今天&nbsp;&nbsp; 2019-05-09</span></p>
                     </div>
                 </div>
 
@@ -1090,7 +1095,7 @@
                     <div id="u1238_div" class=""></div>
                     <!-- Unnamed () -->
                     <div id="u1239" class="text" style="visibility: visible;">
-                        <p><span>明天&nbsp;&nbsp; 2019-05-02</span></p>
+                        <p><span>明天&nbsp;&nbsp; 2019-05-10</span></p>
                     </div>
                 </div>
 
@@ -1099,43 +1104,7 @@
                     <div id="u1240_div" class=""></div>
                     <!-- Unnamed () -->
                     <div id="u1241" class="text" style="visibility: visible;">
-                        <p><span>后天&nbsp;&nbsp; 2019-05-03</span></p>
-                    </div>
-                </div>
-
-                <!-- Unnamed (矩形) -->
-                <div id="u1242" class="ax_default box_1" selectiongroup="日期选择">
-                    <div id="u1242_div" class=""></div>
-                    <!-- Unnamed () -->
-                    <div id="u1243" class="text" style="visibility: visible;">
-                        <p><span>周四&nbsp;&nbsp; 2019-05-04</span></p>
-                    </div>
-                </div>
-
-                <!-- Unnamed (矩形) -->
-                <div id="u1244" class="ax_default box_1" selectiongroup="日期选择">
-                    <div id="u1244_div" class=""></div>
-                    <!-- Unnamed () -->
-                    <div id="u1245" class="text" style="visibility: visible;">
-                        <p><span>周五&nbsp;&nbsp; 2019-05-05</span></p>
-                    </div>
-                </div>
-
-                <!-- Unnamed (矩形) -->
-                <div id="u1246" class="ax_default box_1" selectiongroup="日期选择">
-                    <div id="u1246_div" class=""></div>
-                    <!-- Unnamed () -->
-                    <div id="u1247" class="text" style="visibility: visible;">
-                        <p><span>周六&nbsp;&nbsp; 2019-05-06</span></p>
-                    </div>
-                </div>
-
-                <!-- Unnamed (矩形) -->
-                <div id="u1248" class="ax_default box_1" selectiongroup="日期选择">
-                    <div id="u1248_div" class=""></div>
-                    <!-- Unnamed () -->
-                    <div id="u1249" class="text" style="visibility: visible;">
-                        <p><span>周日&nbsp;&nbsp; 2019-05-07</span></p>
+                        <p><span>后天&nbsp;&nbsp; 2019-05-11</span></p>
                     </div>
                 </div>
             </div>
@@ -1149,7 +1118,7 @@
         //搜索
         $("#u939").click(function () {
             var text = $("#u940_input").val();
-            window.location.href = "http://127.0.0.1/search/movie?text=" + text;
+            window.location.href = "/search/movie?text=" + text;
         });
     });
 </script>

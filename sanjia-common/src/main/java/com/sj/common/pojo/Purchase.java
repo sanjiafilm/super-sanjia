@@ -1,6 +1,7 @@
 package com.sj.common.pojo;
 
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -22,6 +23,7 @@ public class Purchase  implements Serializable{
 	private Double price;   //价格	
 	private String href;   //购票链接
 	private String favoriteId;//唯一标识，只做收藏的关联字段
+	@Transient
 	private String distance;//距离（根据购票信息的电影院的经纬度和当前位置的经纬度计算得到距离）
 	
 	

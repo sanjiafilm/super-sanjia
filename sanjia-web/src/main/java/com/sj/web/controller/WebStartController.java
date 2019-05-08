@@ -27,13 +27,20 @@ public class WebStartController {
      * @author: ls
      */
     @RequestMapping("/")
-    public String start(Model model, @RequestParam(required = false, defaultValue = "1")int page) throws IOException {
+    public String start(Model model, Double lng, Double lat, @RequestParam(required = false, defaultValue = "1") int page) throws IOException {
         String url = "http://movie/all?page=" + page;
+        if(lng == null || lat == null){
+            // 默认定位到四川日报大厦
+            url += "&lng=104.0826545833&lat=30.6655390000";
+        }else{
+            url += "&lng=" + lng + "&lat=" + lat;
+        }
         HttpResponse response = HttpClients.createDefault().execute(new HttpGet(url));
         String res = tostr(response.getEntity().getContent());
         model.addAttribute("movie_page", JSONObject.parse(res));
-        model.addAttribute("page_url", "");
-        model.addAttribute("page_params", "");
+        model.addAttribute("lng", lng);
+        model.addAttribute("lat", lat);
+        model.addAttribute("page_params", "lng=" + lng + "&lat=" + lat);
         return "index";
     }
 
@@ -45,16 +52,25 @@ public class WebStartController {
      * @author: ls
      */
     @RequestMapping("/buy")
-    public String purchase(Model model, String name, @RequestParam(required = false, defaultValue = "1")int page) throws IOException {
+    public String purchase(Model model, String name, Double lng, Double lat,
+                           @RequestParam(required = false, defaultValue = "1") int page) throws IOException {
+        String url = "http://movie/buy?name=" + name + "&page=" + page;
+        if(lng == null || lat == null){
+            // 默认定位到四川日报大厦
+            url += "&lng=104.0826545833&lat=30.6655390000";
+        }else{
+            url += "&lng=" + lng + "&lat=" + lat;
+        }
         HttpClient httpClient = HttpClients.createDefault();
-        HttpGet httpGet = new HttpGet("http://movie/buy?name=" + name + "&page=" + page);
-        HttpResponse response = httpClient.execute(httpGet);
-        HttpEntity entity = response.getEntity();
+
+        HttpEntity entity = httpClient.execute(new HttpGet(url)).getEntity();
         String json = tostr(entity.getContent());
         model.addAttribute("purchase_page", JSONObject.parse(json));
 
         HttpEntity movieEntity = httpClient.execute(new HttpGet("http://movie/movie_info?name=" + name)).getEntity();
         model.addAttribute("movie_info", JSONObject.parse(tostr(movieEntity.getContent())));
+        model.addAttribute("page_url", "buy");
+        model.addAttribute("page_params", "lng=" + lng + "&lat=" + lat);
         return "buy_list";
     }
 
@@ -66,7 +82,7 @@ public class WebStartController {
      * @author: ls
      */
     @RequestMapping("/search")
-    public String search(Model model, String name, @RequestParam(required = false, defaultValue = "1")int page) throws IOException {
+    public String search(Model model, String name, @RequestParam(required = false, defaultValue = "1") int page) throws IOException {
         String url = "http://movie/all?page=" + page;
         //String url = "http://search/?name=" + name + "&page=" + page;
         HttpEntity movieEntity = HttpClients.createDefault().execute(new HttpGet(url)).getEntity();
