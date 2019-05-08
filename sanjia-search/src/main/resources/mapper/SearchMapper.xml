@@ -10,8 +10,12 @@
 		select count(*) from t_movie
 	</select>
 	
-	<select id="getPurchaseInfo" parameterType="string" resultType="Purchase">
-		select * from t_purchase where movie_name=#{movieName}
+	<select id="getPurchaseInfo" resultType="Purchase">
+		select *
+		from t_purchase
+		where movie_name=#{movieName}
+		and play_time between #{todaytime} and #{tomorrowtime}
+		group by cinema_name
 	</select>
 	
 	<!--<delete id="deleteStore" parameterType="Favorite">

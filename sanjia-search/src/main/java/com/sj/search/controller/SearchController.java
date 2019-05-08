@@ -55,12 +55,5 @@ public class SearchController {
 		return searchService.getpurchInfo(movieName);
 	}
 	
-	@RequestMapping("test")
-	public Integer index() {
-		String name = "何以为家";
-		Integer count = searchMapper.getall();
-		Movie movie = searchMapper.getMovieInfo(name);
-		List<Purchase> purchaseL = searchMapper.getPurchaseInfo(name);
-		return count;
-	}
+
 }

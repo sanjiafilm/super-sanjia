@@ -1,6 +1,7 @@
 package com.sj.search.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -21,6 +22,7 @@ import com.github.pagehelper.PageHelper;
 import com.sj.common.pojo.Movie;
 import com.sj.common.pojo.ObjectUtil;
 import com.sj.common.pojo.Purchase;
+import com.sj.common.utils.GetSystemTime;
 import com.sj.common.vo.MovieDetail;
 import com.sj.search.mapper.SearchMapper;
 
@@ -190,7 +192,9 @@ public class SearchService {
 					 System.out.println("go to redis for search purchases "+name);
 				}else {
 					//数据库查询购票信息
-					purchaseL = searchMapper.getPurchaseInfo(movieName);
+					Date today = GetSystemTime.getCurrentTime();
+					Date tomorrow = GetSystemTime.getTomorrow();
+					purchaseL = searchMapper.getPurchaseInfo(movieName,today,tomorrow);
 					if(purchaseL != null) {						
 						//将Purchase 转为json 串 
 						String value = ObjectUtil.mapper.writeValueAsString(purchaseL);
@@ -277,7 +281,9 @@ public class SearchService {
 				
 			}else {
 				//数据库查询购票信息
-				purchaseL = searchMapper.getPurchaseInfo(movieName);
+				Date today = GetSystemTime.getCurrentTime();
+				Date tomorrow = GetSystemTime.getTomorrow();
+				purchaseL = searchMapper.getPurchaseInfo(movieName,today,tomorrow);
 				if(purchaseL != null) {					
 					//将movie 转为json 串 
 					String value = ObjectUtil.mapper.writeValueAsString(purchaseL);
