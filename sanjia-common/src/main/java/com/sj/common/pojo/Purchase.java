@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Table(name = "t_purchase")
-public class Purchase extends PurchaseProxy implements Serializable{
+public class Purchase  implements Serializable{
 	
 	/**
 	 * 
@@ -14,7 +14,7 @@ public class Purchase extends PurchaseProxy implements Serializable{
 	private String movieName;  //电影名称
 	private String showTime;   //上映时间
 	private String category;   //分类
-	private String score;   //评分
+	private String  score;   //评分
 	private String cinemaName;   //影院名字
 	private String address;   //影院地址
 	private Date playTime;  //场次
@@ -22,10 +22,29 @@ public class Purchase extends PurchaseProxy implements Serializable{
 	private Double price;   //价格	
 	private String href;   //购票链接
 	private String favoriteId;//唯一标识，只做收藏的关联字段
+	private String distance;//距离（根据购票信息的电影院的经纬度和当前位置的经纬度计算得到距离）
 	
 	
-	public Purchase(String movieName, String showTime, String category, String score, String cinemaName,
-			String address, Date playTime, String platform, Double price, String href,String favoriteId) {
+	@Override
+	public String toString() {
+		return "Purchase [movieName=" + movieName + ", showTime=" + showTime + ", category=" + category + ", score="
+				+ score + ", cinemaName=" + cinemaName + ", address=" + address + ", playTime=" + playTime
+				+ ", platform=" + platform + ", price=" + price + ", href=" + href + ", favoriteId=" + favoriteId
+				+ ", distance=" + distance + "]";
+	}
+
+	public String getDistance() {
+		return distance;
+	}
+
+	public void setDistance(String distance) {
+		this.distance = distance;
+	}
+
+
+	
+	public Purchase(String movieName, String showTime, String category, String score, String cinemaName, String address,
+			Date playTime, String platform, Double price, String href, String favoriteId, String distance) {
 		super();
 		this.movieName = movieName;
 		this.showTime = showTime;
@@ -38,8 +57,10 @@ public class Purchase extends PurchaseProxy implements Serializable{
 		this.price = price;
 		this.href = href;
 		this.favoriteId = favoriteId;
+		this.distance = distance;
 	}
 	
+
 	public Purchase() {
 		
 	}
@@ -108,11 +129,11 @@ public class Purchase extends PurchaseProxy implements Serializable{
 		this.platform = platform;
 	}
 
-	public Double getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(Double price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 

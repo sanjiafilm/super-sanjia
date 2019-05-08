@@ -126,29 +126,24 @@ public class GradeMovieService {
 	 */
 	public PageInfo<Movie> getAll(Integer page) {
 		PageHelper.startPage(page, 3);
-		List<Movie> movies = movieMapper.selectAll();
-		for (Movie s : movies) {
+		//List<Movie> movies = movieMapper.selectAll();
+		double l_lat = 30.65984;
+        double l_lng = 104.10194;
+		List<Movie> movies = gradeMapper.selectAllMovie(l_lat , l_lng);
+		
+		for (int i =0 ; i<movies.size() ; i++) { 									
 			PageHelper.startPage(1, 4);
             Example example = new Example(Purchase.class);
             Example.Criteria criteria = example.createCriteria();
-            criteria.andEqualTo("movieName", s.getName());
-			List<Purchase> purchases = purchaseMapper.selectByExample(example);
-			s.setPurchase(purchases);
-			for(Purchase pur : purchases) {
-				System.out.println("进入距离设置");
-				String cinameName = pur.getCinemaName();
-				try {
-					Cinema cinema = gradeMapper.getCinema(cinameName);
-					System.out.println(cinema);//打桩
-					//todo:
-					double distance = DistanceUtiles.getDistance(cinema, 104.0826545833, 30.6655390000);//给的当前位置（日报大厦）
-					pur.setDistance(distance);
-				}catch (Exception e) {
-					e.printStackTrace();
-					System.out.println("未找到影院！设置一个默认距离");
-					pur.setDistance(2.40);
-				}								
-			}
+            example.setOrderByClause("'playTime' ASC , 'price' ASC ");
+            criteria.andEqualTo("movieName", movies.get(i).getName());                                    
+			//List<Purchase> purchases = purchaseMapper.selectByExample(example);
+            String movieName = movies.get(i).getName();
+            
+            List<Purchase> purchases = gradeMapper.selectPurchase(l_lat , l_lng, movieName);		
+
+			
+			movies.get(i).setPurchase(purchases);
 		}
 		return new PageInfo<>(movies);
 	}

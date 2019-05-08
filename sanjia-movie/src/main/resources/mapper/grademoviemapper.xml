@@ -75,6 +75,43 @@
 	<select id="getCinema" resultType="Cinema">
 	    SELECT * FROM t_cinema WHERE t_cinema.name=#{cinameName};
 	</select>
+	
+	<select id="selectPurchase" resultType="Purchase">	    
+	      SELECT p.*, tmp2.distance
+          FROM t_purchase p
+          RIGHT JOIN
+          (SELECT c.address,
+             ROUND(6371.393 * 2 * ASIN(SQRT(POW(SIN((#{l_lat} * 3.1415926 / 180 - lat * PI() / 180) / 2), 2) +
+                                                 COS(#{l_lat} * 3.1415926 / 180) * COS(lat * PI() / 180) * POW(
+                                                SIN((#{l_lng} * 3.1415926 / 180 - lng * PI() / 180) / 2), 2))),
+                   2) AS distance  
+            FROM (SELECT movie_name, address, cinema_name
+            FROM t_purchase
+            WHERE movie_name = #{movieName}
+            GROUP BY address, cinema_name) tmp1
+               RIGHT JOIN t_cinema c ON tmp1.address = c.address) tmp2 ON p.address = tmp2.address
+            WHERE p.movie_name = #{movieName} AND p.play_time&gt;NOW() AND tmp2.distance&lt;5 
+            ORDER BY tmp2.distance             
+	</select>
+	
+	<select id="selectAllMovie" resultType="Movie">	    
+          SELECT t_movie.* FROM t_movie 
+                  LEFT JOIN t_purchase 
+                  ON 
+                     t_movie.name=t_purchase.movie_name
+                  LEFT JOIN t_cinema 
+                  ON
+                     t_purchase.cinema_name = t_cinema.name
+          WHERE
+               t_purchase.play_time&gt;NOW()
+               AND
+               ROUND(6371.393 * 2 * ASIN(SQRT(POW(SIN((#{l_lat} * 3.1415926 / 180 - t_cinema.lat * PI() / 180) / 2), 2) +
+                                                   COS(#{l_lat} * 3.1415926 / 180) * COS(t_cinema.lat * PI() / 180) * POW(
+                                                  SIN((#{l_lng} * 3.1415926 / 180 - t_cinema.lng * PI() / 180) / 2), 2))),2)&lt;5
+          GROUP BY t_movie.name       
+	</select>
+	
+	
 
 </mapper> 
 
