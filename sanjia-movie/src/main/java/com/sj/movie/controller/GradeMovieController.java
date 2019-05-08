@@ -114,6 +114,18 @@ public class GradeMovieController {
 	}
 	
 	/**
+	 * Description: 豆瓣高分
+	 * @param page
+	 * 
+	 */
+	@RequestMapping("/highgrade")
+	@ResponseBody
+	public PageInfo<Movie> gethighGrade(@RequestParam(required = false, defaultValue = "1") Integer page1){
+		return gradeService.getHighGrade(page1);
+	}
+	
+	
+	/**
 	 * Description: 最新上映
 	 * @param page
 	 * 

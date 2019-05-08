@@ -7,6 +7,9 @@
 	select * from t_movie order by show_time desc 
 </select>
 
+<select id="sortScore" resultType="Movie" >
+	select * from t_movie order by score desc 
+</select>
 
 
 

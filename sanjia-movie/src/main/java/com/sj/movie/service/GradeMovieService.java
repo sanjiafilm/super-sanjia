@@ -15,6 +15,7 @@ import com.sj.common.pojo.Actor;
 import com.sj.common.pojo.Cinema;
 import com.sj.common.pojo.Purchase;
 import com.sj.common.utils.DistanceUtiles;
+import com.sj.common.utils.GetSystemTime;
 import com.sj.movie.mapper.ActorMapper;
 import com.sj.movie.mapper.MovieMapper;
 import com.sj.movie.mapper.MovieSortMapper;
@@ -25,6 +26,7 @@ import org.springframework.stereotype.Service;
 import com.sj.common.pojo.Movie;
 import com.sj.movie.mapper.GradeMovieMapper;
 import tk.mybatis.mapper.entity.Example;
+import com.sj.movie.mapper.PurchaseSortMapper;
 
 @Service
 public class GradeMovieService {
@@ -42,6 +44,9 @@ public class GradeMovieService {
 	
 	@Autowired
 	private MovieSortMapper movieSortMapper;
+	
+	@Autowired
+	private PurchaseSortMapper purchaseSortMapper;
 	
 	public List<Movie> getGradeMovieData(int page) {
 		try {
@@ -182,26 +187,36 @@ public class GradeMovieService {
 	    return movie;
     }
     
-  //最新上映
-		public PageInfo<Movie> getNewPlay(Integer page2) {
- 
-			PageHelper.startPage(page2, 3);
-			List<Movie> ss = movieSortMapper.sortData();
-			for (Movie s : ss) {
-				PageHelper.startPage(1, 4);
-	            Example example1 = new Example(Purchase.class);
-	            
-				Example.Criteria criteria1 = example1.createCriteria();			
-				
-				example1.setOrderByClause("'playTime' 'price' ASC");  				
-				criteria1.andEqualTo("movieName", s.getName());      
-				
-				List<Purchase> purchases1 = purchaseMapper.selectByExample(example1);
-				for (Purchase purchase : purchases1) {
-				System.out.println(purchase.toString());
-			}
-				s.setPurchase(purchases1);
-			}
-			return new PageInfo<>(ss);
-		}
+    //豆瓣评分
+  	public PageInfo<Movie> getHighGrade(Integer page1) {
+  		PageHelper.startPage(page1, 3);
+  		List<Movie> ss = movieSortMapper.sortScore();
+  		for (Movie s : ss) {
+  			PageHelper.startPage(1, 4);
+  			Date todaytime = GetSystemTime.getCurrentTime();
+  			Date tomorrowtime = GetSystemTime.getTomorrow(); 	        
+  			List<Purchase> purchases1 = purchaseSortMapper.sortPlayTime(s.getName(),todaytime,tomorrowtime);
+  			System.out.println(purchases1);
+  			s.setPurchase(purchases1);
+  		}
+  		return new PageInfo<>(ss);
+  	}
+  	
+  	//最新上映
+  		public PageInfo<Movie> getNewPlay(Integer page2) {
+  		 
+  			PageHelper.startPage(page2, 3);
+  			List<Movie> ss = movieSortMapper.sortData();
+  			for (Movie s : ss) {
+  				PageHelper.startPage(1, 4);
+  				Date todaytime = GetSystemTime.getCurrentTime();
+  	  			Date tomorrowtime = GetSystemTime.getTomorrow(); 	        
+  	  			List<Purchase> purchases1 = purchaseSortMapper.sortPlayTime(s.getName(),todaytime,tomorrowtime);
+  				for (Purchase purchase : purchases1) {
+					System.out.println(purchase.toString());
+				}
+  				s.setPurchase(purchases1);
+  			}
+  			return new PageInfo<>(ss);
+  		}
 }
