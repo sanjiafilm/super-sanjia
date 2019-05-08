@@ -16,6 +16,7 @@ import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.github.pagehelper.PageHelper;
@@ -153,7 +154,7 @@ public class SearchService {
 		
 	}*/
 	
-	public Movie getFilmDetail(String movieName,Integer page) {
+	public Movie getFilmDetail(String movieName,@RequestParam(required=false,defaultValue="1")Integer page) {
 		String name = movieName;
 		List<Purchase> purchaseL = new ArrayList<Purchase>();
 		MovieDetail movieDetail = new MovieDetail();
@@ -176,7 +177,7 @@ public class SearchService {
 //			return movie;
 			//判断数据是否存在			
 			if (movie != null) {  //如果存在就继续查询对应movieName对应在t_purchase的表信息
-				PageHelper.startPage(page, 4);
+				PageHelper.startPage(1, 4);
 				String purchaseHash ="PURCHASE"+Integer.toHexString(name.hashCode());
 				System.out.println(purchaseHash);
 				// 先从redis查找 如果redis没有则从数据库查找

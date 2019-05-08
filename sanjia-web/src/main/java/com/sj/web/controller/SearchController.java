@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.alibaba.fastjson.JSONObject;
+
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -99,6 +101,9 @@ public class SearchController {
         FilmsInfo filmsInfo = new FilmsInfo();
         try {
             System.out.println(text);
+            if(StringUtils.isEmpty(text) || text.equals("请输入电影名称")){
+            	return "index";
+            }
             List<String> filmNameL = new ArrayList<>();
             filmNameL = searchService.getFilmName(text);
             Integer count = filmNameL.size();
