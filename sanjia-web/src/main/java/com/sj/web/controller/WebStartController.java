@@ -70,7 +70,7 @@ public class WebStartController {
         HttpEntity movieEntity = httpClient.execute(new HttpGet("http://movie/movie_info?name=" + name)).getEntity();
         model.addAttribute("movie_info", JSONObject.parse(tostr(movieEntity.getContent())));
         model.addAttribute("page_url", "buy");
-        model.addAttribute("page_params", "lng=" + lng + "&lat=" + lat);
+        model.addAttribute("page_params", "name=" + name + "&lng=" + lng + "&lat=" + lat);
         return "buy_list";
     }
 
