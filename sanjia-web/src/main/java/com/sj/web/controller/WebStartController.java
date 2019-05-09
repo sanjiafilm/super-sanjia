@@ -71,6 +71,8 @@ public class WebStartController {
         model.addAttribute("movie_info", JSONObject.parse(tostr(movieEntity.getContent())));
         model.addAttribute("page_url", "buy");
         model.addAttribute("page_params", "name=" + name + "&lng=" + lng + "&lat=" + lat);
+        model.addAttribute("lng", lng);
+        model.addAttribute("lat", lat);
         return "buy_list";
     }
 

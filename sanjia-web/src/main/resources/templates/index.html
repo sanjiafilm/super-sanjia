@@ -1246,6 +1246,7 @@
 <script th:inline="javascript">
     window.lng = [[${lng}]];
     window.lat = [[${lat}]];
+    window.username = [[${session.username}]];
 </script>
 <script type="text/javascript">
     $(function () {
@@ -1421,7 +1422,16 @@
         //搜索
         $("#u20").click(function () {
             var text = $("#u21_input").val();
-            window.location.href = "/search/movie?text=" + text;
+            window.location.href = "/search/movie?text=" + text + "&lng=" + lng + "&lat=" + lat;
+        });
+
+        //收藏夹
+        $("#u731").click(function () {
+            //不为空则跳转
+            if($.trim(username)){
+                //alert("xxx");
+                window.location.href = "/";
+            }
         });
 
     });

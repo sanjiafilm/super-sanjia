@@ -97,7 +97,7 @@ public class SearchController {
 
     @RequestMapping(value = "movie", method = RequestMethod.GET)
     //@ResponseBody
-    public String getMovieDetail(String text, @RequestParam(defaultValue = "1", required = false) Integer page, Model model) {
+    public String getMovieDetail(String text, Double lng, Double lat, @RequestParam(defaultValue = "1", required = false) Integer page, Model model) {
         FilmsInfo filmsInfo = new FilmsInfo();
         try {
             System.out.println(text);
@@ -114,6 +114,8 @@ public class SearchController {
             model.addAttribute("movie_page", JSONObject.parse(movieds));
             model.addAttribute("page_url", "search/movie");
             model.addAttribute("page_params", "text=" + text);
+            model.addAttribute("lng", lng);
+            model.addAttribute("lat", lat);
             return "index";
         } catch (Exception e) {
             System.out.println("error ");

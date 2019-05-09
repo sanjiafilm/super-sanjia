@@ -458,7 +458,7 @@
                     <div id="u920_div" class=""></div>
                     <!-- Unnamed () -->
                     <div id="u921" class="text" style="visibility: visible;">
-                        <p><span>唐三藏唐三藏</span></p>
+                        <p><span th:text="${session.username}">唐三藏唐三藏</span></p>
                     </div>
                 </div>
 
@@ -1113,12 +1113,16 @@
 </div>
 </body>
 <script type="text/javascript" src="/jquery.min.js"></script>
+<script th:inline="javascript">
+    window.lng = [[${lng}]];
+    window.lat = [[${lat}]];
+</script>
 <script type="text/javascript">
     $(function () {
         //搜索
         $("#u939").click(function () {
             var text = $("#u940_input").val();
-            window.location.href = "/search/movie?text=" + text;
+            window.location.href = "/search/movie?text=" + text + "&lng=" + lng + "&lat=" + lat;
         });
     });
 </script>

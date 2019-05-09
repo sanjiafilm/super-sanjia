@@ -3,9 +3,13 @@ package com.sj.web.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.alibaba.fastjson.JSONObject;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageInfo;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -90,6 +94,22 @@ public class UserController {
 	public String logout(String username, HttpServletRequest req){
 		req.getSession().removeAttribute("username");
 		return "success";
+	}
+
+	@RequestMapping("/dofavorite")
+	@ResponseBody()
+	public String dofavorite(){
+		return null;
+    }
+
+	@RequestMapping("/favorite")
+	public String favorite(Model model, String fid, Double lng, Double lat, Integer page, HttpServletRequest req){
+		//req.getSession();
+		model.addAttribute("movie_page", "");
+		model.addAttribute("lng", lng);
+		model.addAttribute("lat", lat);
+		model.addAttribute("page_params", "lng=" + lng + "&lat=" + lat);
+		return "index";
 	}
 	
 }

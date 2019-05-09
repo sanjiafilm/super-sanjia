@@ -91,7 +91,7 @@
             GROUP BY address, cinema_name) tmp1
                RIGHT JOIN t_cinema c ON tmp1.address = c.address) tmp2 ON p.address = tmp2.address
             WHERE p.movie_name = #{movieName} AND p.play_time&gt;NOW() AND tmp2.distance&lt;5 
-            ORDER BY tmp2.distance             
+            ORDER BY p.price, tmp2.distance
 	</select>
 	
 	<select id="selectAllMovie" resultType="Movie">	    
@@ -108,7 +108,7 @@
                ROUND(6371.393 * 2 * ASIN(SQRT(POW(SIN((#{l_lat} * 3.1415926 / 180 - t_cinema.lat * PI() / 180) / 2), 2) +
                                                    COS(#{l_lat} * 3.1415926 / 180) * COS(t_cinema.lat * PI() / 180) * POW(
                                                   SIN((#{l_lng} * 3.1415926 / 180 - t_cinema.lng * PI() / 180) / 2), 2))),2)&lt;5
-          GROUP BY t_movie.name       
+          GROUP BY t_movie.name order by t_movie.show_time desc
 	</select>
 	
 	
