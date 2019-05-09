@@ -1,7 +1,9 @@
 package com.sj.common.pojo;
 
 
-
+/**
+ *
+ */
 public class PurchaseProxy {
 	
 	double distance;
