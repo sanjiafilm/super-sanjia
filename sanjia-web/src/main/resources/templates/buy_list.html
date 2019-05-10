@@ -336,7 +336,7 @@
             <div id="u893_div" class="selected"></div>
             <!-- Unnamed () -->
             <div id="u894" class="text" style="visibility: visible;">
-                <a href="/" style="text-decoration:none;"><span style="font-size: 16px; color: rgb(64, 192, 162);">回到首页</span></a>
+                <a th:href="@{'/?lng=' + ${lng} + '&lat=' + ${lat}}" href="/" style="text-decoration:none;"><span style="font-size: 16px; color: rgb(64, 192, 162);">回到首页</span></a>
             </div>
         </div>
 
@@ -538,7 +538,7 @@
                 <td th:text="${#dates.format(pur.playTime, 'yyyy-MM-dd HH:mm')}" class="table-body">10:00</td>
                 <td th:text="${pur.platform}" class="table-body">猫眼</td>
                 <td th:text="${pur.address}" class="table-body">成都市锦江区春熙路</td>
-                <td class="table-body">1.2km</td>
+                <td th:text="${pur.distance}" class="table-body">1.2km</td>
                 <td th:text="${pur.price}" class="table-body">￥39.9</td>
                 <td class="table-body"><a th:href="@{${pur.href}}" href="#">购票</a>&nbsp;&nbsp;<a href="#">收藏</a></td>
             </tr>

@@ -144,7 +144,7 @@
         <div id="u10" class="ax_default box_1 selected" data-label="最新" selectiongroup="首页导航">
             <div id="u10_div" class="selected"></div>
             <div id="u11" class="text" style="visibility: visible;">
-                <a href="/" style="text-decoration:none;"><span
+                <a th:href="@{'/?lng=' + ${lng} + '&lat=' + ${lat}}" href="/" style="text-decoration:none;"><span
                         style="font-size: 16px; color: rgb(64, 192, 162);">最新上映</span></a>
             </div>
         </div>
